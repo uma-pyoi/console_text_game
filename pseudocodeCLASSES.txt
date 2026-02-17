@@ -1,0 +1,86 @@
+START
+    //
+END
+
+
+// classes
+
+CLASS GameManager
+    player: Player
+END CLASS
+
+CLASS Player
+    ATTRIBUTES
+        // name entered by the player
+        name: STRING
+        score: INTEGER
+        HP: INTEGER
+        AP: INTEGER
+        DP: INTEGER
+        currentWeapon: Weapon
+        currentClothes: Clothes
+        inventory: Inventory
+    END ATTRIBUTES
+
+    CONSTRUCTOR
+    END CONSTRUCTOR
+
+    printDetails()
+END CLASS
+
+CLASS Enemy
+    HP: INTEGER
+    AP: INTEGER
+
+    // method that randomly calculates the item dropped by the enemy when defeated
+    getKillReward(): Food | Weapon | Clothes
+END CLASS
+
+CLASS Inventory
+    foodArr: Array of Food
+    weaponsArr: Array of Weapon
+    clothesArr: Array of Clothes
+
+    viewItem()
+    useItem()
+    throwAwayItem()
+END CLASS
+
+// the decision to separate food, weapon and clothes into their own classes
+// even though they behave similarly is due to potential future features specific to the classes
+// as well as current differences (you cannot equip food as a weapon or armour)
+// not sure if inheritance will be possible in program code
+CLASS Item
+    viewDescription()
+END CLASS
+
+CLASS Food
+    HP: INTEGER
+
+END CLASS
+
+CLASS Weapon
+    AP: INTEGER
+
+END CLASS
+
+CLASS Clothes
+    DP: INTEGER
+
+END CLASS
+
+CLASS
+END CLASS
+
+CLASS
+END CLASS
+
+CLASS
+END CLASS
+
+
+SUBROUTINE InputUserName()
+    READ user_name
+    PRINT "Enter your name"
+    RETURN user_name
+END SUBROUTINE
