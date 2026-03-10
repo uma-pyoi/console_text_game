@@ -4,7 +4,8 @@
 #include <string>
 
 class InputValidator {
-    void TrimString(std::string &s);
+public:
+    void TrimTrailingSpacesString(std::string &s);
 };
 
 
