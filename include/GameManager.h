@@ -2,11 +2,11 @@
 #define CPP_COURSEWORK1_P479574_GAMEMANAGER_H
 
 #include "Player.h"
-#include "Printer.h"
 #include "InputValidator.h"
+#include "OutputFormatted.h"
 
 class GameManager {
-    Printer printer_;
+    OutputFormatted output_formatted_;
     InputValidator input_validator_;
 
     Player player_;

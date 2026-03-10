@@ -14,6 +14,9 @@ class Player {
     int hp_ = 0;
     int ap_ = 0;
     int dp_ = 0;
+
+    // REFERENCE: https://en.cppreference.com/w/cpp/utility/optional.html
+    // Cppreference (n.d.)
     std::optional<Clothing> clothing_;
     std::optional<Weapon> weapon_;
     std::vector<Food> food_inventory_;

@@ -18,4 +18,6 @@ add_executable(cpp_coursework1_P479574 src/main.cpp
         include/GameManager.h
         src/InputValidator.cpp
         include/InputValidator.h
+        src/OutputFormatted.cpp
+        include/OutputFormatted.h
 )

@@ -21,3 +21,31 @@ int Player::GetHp() {
 void Player::SetHp(int hp) {
     this->hp_ = hp;
 }
+
+int Player::GetAp() {
+    return ap_;
+}
+
+void Player::SetAp(int ap) {
+    this->ap_ = ap;
+}
+
+int Player::GetDp() {
+    return dp_;
+}
+
+void Player::SetDp(int dp) {
+    this->dp_ = dp;
+}
+
+std::optional<Clothing> Player::GetClothing() {
+    return clothing_;
+}
+
+std::optional<Weapon> Player::GetWeapon() {
+    return weapon_;
+}
+
+std::vector<Food> Player::GetFoodInventory() {
+    return food_inventory_;
+}

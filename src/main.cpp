@@ -3,7 +3,11 @@
 #include "../include/Item.h"
 #include "../include/Food.h"
 #include "../include/Player.h"
-#include "../include/Printer.h"
+
+void PrintInputArrow() {
+    std::cout << '\n' << "'n'(next)/'p'(pause)" << '\n';
+    std::cout << '\n' << "> ";
+}
 
 std::string plot_0[10] {
     "Welcome, my dear. What would your name be?",
@@ -11,9 +15,15 @@ std::string plot_0[10] {
     "How is it going?"
 };
 
+std::string GetPlayerName() {
+    PrintInputArrow();
+    std::string player_name;
+    getline(std::cin, player_name);
+    return player_name;
+}
+
 
 int main() {
-    std::cout << "**++++--    Sakana    --++++**" << "\n\n";
 
     int index_plot{-1};
     bool running{true};
@@ -33,8 +43,6 @@ int main() {
 
     std::string player_name;
 
-    // REFERENCE: https://en.cppreference.com/w/cpp/string/basic_string/getline
-    // Cppreference.com (n.d.)
     getline(std::cin, player_name);
 
     Player player{player_name};
