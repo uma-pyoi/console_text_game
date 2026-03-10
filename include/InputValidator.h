@@ -5,6 +5,7 @@
 
 class InputValidator {
 public:
+    std::string ReadString();
     void TrimTrailingSpacesString(std::string &s);
 };
 

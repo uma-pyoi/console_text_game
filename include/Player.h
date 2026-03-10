@@ -7,6 +7,7 @@
 #include "Food.h"
 #include <vector>
 #include <optional>
+#include "Inventory.h"
 
 class Player {
     std::string name_;
@@ -19,10 +20,8 @@ class Player {
     // Cppreference (n.d.)
     std::optional<Clothing> clothing_;
     std::optional<Weapon> weapon_;
-    std::vector<Food> food_inventory_;
 
-    // the current inventory is food_list, in the future could add clothing and weapons
-    int inventory_limit_{10};
+    Inventory inventory_;
 
 public:
     Player(std::string name);
@@ -39,7 +38,6 @@ public:
 
     std::optional<Clothing> GetClothing();
     std::optional<Weapon> GetWeapon();
-    std::vector<Food> GetFoodInventory();
 };
 
 #endif // CPP_COURSEWORK1_P479574_PLAYER_H

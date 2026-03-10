@@ -1,6 +1,13 @@
 #include "../include/InputValidator.h"
 
 #include <filesystem>
+#include <iostream>
+
+std::string InputValidator::ReadString() {
+    std::string user_string;
+    getline(std::cin >> std::ws, user_string);
+    return user_string;
+}
 
 void InputValidator::TrimTrailingSpacesString(std::string &s) {
     // REFERENCE: https://youtu.be/3ME0l0trRsE?si=U-r89ws4KzKOiyLt

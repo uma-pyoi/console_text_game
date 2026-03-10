@@ -20,4 +20,6 @@ add_executable(cpp_coursework1_P479574 src/main.cpp
         include/InputValidator.h
         src/OutputFormatted.cpp
         include/OutputFormatted.h
+        src/Inventory.cpp
+        include/Inventory.h
 )
