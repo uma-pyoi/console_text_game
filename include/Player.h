@@ -21,8 +21,6 @@ class Player {
     std::optional<Clothing> clothing_;
     std::optional<Weapon> weapon_;
 
-    Inventory inventory_;
-
 public:
     Player(std::string name);
 

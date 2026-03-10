@@ -45,7 +45,3 @@ std::optional<Clothing> Player::GetClothing() {
 std::optional<Weapon> Player::GetWeapon() {
     return weapon_;
 }
-
-std::vector<Food> Player::GetFoodInventory() {
-    return food_inventory_;
-}

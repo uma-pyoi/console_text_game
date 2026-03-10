@@ -9,6 +9,7 @@ class Inventory {
 
     // todo: add features to store items other than food
     std::vector<Food> food_inventory_;
+
 public:
     std::vector<Food> GetFoodInventory();
 };
