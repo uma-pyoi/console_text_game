@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPP_COURSEWORK1_P479574_WEAPON_H
+#define CPP_COURSEWORK1_P479574_WEAPON_H
 
 #include "Item.h"
 
@@ -7,3 +8,5 @@ class Weapon : public Item {
 public:
     Weapon(std::string name, std::string description, int ap);
 };
+
+#endif // CPP_COURSEWORK1_P479574_WEAPON_H

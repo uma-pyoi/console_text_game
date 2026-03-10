@@ -11,4 +11,11 @@ add_executable(cpp_coursework1_P479574 src/main.cpp
         src/Weapon.cpp
         include/Weapon.h
         src/Clothing.cpp
-        include/Clothing.h)
+        include/Clothing.h
+        src/Player.cpp
+        include/Player.h
+        src/GameManager.cpp
+        include/GameManager.h
+        src/InputValidator.cpp
+        include/InputValidator.h
+)
