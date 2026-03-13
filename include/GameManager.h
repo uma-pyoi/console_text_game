@@ -20,11 +20,9 @@ public:
         "You wake up in a dark room. "
         "\nA glowing screen shows today's date - May 1st, 3137."
         "\nIt has been 1111 years.",
-        "A woman in a white uniform enters the room. \n\"What is the number?\" she asks."
-    };
-    std::string plot_0choice[10] {
-        "1. 1111",
-        "2. 15"
+        "\n\nA woman in a white uniform enters the room. \n\"What is the number?\" she asks."
+        "\n1. 1111"
+        "\n2. 15"
     };
     std::string plot_01[10] { // 01 means plot 0 branch 1
         "The woman slowly and carefully pulls out a knife."

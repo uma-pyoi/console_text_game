@@ -4,8 +4,8 @@
 
 class OutputFormatted {
 public:
-    void OutputInputArrow();
     void OutputGameTitle();
+    void OutputStoryModePrompt();
 };
 
 

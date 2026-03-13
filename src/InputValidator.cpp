@@ -23,7 +23,7 @@ int InputValidator::ReadPosIntInRange(int min, int max) {
     bool is_valid{false};
     int user_num{-1};
     do {
-        std::cout << "Enter a number (" << min << "-" << max << "): ";
+        std::cout << "\n\n" << "Enter a number (" << min << "-" << max << "): ";
         std::string user_num_string = this->ReadString();
         this->TrimTrailingSpacesString(user_num_string);
         if (this->IsNumeric(user_num_string)) {
@@ -60,4 +60,33 @@ void InputValidator::TrimTrailingSpacesString(std::string &s) {
         }
     }
     s = s.substr(0, end_i + 1);
+}
+
+// returns char 'n' | 'p'
+char InputValidator::ReadStoryModeChar() {
+    bool is_valid{false};
+    std::string user_string;
+    char user_char{'0'}; // 0 here is for initialisation, meaningless
+    do {
+        std::cout << "\n\nEnter 'n' to continue, 'p' to pause: ";
+        user_string = this->ReadString();
+        this->TrimTrailingSpacesString(user_string);
+        std::cout << "user_string is: " << user_string << '\n';
+        if (user_string.length() == 1) {
+            user_char = std::tolower(user_string[0]);
+            std::cout << "lower char is: " << user_char << '\n';
+            if (user_char == 'n' || user_char == 'p') {
+                std::cout << "good!" << '\n';
+                is_valid = true;
+            }
+            else {
+                std::cout << "Invalid! You must enter 'n' or 'p'!" << '\n';
+            }
+        }
+        else {
+            std::cout << "Invalid! You must enter one letter!" << '\n';
+        }
+    }
+    while (!is_valid);
+    return user_char;
 }

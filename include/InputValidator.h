@@ -7,6 +7,7 @@ class InputValidator {
 public:
     std::string ReadString();
     int ReadPosIntInRange(int min, int max);
+    char ReadStoryModeChar();
 
     bool IsNumeric(const std::string& str);
     void TrimTrailingSpacesString(std::string &s);
