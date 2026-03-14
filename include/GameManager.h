@@ -16,7 +16,7 @@ public:
     GameManager(Player player);
 
     // plot is public as there is no need to keep it private
-    std::string plot_0[10] {
+    std::string plot_0[2] {
         "You wake up in a dark room. "
         "\nA glowing screen shows today's date - May 1st, 3137."
         "\nIt has been 1111 years.",
@@ -34,6 +34,7 @@ public:
 
     // methods
     void RunStory();
+    bool RunPauseScreen();
 };
 
 

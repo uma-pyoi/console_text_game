@@ -8,7 +8,10 @@ class Inventory {
     int inventory_limit_{10};
 
     // todo: add features to store items other than food
-    std::vector<Food> food_inventory_;
+    std::vector<Food> food_inventory_ = {
+        Food("Egg", "Delicious egg", 5),
+        Food("Apple Pie", "It is looking like it would make you dream.", 25)
+    };
 
 public:
     std::vector<Food> GetFoodInventory();

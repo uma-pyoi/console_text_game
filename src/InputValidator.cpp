@@ -71,12 +71,9 @@ char InputValidator::ReadStoryModeChar() {
         std::cout << "\n\nEnter 'n' to continue, 'p' to pause: ";
         user_string = this->ReadString();
         this->TrimTrailingSpacesString(user_string);
-        std::cout << "user_string is: " << user_string << '\n';
         if (user_string.length() == 1) {
             user_char = std::tolower(user_string[0]);
-            std::cout << "lower char is: " << user_char << '\n';
             if (user_char == 'n' || user_char == 'p') {
-                std::cout << "good!" << '\n';
                 is_valid = true;
             }
             else {
