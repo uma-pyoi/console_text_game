@@ -51,13 +51,8 @@ void OutputFormatted::OutputInventory(Inventory inventory) {
 }
 
 void OutputFormatted::OutputInventoryMenu(Inventory inventory) {
-    if (inventory.GetFoodInventory().size() == 0) {
-        std::cout << "Your inventory is empty!" << '\n';
-    }
-    else {
-        OutputInventory(inventory);
-        std::cout << "Choose from the following:" << '\n';
-        std::cout << "1. Go back" << '\n';
-        std::cout << "2. Choose an item" << '\n';
-    }
+    OutputInventory(inventory);
+    std::cout << "Choose from the following:" << '\n';
+    std::cout << "1. Go back" << '\n';
+    std::cout << "2. Choose an item" << '\n';
 }

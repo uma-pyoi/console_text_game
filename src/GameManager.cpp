@@ -28,17 +28,16 @@ void GameManager::RunStory() {
 }
 
 bool GameManager::RunPauseScreen() {
-    bool continue_pause_screen{true};
-    bool continue_game{true};
+    bool run_pause_screen{true};
+    bool run_game{true};
     do {
         output_formatted_.OutputPauseScreen(this->player_);
         int choice = input_validator_.ReadPosIntInRange(1, 5);
         if (choice == 1) {
-            continue_pause_screen = false;
+            run_pause_screen = false;
         }
         else if (choice == 2) {
-            output_formatted_.OutputInventoryMenu(inventory_);
-            int inventory_choice = input_validator_.ReadPosIntInRange(1, 2);
+            this->RunInventory();
         }
         else if (choice == 3) {
             // TODO: implement save game
@@ -50,9 +49,32 @@ bool GameManager::RunPauseScreen() {
         }
         else if (choice == 5) {
             output_formatted_.OutputGameEnd();
-            continue_game = false;
+            run_game = false;
         }
     }
-    while (continue_pause_screen && continue_game);
-    return continue_game;
+    while (run_pause_screen && run_game);
+    return run_game;
+}
+
+void GameManager::RunInventory() {
+    if (inventory_.GetFoodInventory().size() == 0) {
+        std::cout << "Your inventory is empty!" << '\n';
+    }
+    else {
+        bool run_inventory{true};
+        do {
+            output_formatted_.OutputInventoryMenu(inventory_);
+            int choice = input_validator_.ReadPosIntInRange(1, 2);
+            if (choice == 1) {
+                run_inventory = false;
+            }
+            else if (choice == 2) {
+                // std::cout << "Enter item number (1-" << inventory_.GetFoodInventory().size() << "): ";
+                std::cout << "Choose the item number." << '\n';
+                int item_num = input_validator_.ReadPosIntInRange(1, inventory_.GetFoodInventory().size());
+                std::cout << "item num is: " << item_num;
+            }
+        }
+        while (run_inventory);
+    }
 }

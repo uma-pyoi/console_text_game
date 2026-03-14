@@ -35,6 +35,7 @@ public:
     // methods
     void RunStory();
     bool RunPauseScreen();
+    void RunInventory();
 };
 
 
