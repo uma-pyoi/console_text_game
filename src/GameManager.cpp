@@ -1,5 +1,6 @@
 #include "../include/GameManager.h"
 #include <iostream>
+#include "../include/Enemy.h"
 
 GameManager::GameManager(Player player) : player_(player) {}
 
@@ -16,8 +17,14 @@ void GameManager::RunStory() {
                 }
             }
             else {
-                int user_choice = input_validator_.ReadPosIntInRange(1, 2);
-                std::cout << "user_choice: " << user_choice << '\n';
+                int plot_choice = input_validator_.ReadPosIntInRange(1, 2);
+                std::cout << "user_choice: " << plot_choice << '\n';
+                if (plot_choice == 1) {
+                    std::cout << "AAaa!! bad choice! u get attacked by an enemy now" << '\n';
+                    Food onigiri("Onigiri", "A japanese treat", 10);
+                    Enemy enemy("Rice Shower", onigiri, 20);
+                    enemy.OutputEnemy();
+                }
             }
         }
         else {
@@ -69,7 +76,6 @@ void GameManager::RunInventory() {
                 run_inventory = false;
             }
             else if (choice == 2) {
-                // std::cout << "Enter item number (1-" << inventory_.GetFoodInventory().size() << "): ";
                 std::cout << "Choose the item number." << '\n';
                 int item_num = input_validator_.ReadPosIntInRange(1, inventory_.GetFoodInventory().size());
                 std::cout << "item num is: " << item_num;

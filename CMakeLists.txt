@@ -22,4 +22,6 @@ add_executable(cpp_coursework1_P479574 src/main.cpp
         include/OutputFormatted.h
         src/Inventory.cpp
         include/Inventory.h
+        src/Enemy.cpp
+        include/Enemy.h
 )

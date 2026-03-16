@@ -1,5 +1,6 @@
 #ifndef CPP_COURSEWORK1_P479574_OUTPUTFORMATTED_H
 #define CPP_COURSEWORK1_P479574_OUTPUTFORMATTED_H
+
 #include "Inventory.h"
 #include "Player.h"
 
