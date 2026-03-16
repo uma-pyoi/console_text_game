@@ -16,6 +16,8 @@ class Player {
     int ap_ = 0;
     int dp_ = 0;
 
+    std::string default_empty_equipment_string_{"None"};
+
     // REFERENCE: https://en.cppreference.com/w/cpp/utility/optional.html
     // Cppreference (n.d.)
     std::optional<Clothing> clothing_;
@@ -36,6 +38,8 @@ public:
 
     std::optional<Clothing> GetClothing();
     std::optional<Weapon> GetWeapon();
+
+    void OutputPlayer();
 };
 
 #endif // CPP_COURSEWORK1_P479574_PLAYER_H

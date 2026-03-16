@@ -16,6 +16,7 @@ class Inventory {
 
 public:
     std::vector<Food> GetFoodInventory();
+    void OutputInventory();
 };
 
 

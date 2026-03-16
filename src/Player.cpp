@@ -1,4 +1,5 @@
 #include "../include/Player.h"
+#include <iostream>
 
 Player::Player(std::string name) : name_(name) {}
 
@@ -45,3 +46,16 @@ std::optional<Clothing> Player::GetClothing() {
 std::optional<Weapon> Player::GetWeapon() {
     return weapon_;
 }
+
+void Player::OutputPlayer() {
+    std::cout << name_ << " | " << "HP: " << hp_ << " | AP: " << ap_ << " | DP: " << dp_ << '\n';
+
+    // REFERENCE: https://www.learncpp.com/cpp-tutorial/stdoptional/
+    // Alex (2025);
+    std::string weapon_name = weapon_ ? weapon_->GetName() : default_empty_equipment_string_;
+    std::cout << "Weapon: " << weapon_name << '\n';
+
+    std::string clothing_name = clothing_ ? clothing_->GetName() : default_empty_equipment_string_;
+    std::cout << "Clothing: " << clothing_name << '\n';
+}
+

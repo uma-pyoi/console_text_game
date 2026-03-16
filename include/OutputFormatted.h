@@ -7,18 +7,11 @@
 
 class OutputFormatted {
 public:
-    std::string default_empty_equipment_string{"None"};
-
     void OutputGameTitle();
     void OutputGameEnd();
-
     void OutputStoryModePrompt();
-
     void OutputPauseScreen(Player player);
-    void OutputPlayerStats(Player player);
-
     void OutputInventoryMenu(Inventory inventory);
-    void OutputInventory(Inventory inventory);
 };
 
 
