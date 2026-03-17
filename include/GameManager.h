@@ -1,6 +1,7 @@
 #ifndef CPP_COURSEWORK1_P479574_GAMEMANAGER_H
 #define CPP_COURSEWORK1_P479574_GAMEMANAGER_H
 
+#include "Calculator.h"
 #include "Player.h"
 #include "InputValidator.h"
 #include "OutputFormatted.h"

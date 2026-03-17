@@ -24,4 +24,6 @@ add_executable(cpp_coursework1_P479574 src/main.cpp
         include/Inventory.h
         src/Enemy.cpp
         include/Enemy.h
+        src/Calculator.cpp
+        include/Calculator.h
 )

@@ -1,7 +1,3 @@
-//
-// Created by Assem Yeleussiz on 16/03/2026.
-//
-
 #include "../include/Enemy.h"
 #include <random>
 #include <iostream>
@@ -18,13 +14,8 @@ Enemy::Enemy(std::string name, Weapon weapon, int drop_rate) : name_(name), drop
     this->GenerateHpAp();
 }
 void Enemy::GenerateHpAp() {
-    // REFERENCE: https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution.html
-    // Cppreference.com (n.d.)
-    std::random_device random_device;
-    std::mt19937 generator(random_device());
-    std::uniform_int_distribution<> distribution(1, 100);
-    hp_ = distribution(generator);
-    ap_ = distribution(generator);
+    hp_ = this->calculator_.GenerateRandomIntInRange(1, 100);
+    ap_ = this->calculator_.GenerateRandomIntInRange(1, 100);
 }
 
 void Enemy::OutputEnemy() {

@@ -2,6 +2,8 @@
 #define CPP_COURSEWORK1_P479574_ENEMY_H
 
 #include <string>
+
+#include "Calculator.h"
 #include "Clothing.h"
 #include "Food.h"
 #include "Weapon.h"
@@ -11,6 +13,7 @@ class Enemy {
     int hp_;
     int ap_;
     int drop_rate_;
+    Calculator calculator_;
 
     // items dropped upon defeating the enemy
     std::optional<Weapon> drop_weapon_;
