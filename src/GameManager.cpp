@@ -21,9 +21,36 @@ void GameManager::RunStory() {
                 std::cout << "user_choice: " << plot_choice << '\n';
                 if (plot_choice == 1) {
                     std::cout << "AAaa!! bad choice! u get attacked by an enemy now" << '\n';
-                    Food onigiri("Onigiri", "A japanese treat", 10);
-                    Enemy enemy("Rice Shower", onigiri, 20);
-                    enemy.OutputEnemy();
+                    // Food onigiri("Onigiri", "A japanese treat", 10);
+                    // Weapon black_dagger("Black Dagger", "The infamous dagger of the Black Assassin", 15);
+                    Clothing hospital_gown("Hospital Gown", "A gown you found yourself in upon waking up", 1);
+                    Enemy rice_shower("Rice Shower", hospital_gown, 100);
+                    rice_shower.OutputEnemy();
+
+                    std::cout << "Let's pretend you defeated the enemy..." << '\n';
+                    bool success = rice_shower.IsDropItemSuccessful();
+                    if (success) {
+                        std::cout << "Congrats! you get ur item! " << success << '\n';
+                        std::variant<Weapon, Clothing, Food> item = rice_shower.GetDropItem();
+
+                        // REFERENCE: https://www.geeksforgeeks.org/cpp/std-variant-in-cpp-17/
+                        // Geeksforgeeks (2023)
+                        if (std::holds_alternative<Weapon>(item)) {
+                            std::cout << "You got a weapon! " << std::get<Weapon>(item).GetName() << '\n';
+                        }
+                        else if (std::holds_alternative<Clothing>(item)) {
+                            std::cout << "You got armour! " << std::get<Clothing>(item).GetName() << '\n';
+                        }
+                        else if (std::holds_alternative<Food>(item)) {
+                            std::cout << "You got food! " << std::get<Food>(item).GetName() << '\n';
+                        }
+                    }
+                    else {
+                        std::cout << "No luck. no item. " << success << '\n';
+                    }
+
+
+
                 }
             }
         }

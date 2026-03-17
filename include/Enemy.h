@@ -15,19 +15,15 @@ class Enemy {
     int drop_rate_;
     Calculator calculator_;
 
-    // items dropped upon defeating the enemy
-    std::optional<Weapon> drop_weapon_;
-    std::optional<Clothing> drop_clothing_;
-    std::optional<Food> drop_food_;
-
+    // item dropped upon defeating the enemy
+    std::variant<Weapon, Clothing, Food> drop_item_;
 public:
-    // different constructors depending on what the enemy drops
-    Enemy(std::string name, Weapon weapon, int drop_rate);
-    Enemy(std::string name, Clothing clothing, int drop_rate);
-    Enemy(std::string name, Food food, int drop_rate);
+    Enemy(std::string name, std::variant<Weapon, Clothing, Food>, int drop_rate);
 
     void GenerateHpAp();
     void OutputEnemy();
+    bool IsDropItemSuccessful();
+    std::variant<Weapon, Clothing, Food> GetDropItem();
 };
 
 
