@@ -1,6 +1,7 @@
 #include "../include/GameManager.h"
 #include <iostream>
 #include "../include/Enemy.h"
+#include <random>
 
 GameManager::GameManager(Player player) : player_(player) {}
 
@@ -21,14 +22,12 @@ void GameManager::RunStory() {
                 std::cout << "user_choice: " << plot_choice << '\n';
                 if (plot_choice == 1) {
                     std::cout << "AAaa!! bad choice! u get attacked by an enemy now" << '\n';
-                    // Food onigiri("Onigiri", "A japanese treat", 10);
-                    // Weapon black_dagger("Black Dagger", "The infamous dagger of the Black Assassin", 15);
-                    Clothing hospital_gown("Hospital Gown", "A gown you found yourself in upon waking up", 1);
-                    Enemy rice_shower("Rice Shower", hospital_gown, 100);
+                    Food onigiri("Onigiri", "A japanese treat", 10);
+                    Enemy rice_shower("Rice Shower", onigiri, 100, this);
                     rice_shower.OutputEnemy();
 
                     std::cout << "Let's pretend you defeated the enemy..." << '\n';
-                    bool success = rice_shower.IsDropItemSuccessful();
+                    bool success = rice_shower.IsDropItemSuccessful(this);
                     if (success) {
                         std::cout << "Congrats! you get ur item! " << success << '\n';
                         std::variant<Weapon, Clothing, Food> item = rice_shower.GetDropItem();
@@ -110,4 +109,13 @@ void GameManager::RunInventory() {
         }
         while (run_inventory);
     }
+}
+
+int GameManager::GenerateRandomIntInRange(int min, int max) {
+    // REFERENCE: https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution.html
+    // Cppreference.com (n.d.)
+    std::random_device random_device;
+    std::mt19937 generator(random_device());
+    std::uniform_int_distribution<> distribution(min, max);
+    return distribution(generator);
 }

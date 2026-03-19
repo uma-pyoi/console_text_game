@@ -33,10 +33,14 @@ public:
         "\nThe woman smiles kindly."
     };
 
-    // methods
+    // run game methods
     void RunStory();
     bool RunPauseScreen();
     void RunInventory();
+
+    // other methods
+    int GenerateRandomIntInRange(int min, int max);
+
 };
 
 
