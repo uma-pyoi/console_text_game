@@ -12,6 +12,8 @@ public:
     void OutputStoryModePrompt();
     void OutputPauseScreen(Player player);
     void OutputInventoryMenu(Inventory inventory);
+
+    void OutputItem(std::variant<Weapon, Clothing, Food> item);
 };
 
 

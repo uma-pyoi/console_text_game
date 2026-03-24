@@ -26,4 +26,5 @@ add_executable(cpp_coursework1_P479574 src/main.cpp
         include/Enemy.h
         src/Calculator.cpp
         include/Calculator.h
+        include/PlotManager.h
 )

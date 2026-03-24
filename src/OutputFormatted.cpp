@@ -33,3 +33,17 @@ void OutputFormatted::OutputInventoryMenu(Inventory inventory) {
     std::cout << "1. Go back" << '\n';
     std::cout << "2. Choose an item" << '\n';
 }
+
+void OutputFormatted::OutputItem(std::variant<Weapon, Clothing, Food> item) {
+    // REFERENCE: https://www.geeksforgeeks.org/cpp/std-variant-in-cpp-17/
+    // Geeksforgeeks (2023)
+    if (std::holds_alternative<Weapon>(item)) {
+        std::cout << "You got a weapon! " << std::get<Weapon>(item).GetName() << '\n';
+    }
+    else if (std::holds_alternative<Clothing>(item)) {
+        std::cout << "You got armour! " << std::get<Clothing>(item).GetName() << '\n';
+    }
+    else if (std::holds_alternative<Food>(item)) {
+        std::cout << "You got food! " << std::get<Food>(item).GetName() << '\n';
+    }
+}

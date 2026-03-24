@@ -14,15 +14,16 @@ class Enemy {
     int hp_;
     int ap_;
     int drop_rate_;
+    Calculator calculator_;
 
     // item dropped upon defeating the enemy
     std::variant<Weapon, Clothing, Food> drop_item_;
 public:
-    Enemy(std::string name, std::variant<Weapon, Clothing, Food>, int drop_rate, GameManager* game_manager);
+    Enemy(std::string name, std::variant<Weapon, Clothing, Food> drop_item, int drop_rate);
 
-    void GenerateHpAp(GameManager* game_manager);
+    void GenerateHpAp();
     void OutputEnemy();
-    bool IsDropItemSuccessful(GameManager* game_manager);
+    bool IsDropItemSuccessful();
     std::variant<Weapon, Clothing, Food> GetDropItem();
 };
 

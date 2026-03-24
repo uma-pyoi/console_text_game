@@ -11,50 +11,19 @@ void GameManager::RunStory() {
         if (running) {
             std::cout << plot_0[i];
 
-            if (i != (std::size(plot_0) - 1)) {
+            if (i != (std::size(plot_0) - 1)) { // executes if scene is still going
                 char continue_choice = input_validator_.ReadStoryModeChar();
                 if (continue_choice == 'p') {
                     running = this->RunPauseScreen();
                 }
             }
-            else {
+            else { // executes if end of scene, starts a fight
                 int plot_choice = input_validator_.ReadPosIntInRange(1, 2);
                 std::cout << "user_choice: " << plot_choice << '\n';
                 if (plot_choice == 1) {
-                    std::cout << "AAaa!! bad choice! u get attacked by an enemy now" << '\n';
-                    Food onigiri("Onigiri", "A japanese treat", 10);
-                    Enemy rice_shower("Rice Shower", onigiri, 100, this);
-                    rice_shower.OutputEnemy();
-
-                    std::cout << "Let's pretend you defeated the enemy..." << '\n';
-                    bool success = rice_shower.IsDropItemSuccessful(this);
-                    if (success) {
-                        std::cout << "Congrats! you get ur item! " << success << '\n';
-                        std::variant<Weapon, Clothing, Food> item = rice_shower.GetDropItem();
-
-                        // REFERENCE: https://www.geeksforgeeks.org/cpp/std-variant-in-cpp-17/
-                        // Geeksforgeeks (2023)
-                        if (std::holds_alternative<Weapon>(item)) {
-                            std::cout << "You got a weapon! " << std::get<Weapon>(item).GetName() << '\n';
-                        }
-                        else if (std::holds_alternative<Clothing>(item)) {
-                            std::cout << "You got armour! " << std::get<Clothing>(item).GetName() << '\n';
-                        }
-                        else if (std::holds_alternative<Food>(item)) {
-                            std::cout << "You got food! " << std::get<Food>(item).GetName() << '\n';
-                        }
-                    }
-                    else {
-                        std::cout << "No luck. no item. " << success << '\n';
-                    }
-
-
-
+                    this->RunFight();
                 }
             }
-        }
-        else {
-
         }
     }
     std::cout << "end of game";
@@ -118,4 +87,22 @@ int GameManager::GenerateRandomIntInRange(int min, int max) {
     std::mt19937 generator(random_device());
     std::uniform_int_distribution<> distribution(min, max);
     return distribution(generator);
+}
+
+void GameManager::RunFight() {
+    std::cout << "AAaa!! bad choice! u get attacked by an enemy now" << '\n';
+    Food onigiri("Onigiri", "A japanese treat", 10);
+    Enemy rice_shower("Rice Shower", onigiri, 100);
+    rice_shower.OutputEnemy();
+
+    std::cout << "Let's pretend you defeated the enemy..." << '\n';
+    bool success = rice_shower.IsDropItemSuccessful();
+    if (success) {
+        std::cout << "Congrats! you get ur item! " << success << '\n';
+        std::variant<Weapon, Clothing, Food> item = rice_shower.GetDropItem();
+        output_formatted_.OutputItem(item);
+    }
+    else {
+        std::cout << "No luck. no item. " << success << '\n';
+    }
 }
