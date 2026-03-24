@@ -1,21 +1,22 @@
-#include "../include/OutputFormatted.h"
+#include "../include/Utils.h"
 #include <iostream>
+#include <random>
 
-void OutputFormatted::OutputGameTitle() {
+void Utils::OutputGameTitle() {
     std::cout << "**++++--    Sakana    --++++**" << "\n\n";
 }
 
-void OutputFormatted::OutputGameEnd() {
+void Utils::OutputGameEnd() {
     this->OutputGameTitle();
     std::cout << "       See you next time!       " << "\n\n";
     std::cout << "**++++------------------++++**" << '\n';
 }
 
-void OutputFormatted::OutputStoryModePrompt() {
+void Utils::OutputStoryModePrompt() {
     std::cout << "Enter 'n' to continue, 'p' to pause: ";
 }
 
-void OutputFormatted::OutputPauseScreen(Player player) {
+void Utils::OutputPauseScreen(Player player) {
     std::cout << "\n\n---------   Pause Menu   ---------" << '\n';
     player.OutputPlayer();
     std::cout << "----------------------------------" << '\n';
@@ -27,14 +28,14 @@ void OutputFormatted::OutputPauseScreen(Player player) {
     std::cout << "----------------------------------" << '\n';
 }
 
-void OutputFormatted::OutputInventoryMenu(Inventory inventory) {
+void Utils::OutputInventoryMenu(Inventory inventory) {
     inventory.OutputInventory();
     std::cout << "Choose from the following:" << '\n';
     std::cout << "1. Go back" << '\n';
     std::cout << "2. Choose an item" << '\n';
 }
 
-void OutputFormatted::OutputItem(std::variant<Weapon, Clothing, Food> item) {
+void Utils::OutputItem(std::variant<Weapon, Clothing, Food> item) {
     // REFERENCE: https://www.geeksforgeeks.org/cpp/std-variant-in-cpp-17/
     // Geeksforgeeks (2023)
     if (std::holds_alternative<Weapon>(item)) {
@@ -47,3 +48,14 @@ void OutputFormatted::OutputItem(std::variant<Weapon, Clothing, Food> item) {
         std::cout << "You got food! " << std::get<Food>(item).GetName() << '\n';
     }
 }
+
+int Utils::GenerateRandomIntInRange(int min, int max) {
+    // REFERENCE: https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution.html
+    // Cppreference.com (n.d.)
+    std::random_device random_device;
+    std::mt19937 generator(random_device());
+    std::uniform_int_distribution<> distribution(min, max);
+    return distribution(generator);
+}
+
+

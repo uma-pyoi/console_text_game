@@ -18,13 +18,11 @@ add_executable(cpp_coursework1_P479574 src/main.cpp
         include/GameManager.h
         src/InputValidator.cpp
         include/InputValidator.h
-        src/OutputFormatted.cpp
-        include/OutputFormatted.h
         src/Inventory.cpp
         include/Inventory.h
         src/Enemy.cpp
         include/Enemy.h
-        src/Calculator.cpp
-        include/Calculator.h
         include/PlotManager.h
+        src/Utils.cpp
+        include/Utils.h
 )

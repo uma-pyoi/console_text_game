@@ -1,12 +1,12 @@
-#ifndef CPP_COURSEWORK1_P479574_OUTPUTFORMATTED_H
-#define CPP_COURSEWORK1_P479574_OUTPUTFORMATTED_H
+#ifndef CPP_COURSEWORK1_P479574_UTILS_H
+#define CPP_COURSEWORK1_P479574_UTILS_H
 
 #include "Inventory.h"
 #include "Player.h"
 
-
-class OutputFormatted {
+class Utils {
 public:
+    // outputting
     void OutputGameTitle();
     void OutputGameEnd();
     void OutputStoryModePrompt();
@@ -14,7 +14,10 @@ public:
     void OutputInventoryMenu(Inventory inventory);
 
     void OutputItem(std::variant<Weapon, Clothing, Food> item);
+
+    // calculations
+    int GenerateRandomIntInRange(int min, int max);
 };
 
 
-#endif //CPP_COURSEWORK1_P479574_OUTPUTFORMATTED_H
+#endif //CPP_COURSEWORK1_P479574_UTILS_H
