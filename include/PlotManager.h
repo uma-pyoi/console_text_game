@@ -2,9 +2,11 @@
 #define CPP_COURSEWORK1_P479574_PLOTMANAGER_H
 
 #include <string>
+#include <vector>
 
 class PlotManager {
     // plot is public as there is no need to keep it private
+public:
     std::string plot_0[2] {
         "You wake up in a dark room. "
         "\nA glowing screen shows today's date - May 1st, 3137."
@@ -14,6 +16,7 @@ class PlotManager {
         "\n2. 15"
     };
     std::string plot_01[10] { // 01 means plot 0 branch 1
+        "You have angered her! Face the consequences!",
         "The woman slowly and carefully pulls out a knife."
     };
     std::string plot_02[10] {

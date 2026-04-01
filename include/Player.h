@@ -4,18 +4,15 @@
 #include <string>
 #include "Clothing.h"
 #include "Weapon.h"
-#include "Food.h"
 #include <vector>
 #include <optional>
-#include "Inventory.h"
 
 class Player {
     std::string name_;
     int score_ = 0;
-    int hp_ = 0;
-    int ap_ = 0;
+    int hp_ = 100;
+    int ap_ = 5;
     int dp_ = 0;
-
     std::string default_empty_equipment_string_{"None"};
 
     // REFERENCE: https://en.cppreference.com/w/cpp/utility/optional.html

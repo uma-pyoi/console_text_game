@@ -1,30 +1,37 @@
 #ifndef CPP_COURSEWORK1_P479574_GAMEMANAGER_H
 #define CPP_COURSEWORK1_P479574_GAMEMANAGER_H
 
-#include "Calculator.h"
-#include "Enemy.h"
 #include "Player.h"
 #include "InputValidator.h"
-#include "OutputFormatted.h"
+#include "Utils.h"
+#include "PlotManager.h"
 
 class GameManager {
-    OutputFormatted output_formatted_;
+    Utils utils_;
     InputValidator input_validator_;
+    PlotManager plot_manager_;
 
     Player player_;
     Inventory inventory_;
+
+    bool running_{true};
+
+    // stat multipliers to determine outcome of fights
+    int hp_mult_ = 1;
+    int ap_mult_ = 3;
+    int dp_mult_ = 2;
 
 public:
     GameManager(Player player);
 
     // run game methods
     void RunStory();
-    bool RunPauseScreen();
+    void RunScene(int& plot_iterator);
+    void RunSceneFight();
+
+    void RunPauseScreen();
     void RunInventory();
     void RunFight();
-
-    // other methods
-    int GenerateRandomIntInRange(int min, int max);
 
     // enemy types
     // Enemy[10] enemies = {};

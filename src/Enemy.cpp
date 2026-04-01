@@ -6,9 +6,17 @@ Enemy::Enemy(std::string name, std::variant<Weapon, Clothing, Food> drop_item, i
     GenerateHpAp();
 }
 
+int Enemy::GetHp() {
+    return hp_;
+}
+
+int Enemy::GetAp() {
+    return ap_;
+}
+
 void Enemy::GenerateHpAp() {
-    hp_ = calculator_.GenerateRandomIntInRange(1, 100);
-    ap_ = calculator_.GenerateRandomIntInRange(1, 100);
+    hp_ = utils_.GenerateRandomIntInRange(1, 100);
+    ap_ = utils_.GenerateRandomIntInRange(1, 100);
 }
 
 void Enemy::OutputEnemy() {
@@ -17,7 +25,7 @@ void Enemy::OutputEnemy() {
 
 bool Enemy::IsDropItemSuccessful() {
     bool success{false};
-    int random_num = calculator_.GenerateRandomIntInRange(1, 100);
+    int random_num = utils_.GenerateRandomIntInRange(1, 100);
     if (random_num <= drop_rate_) {
         success = true;
     }

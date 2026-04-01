@@ -5,17 +5,23 @@
 
 GameManager::GameManager(Player player) : player_(player) {}
 
-void GameManager::RunStory() {
-    bool running{true};
-    for (int i = 0; i < std::size(plot_0); i++) {
-        if (running) {
-            std::cout << plot_0[i];
+void GameManager::RunScene(int& plot_iterator) {
+    char continue_choice = input_validator_.ReadStoryModeChar();
+    if (continue_choice == 'p') {
+        plot_iterator--;
+        this->RunPauseScreen();
+    }
+}
 
-            if (i != (std::size(plot_0) - 1)) { // executes if scene is still going
-                char continue_choice = input_validator_.ReadStoryModeChar();
-                if (continue_choice == 'p') {
-                    running = this->RunPauseScreen();
-                }
+// method to run story mode
+void GameManager::RunStory() {
+    for (int i = 0; i < std::size(plot_manager_.plot_0); i++) {
+        if (running_) {
+            std::cout << plot_manager_.plot_0[i];
+
+            // executes if scene is still going
+            if (i != (std::size(plot_manager_.plot_0) - 1)) {
+                this->RunScene(i);
             }
             else { // executes if end of scene, starts a fight
                 int plot_choice = input_validator_.ReadPosIntInRange(1, 2);
@@ -29,11 +35,10 @@ void GameManager::RunStory() {
     std::cout << "end of game";
 }
 
-bool GameManager::RunPauseScreen() {
+void GameManager::RunPauseScreen() {
     bool run_pause_screen{true};
-    bool run_game{true};
     do {
-        output_formatted_.OutputPauseScreen(this->player_);
+        utils_.OutputPauseScreen(this->player_);
         int choice = input_validator_.ReadPosIntInRange(1, 5);
         if (choice == 1) {
             run_pause_screen = false;
@@ -50,12 +55,11 @@ bool GameManager::RunPauseScreen() {
             std::cout << "Loading game...";
         }
         else if (choice == 5) {
-            output_formatted_.OutputGameEnd();
-            run_game = false;
+            utils_.OutputGameEnd();
+            running_ = false;
         }
     }
-    while (run_pause_screen && run_game);
-    return run_game;
+    while (run_pause_screen && running_);
 }
 
 void GameManager::RunInventory() {
@@ -65,7 +69,7 @@ void GameManager::RunInventory() {
     else {
         bool run_inventory{true};
         do {
-            output_formatted_.OutputInventoryMenu(inventory_);
+            utils_.OutputInventoryMenu(inventory_);
             int choice = input_validator_.ReadPosIntInRange(1, 2);
             if (choice == 1) {
                 run_inventory = false;
@@ -80,29 +84,31 @@ void GameManager::RunInventory() {
     }
 }
 
-int GameManager::GenerateRandomIntInRange(int min, int max) {
-    // REFERENCE: https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution.html
-    // Cppreference.com (n.d.)
-    std::random_device random_device;
-    std::mt19937 generator(random_device());
-    std::uniform_int_distribution<> distribution(min, max);
-    return distribution(generator);
-}
-
 void GameManager::RunFight() {
     std::cout << "AAaa!! bad choice! u get attacked by an enemy now" << '\n';
     Food onigiri("Onigiri", "A japanese treat", 10);
     Enemy rice_shower("Rice Shower", onigiri, 100);
     rice_shower.OutputEnemy();
+    player_.OutputPlayer();
 
-    std::cout << "Let's pretend you defeated the enemy..." << '\n';
-    bool success = rice_shower.IsDropItemSuccessful();
-    if (success) {
-        std::cout << "Congrats! you get ur item! " << success << '\n';
-        std::variant<Weapon, Clothing, Food> item = rice_shower.GetDropItem();
-        output_formatted_.OutputItem(item);
+    int enemy_stats = rice_shower.GetHp() * hp_mult_ + rice_shower.GetAp() * ap_mult_;
+    int player_stats = player_.GetHp() * hp_mult_ + player_.GetAp() * ap_mult_ + player_.GetDp() * dp_mult_;
+
+    std::cout << "enemy_stats: " << enemy_stats << '\n';
+    std::cout << "player_stats: " << player_stats << '\n';
+
+    if (player_stats > enemy_stats) {
+        std::cout << "YOU SURVIVED!!" << '\n';
+        if (bool success = rice_shower.IsDropItemSuccessful()) {
+            std::cout << "Congrats! you get ur item! " << success << '\n';
+            std::variant<Weapon, Clothing, Food> item = rice_shower.GetDropItem();
+            utils_.OutputItem(item);
+        }
+        else {
+            std::cout << "No luck. no item. " << success << '\n';
+        }
     }
     else {
-        std::cout << "No luck. no item. " << success << '\n';
+        std::cout << "Game over." << '\n';
     }
 }
