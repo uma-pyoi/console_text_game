@@ -8,6 +8,8 @@
 #include <optional>
 
 class Player {
+    int hp_limit_ = 100;
+
     std::string name_;
     int score_ = 0;
     int hp_ = 100;
@@ -39,6 +41,7 @@ public:
     void OutputPlayer();
     void TakeDamage(int dmg);
     void AddScorePoints(int score_points);
+    void IncreaseHp(int add_hp);
 };
 
 #endif // CPP_COURSEWORK1_P479574_PLAYER_H

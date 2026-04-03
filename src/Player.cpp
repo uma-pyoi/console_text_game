@@ -73,3 +73,12 @@ void Player::AddScorePoints(int score_points) {
     score_ += score_points;
 }
 
+void Player::IncreaseHp(int add_hp) {
+    int new_hp = hp_ + add_hp;
+    if (new_hp > hp_limit_) {
+        hp_ = hp_limit_;
+    }
+    else {
+        hp_ = new_hp;
+    }
+}

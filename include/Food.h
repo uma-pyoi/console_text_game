@@ -7,6 +7,8 @@ class Food : public Item {
     int hp_{0};
 public:
     Food(std::string name, std::string description, int hp);
+
+    int GetHp();
 };
 
 #endif //CPP_COURSEWORK1_P479574_FOOD_H

@@ -17,6 +17,8 @@ class Inventory {
 public:
     std::vector<Food> GetFoodInventory();
     void OutputInventory();
+
+    void DeleteItem(int index);
 };
 
 

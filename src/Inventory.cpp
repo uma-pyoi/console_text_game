@@ -12,3 +12,7 @@ void Inventory::OutputInventory() {
     }
     std::cout << "*************************************" << '\n';
 }
+
+void Inventory::DeleteItem(int index) {
+    food_inventory_.erase(food_inventory_.begin() + index);
+}

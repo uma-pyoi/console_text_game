@@ -5,14 +5,20 @@
 #include "Player.h"
 
 class Utils {
+private:
+    int prompt_color_ = 90;
+    int stats_color_ = 95;
+
 public:
     // outputting
     void OutputGameTitle();
     void OutputGameEnd();
     void OutputStoryModePrompt();
+    void OutputNumInRangePrompt(int min, int max);
     void OutputPauseScreen(Player player);
     void OutputInventoryMenu(Inventory inventory);
     void OutputDashes();
+    void OutputStat(std::string stat_name, int stat_value);
 
     void OutputItem(std::variant<Weapon, Clothing, Food> item);
 

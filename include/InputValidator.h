@@ -3,7 +3,10 @@
 
 #include <string>
 
+#include "Utils.h"
+
 class InputValidator {
+    Utils utils_;
 public:
     std::string ReadString();
     int ReadPosIntInRange(int min, int max);

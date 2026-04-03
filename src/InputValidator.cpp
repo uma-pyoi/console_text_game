@@ -24,7 +24,7 @@ int InputValidator::ReadPosIntInRange(int min, int max) {
     bool is_valid{false};
     int user_num{-1};
     do {
-        std::cout << "\n\n" << "Enter a number (" << min << "-" << max << "): ";
+        utils_.OutputNumInRangePrompt(min, max);
         std::string user_num_string = this->ReadString();
         this->TrimTrailingSpacesString(user_num_string);
         if (this->IsNumeric(user_num_string)) {
@@ -65,7 +65,8 @@ char InputValidator::ReadStoryModeChar() {
     std::string user_string;
     char user_char{'0'}; // 0 here is for initialisation, meaningless
     do {
-        std::cout << "\n\nEnter 'n' to continue, 'p' to pause: ";
+        // std::cout << "\n\nEnter 'n' to continue, 'p' to pause: ";
+        utils_.OutputStoryModePrompt();
         user_string = this->ReadString();
         this->TrimTrailingSpacesString(user_string);
         if (user_string.length() == 1) {

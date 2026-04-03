@@ -17,11 +17,14 @@ void Utils::OutputGameEnd() {
 }
 
 void Utils::OutputStoryModePrompt() {
-    // SetColor(93);
-    // std::cout << "Enter 'n' to continue, 'p' to pause: " << '\n';
-    // ResetColor();
-    SetColor(93);
-    std::cout << "**++++--    Sakana    --++++**" << "\n\n";
+    SetColor(prompt_color_);
+    std::cout << "\n\nEnter 'n' to continue, 'p' to pause: ";
+    ResetColor();
+}
+
+void Utils::OutputNumInRangePrompt(int min, int max) {
+    SetColor(prompt_color_);
+    std::cout << "\n\n" << "Enter a number (" << min << "-" << max << "): ";
     ResetColor();
 }
 
@@ -39,13 +42,19 @@ void Utils::OutputPauseScreen(Player player) {
 
 void Utils::OutputInventoryMenu(Inventory inventory) {
     inventory.OutputInventory();
-    std::cout << "Choose from the following:" << '\n';
-    std::cout << "1. Go back" << '\n';
-    std::cout << "2. Choose an item" << '\n';
+    SetColor(prompt_color_);
+    std::cout << "Choose item (0 to go back):" << '\n';
+    ResetColor();
 }
 
 void Utils::OutputDashes() {
     std::cout << "----------------------------------" << '\n';
+}
+
+void Utils::OutputStat(std::string stat_name, int stat_value) {
+    SetColor(95);
+    std::cout << "\n" << stat_name << ": " << stat_value << '\n';
+    ResetColor();
 }
 
 void Utils::OutputItem(std::variant<Weapon, Clothing, Food> item) {

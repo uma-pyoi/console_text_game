@@ -1,7 +1,7 @@
 #include "../include/FightManager.h"
 #include <iostream>
 
-FightManager::FightManager(Player &player) : player_(player) {}
+FightManager::FightManager(Player& player) : player_(player) {}
 
 void FightManager::RunFightDamage(int player_stats) {
     int dmg = utils_.CalculateDamage(player_stats, dmg_limit_, player_);
@@ -14,9 +14,7 @@ void FightManager::RunFightDamage(int player_stats) {
         std::cout << "the enemy dealt its final attack!!!" << '\n';
         std::cout << "You took " << dmg << " damage!" << '\n';
         player_.TakeDamage(dmg);
-        utils_.SetColor(95);
-        std::cout << "\nHP: " << player_.GetHp() << '\n';
-        utils_.ResetColor();
+        utils_.OutputStat("HP", player_.GetHp());
     }
 }
 
@@ -25,9 +23,7 @@ void FightManager::RunScoreEarn(Enemy& enemy) {
     int score_points = enemy.GetScorePoints();
     std::cout << "\nYou earned " << score_points << " score points!" << '\n';
     player_.AddScorePoints(score_points);
-    utils_.SetColor(95);
-    std::cout << "\nscore: " << player_.GetScore() << '\n';
-    utils_.ResetColor();
+    utils_.OutputStat("score", player_.GetScore());
     utils_.OutputDashes();
 }
 
