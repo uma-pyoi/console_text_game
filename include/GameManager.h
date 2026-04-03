@@ -1,6 +1,7 @@
 #ifndef CPP_COURSEWORK1_P479574_GAMEMANAGER_H
 #define CPP_COURSEWORK1_P479574_GAMEMANAGER_H
 
+#include "Enemy.h"
 #include "Player.h"
 #include "InputValidator.h"
 #include "Utils.h"
@@ -21,6 +22,12 @@ class GameManager {
     int ap_mult_ = 3;
     int dp_mult_ = 2;
 
+    // there is a 50% chance to get HP damage at the end of a fight
+    int take_dmg_chance_ = 100;
+
+    // limit of damage taken after a fight (in percentage) relative to the player's combined stats
+    int dmg_limit_ = 50;
+
 public:
     GameManager(Player player);
 
@@ -31,7 +38,7 @@ public:
 
     void RunPauseScreen();
     void RunInventory();
-    void RunFight();
+    void RunFight(Enemy& enemy);
 
     // enemy types
     // Enemy[10] enemies = {};

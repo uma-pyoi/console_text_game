@@ -4,7 +4,6 @@
 #include <string>
 #include "Clothing.h"
 #include "Food.h"
-#include "GameManager.h"
 #include "Weapon.h"
 #include "Utils.h"
 
@@ -13,6 +12,8 @@ class Enemy {
     int hp_;
     int ap_;
     int drop_rate_;
+
+    int ap_limit = 10;
 
     Utils utils_;
 
@@ -23,6 +24,7 @@ public:
 
     int GetHp();
     int GetAp();
+    std::string GetName();
 
     void GenerateHpAp();
     void OutputEnemy();

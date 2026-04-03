@@ -27,7 +27,9 @@ void GameManager::RunStory() {
                 int plot_choice = input_validator_.ReadPosIntInRange(1, 2);
                 std::cout << "user_choice: " << plot_choice << '\n';
                 if (plot_choice == 1) {
-                    this->RunFight();
+                    Food egg("Egg", "A very round egg.", 10);
+                    Enemy nurse("The Nurse", egg, 100);
+                    this->RunFight(nurse);
                 }
             }
         }
@@ -84,28 +86,41 @@ void GameManager::RunInventory() {
     }
 }
 
-void GameManager::RunFight() {
-    std::cout << "AAaa!! bad choice! u get attacked by an enemy now" << '\n';
-    Food onigiri("Onigiri", "A japanese treat", 10);
-    Enemy rice_shower("Rice Shower", onigiri, 100);
-    rice_shower.OutputEnemy();
-    player_.OutputPlayer();
+void GameManager::RunFight(Enemy& enemy) {
+    std::cout << "\nYou can feel the enemy approaching you..." << '\n';
 
-    int enemy_stats = rice_shower.GetHp() * hp_mult_ + rice_shower.GetAp() * ap_mult_;
+    int enemy_stats = enemy.GetHp() * hp_mult_ + enemy.GetAp() * ap_mult_;
     int player_stats = player_.GetHp() * hp_mult_ + player_.GetAp() * ap_mult_ + player_.GetDp() * dp_mult_;
 
-    std::cout << "enemy_stats: " << enemy_stats << '\n';
-    std::cout << "player_stats: " << player_stats << '\n';
-
     if (player_stats > enemy_stats) {
-        std::cout << "YOU SURVIVED!!" << '\n';
-        if (bool success = rice_shower.IsDropItemSuccessful()) {
-            std::cout << "Congrats! you get ur item! " << success << '\n';
-            std::variant<Weapon, Clothing, Food> item = rice_shower.GetDropItem();
+        std::cout << "You defeated " << enemy.GetName() << "!" << '\n';
+
+        bool is_dmg_taken = utils_.GenerateRandomIntInRange(0, 100) <= take_dmg_chance_;
+        if (is_dmg_taken) {
+            int random_dmg_percent = utils_.GenerateRandomIntInRange(0, 100);
+            int player_stats_w_limit = player_stats * dmg_limit_ / 100; // dmg_limit_% of player stats
+            int dmg = random_dmg_percent * player_stats_w_limit / 100 - player_.GetDp();
+            std::cout << "----------------------------------" << '\n';
+            std::cout << "During the battle, ";
+            if (dmg <= 0) {
+                std::cout << "the enemy tried to attack you, \nbut you were too tough for them." << '\n';
+            }
+            else {
+                std::cout << "the enemy dealt its final attack!!!" << '\n';
+                std::cout << "You took " << dmg << " damage!" << '\n';
+                int new_player_hp = player_.GetHp() - dmg;
+                player_.SetHp(new_player_hp);
+                std::cout << "\nHP: " << player_.GetHp() << '\n';
+            }
+        }
+
+        if (enemy.IsDropItemSuccessful()) {
+            std::cout << "The enemy dropped an item!" << '\n';
+            std::variant<Weapon, Clothing, Food> item = enemy.GetDropItem();
             utils_.OutputItem(item);
         }
         else {
-            std::cout << "No luck. no item. " << success << '\n';
+            std::cout << "No luck. no item. " << '\n';
         }
     }
     else {

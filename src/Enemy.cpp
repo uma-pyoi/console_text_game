@@ -14,9 +14,13 @@ int Enemy::GetAp() {
     return ap_;
 }
 
+std::string Enemy::GetName() {
+    return name_;
+}
+
 void Enemy::GenerateHpAp() {
     hp_ = utils_.GenerateRandomIntInRange(1, 100);
-    ap_ = utils_.GenerateRandomIntInRange(1, 100);
+    ap_ = utils_.GenerateRandomIntInRange(1, ap_limit);
 }
 
 void Enemy::OutputEnemy() {
@@ -25,7 +29,7 @@ void Enemy::OutputEnemy() {
 
 bool Enemy::IsDropItemSuccessful() {
     bool success{false};
-    int random_num = utils_.GenerateRandomIntInRange(1, 100);
+    int random_num = utils_.GenerateRandomIntInRange(0, 100);
     if (random_num <= drop_rate_) {
         success = true;
     }
