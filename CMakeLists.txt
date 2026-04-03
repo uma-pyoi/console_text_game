@@ -25,4 +25,6 @@ add_executable(cpp_coursework1_P479574 src/main.cpp
         include/PlotManager.h
         src/Utils.cpp
         include/Utils.h
+        src/FightManager.cpp
+        include/FightManager.h
 )
