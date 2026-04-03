@@ -58,4 +58,9 @@ int Utils::GenerateRandomIntInRange(int min, int max) {
     return distribution(generator);
 }
 
+int Utils::CalculateDamage(int player_stats, int dmg_limit, Player& player) {
+    int random_dmg_percent = GenerateRandomIntInRange(0, 100);
+    int player_stats_w_limit = player_stats * dmg_limit / 100; // dmg_limit_% of player stats
+    return random_dmg_percent * player_stats_w_limit / 100 - player.GetDp(); // calculated dmg
+}
 

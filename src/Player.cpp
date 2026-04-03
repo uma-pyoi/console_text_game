@@ -59,3 +59,7 @@ void Player::OutputPlayer() {
     std::cout << "Clothing: " << clothing_name << '\n';
 }
 
+void Player::TakeDamage(int dmg) {
+    hp_ = hp_ - dmg;
+}
+

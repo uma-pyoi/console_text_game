@@ -17,6 +17,7 @@ public:
 
     // calculations
     int GenerateRandomIntInRange(int min, int max);
+    int CalculateDamage(int player_stats, int dmg_limit, Player& player);
 };
 
 

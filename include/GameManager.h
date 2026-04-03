@@ -26,7 +26,7 @@ class GameManager {
     int take_dmg_chance_ = 100;
 
     // limit of damage taken after a fight (in percentage) relative to the player's combined stats
-    int dmg_limit_ = 50;
+    int dmg_limit_ = 40;
 
 public:
     GameManager(Player player);
@@ -34,11 +34,14 @@ public:
     // run game methods
     void RunStory();
     void RunScene(int& plot_iterator);
-    void RunSceneFight();
 
     void RunPauseScreen();
     void RunInventory();
+
     void RunFight(Enemy& enemy);
+    void RunFightWin(Enemy& enemy, int player_stats);
+    void RunFightDamage(int player_stats);
+    void RunEnemyDropItem(Enemy& enemy);
 
     // enemy types
     // Enemy[10] enemies = {};

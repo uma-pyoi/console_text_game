@@ -37,6 +37,7 @@ public:
     std::optional<Weapon> GetWeapon();
 
     void OutputPlayer();
+    void TakeDamage(int dmg);
 };
 
 #endif // CPP_COURSEWORK1_P479574_PLAYER_H
