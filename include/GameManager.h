@@ -5,6 +5,7 @@
 #include "FightManager.h"
 #include "Player.h"
 #include "InputValidator.h"
+#include "JsonHandler.h"
 #include "Utils.h"
 #include "PlotManager.h"
 
@@ -12,6 +13,7 @@ class GameManager {
     // utils
     Utils utils_;
     InputValidator input_validator_;
+    JsonHandler json_handler_;
 
     // managers
     PlotManager plot_manager_;

@@ -10,9 +10,9 @@ std::string InputValidator::ReadString() {
 
 // REFERENCE: https://www.tutorialspoint.com/article/how-to-check-if-input-is-numeric-in-cplusplus
 // Nishu Kumari (2025)
-bool InputValidator::IsNumeric(const std::string& str) {
+bool InputValidator::IsNumeric(const std::string &str) {
     bool is_numeric{true};
-    for (char ch : str) {
+    for (char ch: str) {
         if (!isdigit(ch)) {
             is_numeric = false;
         }
@@ -33,16 +33,13 @@ int InputValidator::ReadPosIntInRange(int min, int max) {
             user_num = std::stoi(user_num_string);
             if (user_num < min || user_num > max) {
                 std::cout << "Invalid! Number must be between " << min << " and " << max << '.' << '\n';
-            }
-            else {
+            } else {
                 is_valid = true;
             }
-        }
-        else {
+        } else {
             std::cout << "Invalid! Enter a whole positive number." << '\n';
         }
-    }
-    while (!is_valid);
+    } while (!is_valid);
     return user_num;
 }
 
@@ -55,8 +52,7 @@ void InputValidator::TrimTrailingSpacesString(std::string &s) {
     while (end_i >= 0 && !found_non_space_char) {
         if (s[end_i] == ' ' || s[end_i] == '\n' || s[end_i] == '\t') {
             end_i--;
-        }
-        else {
+        } else {
             found_non_space_char = true;
         }
     }
@@ -76,15 +72,12 @@ char InputValidator::ReadStoryModeChar() {
             user_char = std::tolower(user_string[0]);
             if (user_char == 'n' || user_char == 'p') {
                 is_valid = true;
-            }
-            else {
+            } else {
                 std::cout << "Invalid! You must enter 'n' or 'p'!" << '\n';
             }
-        }
-        else {
+        } else {
             std::cout << "Invalid! You must enter one letter!" << '\n';
         }
-    }
-    while (!is_valid);
+    } while (!is_valid);
     return user_char;
 }

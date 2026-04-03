@@ -27,4 +27,6 @@ add_executable(cpp_coursework1_P479574 src/main.cpp
         include/Utils.h
         src/FightManager.cpp
         include/FightManager.h
+        src/JsonHandler.cpp
+        include/JsonHandler.h
 )

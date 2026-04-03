@@ -53,6 +53,7 @@ void GameManager::RunPlotWChoice(std::vector<std::string>& plot, std::vector<std
 
 void GameManager::RunStory() {
     utils_.OutputGameTitle();
+    std::vector<std::string> plot_0_text = json_handler_.ReadPlotText("plot_0");
     RunPlotWChoice(plot_manager_.plot_0, plot_manager_.plot_01, plot_manager_.plot_02);
 }
 
