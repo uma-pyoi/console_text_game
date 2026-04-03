@@ -26,7 +26,7 @@ class GameManager {
     int take_dmg_chance_ = 100;
 
     // limit of damage taken after a fight (in percentage) relative to the player's combined stats
-    int dmg_limit_ = 40;
+    int dmg_limit_ = 30;
 
 public:
     GameManager(Player player);

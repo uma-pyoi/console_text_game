@@ -60,6 +60,12 @@ void Player::OutputPlayer() {
 }
 
 void Player::TakeDamage(int dmg) {
-    hp_ = hp_ - dmg;
+    int new_hp = hp_ - dmg;
+    if (new_hp < 0) {
+        hp_ = 0;
+    }
+    else {
+        hp_ = new_hp;
+    }
 }
 

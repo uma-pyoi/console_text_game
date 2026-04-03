@@ -17,11 +17,11 @@ public:
     };
     std::string plot_01[10] { // 01 means plot 0 branch 1
         "You have angered her! Face the consequences!",
-        "The woman slowly and carefully pulls out a knife."
+        "\nThe woman slowly and carefully pulls out a knife.\n"
     };
     std::string plot_02[10] {
         "\"What a sweetie!\""
-        "\nThe woman smiles kindly."
+        "\nThe woman smiles kindly.\n"
     };
 };
 

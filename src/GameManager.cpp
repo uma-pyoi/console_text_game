@@ -96,7 +96,7 @@ void GameManager::RunInventory() {
 
 void GameManager::RunFightDamage(int player_stats) {
     int dmg = utils_.CalculateDamage(player_stats, dmg_limit_, player_);
-    std::cout << "----------------------------------" << '\n';
+    utils_.OutputDashes();
     std::cout << "During the battle, ";
     if (dmg <= 0) {
         std::cout << "the enemy tried to attack you, \nbut you were too tough for them." << '\n';
@@ -134,6 +134,7 @@ void GameManager::RunFightWin(Enemy& enemy, int player_stats) {
 
 void GameManager::RunFight(Enemy& enemy) {
     std::cout << "\nYou can feel the enemy approaching you..." << '\n';
+    utils_.OutputDashes();
 
     int enemy_stats = enemy.GetHp() * hp_mult_ + enemy.GetAp() * ap_mult_;
     int player_stats = player_.GetHp() * hp_mult_ + player_.GetAp() * ap_mult_ + player_.GetDp() * dp_mult_;
@@ -143,6 +144,7 @@ void GameManager::RunFight(Enemy& enemy) {
     }
     else {
         // TODO: implement game-over?
-        std::cout << "Game over." << '\n';
+        std::cout << "\nGame over." << '\n';
+        utils_.OutputDashes();
     }
 }

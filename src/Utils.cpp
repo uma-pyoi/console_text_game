@@ -35,6 +35,10 @@ void Utils::OutputInventoryMenu(Inventory inventory) {
     std::cout << "2. Choose an item" << '\n';
 }
 
+void Utils::OutputDashes() {
+    std::cout << "----------------------------------" << '\n';
+}
+
 void Utils::OutputItem(std::variant<Weapon, Clothing, Food> item) {
     // REFERENCE: https://www.geeksforgeeks.org/cpp/std-variant-in-cpp-17/
     // Geeksforgeeks (2023)
