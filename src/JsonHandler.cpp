@@ -3,10 +3,20 @@
 #include "../libs/nlohmann/json.hpp"
 using json = nlohmann::json;
 
-std::vector<std::string> JsonHandler::ReadPlotText(std::string plot_name) {
-    std::ifstream plot_json_2(PLOT_FILENAME_);
+json JsonHandler::ReadJson(std::string filename) {
+    std::ifstream plot_json_2(filename);
     json data = json::parse(plot_json_2);
+    return data;
+}
 
-    std::vector<std::string> text_vector = data[plot_name]["text_array"].get<std::vector<std::string>>();
-    return text_vector;
+std::vector<std::string> JsonHandler::ReadPlotText(std::string plot_name) {
+    json data = ReadJson(PLOT_FILENAME_);
+    std::vector<std::string> plot_text = data[plot_name]["text_array"].get<std::vector<std::string>>();
+    return plot_text;
+}
+
+std::vector<std::string> JsonHandler::ReadPlotChoice(std::string plot_name, std::string choice_name) {
+    json data = ReadJson(PLOT_FILENAME_);
+    std::vector<std::string> plot_choice = data[plot_name]["branches"][choice_name].get<std::vector<std::string>>();
+    return plot_choice;
 }

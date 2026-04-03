@@ -54,7 +54,9 @@ void GameManager::RunPlotWChoice(std::vector<std::string>& plot, std::vector<std
 void GameManager::RunStory() {
     utils_.OutputGameTitle();
     std::vector<std::string> plot_0_text = json_handler_.ReadPlotText("plot_0");
-    RunPlotWChoice(plot_manager_.plot_0, plot_manager_.plot_01, plot_manager_.plot_02);
+    std::vector<std::string> plot_0_choice_1 = json_handler_.ReadPlotChoice("plot_0", "choice_1");
+    std::vector<std::string> plot_0_choice_2 = json_handler_.ReadPlotChoice("plot_0", "choice_2");
+    RunPlotWChoice(plot_0_text, plot_0_choice_1, plot_0_choice_2);
 }
 
 void GameManager::RunPauseScreen() {
