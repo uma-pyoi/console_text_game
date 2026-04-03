@@ -1,3 +1,5 @@
+// REFERENCE: https://github.com/nlohmann/json
+// Niels Lohmann (2025)
 //     __ _____ _____ _____
 //  __|  |   __|     |   | |  JSON for Modern C++
 // |  |  |__   |  |  | | | |  version 3.12.0
