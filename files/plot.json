@@ -1,0 +1,37 @@
+{
+  "0": {
+    "text_array": [
+      "You wake up in a dark room. \nA glowing screen shows today's date - May 1st, 3137.\nIt has been 1111 years.",
+      "\n\nA woman in a white uniform enters the room. \n\"What is the number?\" she asks.\n1. 1111\n2. 15"
+    ],
+    "branches": {
+      "choice_1": [
+        "You have angered her! Face the consequences!",
+        "\nThe woman slowly and carefully pulls out a knife.\n"
+      ],
+      "choice_2": [
+        "\"What a sweetie! You sure know the binary system!\"\nThe woman smiles kindly.",
+        "\n\nThe nurse hands you a blue hospital gown.",
+        "\n\n\"Wait, I was naked this entire time?\" you think."
+      ]
+    }
+  },
+  "1": {
+    "text_array": [
+      "The hospital air started to feel heavy, \nyou decided to go for a walk outside.",
+      "\n\nYou leave your room and enter the corridor. \nAs your eyes adjust to the darkness, your bare feet feel cold and...",
+      "\n\nwet..?",
+      "\n\nYou try to step out of the wet puddle but your body is still weak after a 1111 year coma.",
+      "\n\nYou slip and fall right into the puddle of blood. \n1. Get up and pretend like nothing happened \n2. Lick the blood "
+    ],
+    "branches": {
+      "choice_1": [
+        "Your body feels so heavy, but you get up and continue down the corridor."
+      ],
+      "choice_2": [
+        "You lick the puddle. Tastes metallic, as expected. \nYou like the taste.",
+        "\"Can't let this go to waste!\" you think as your hands put droplets of blood into your pocket."
+      ]
+    }
+  }
+}

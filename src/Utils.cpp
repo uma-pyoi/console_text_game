@@ -17,7 +17,12 @@ void Utils::OutputGameEnd() {
 }
 
 void Utils::OutputStoryModePrompt() {
-    std::cout << "Enter 'n' to continue, 'p' to pause: ";
+    // SetColor(93);
+    // std::cout << "Enter 'n' to continue, 'p' to pause: " << '\n';
+    // ResetColor();
+    SetColor(93);
+    std::cout << "**++++--    Sakana    --++++**" << "\n\n";
+    ResetColor();
 }
 
 void Utils::OutputPauseScreen(Player player) {
@@ -72,8 +77,8 @@ int Utils::CalculateDamage(int player_stats, int dmg_limit, Player& player) {
     return random_dmg_percent * player_stats_w_limit / 100 - player.GetDp(); // calculated dmg
 }
 
-void Utils::SetColor(int text_colour) {
-    std::cout << "\033[" << text_colour << "m";
+void Utils::SetColor(int text_color) {
+    std::cout << "\033[" << text_color << "m";
 }
 
 void Utils::ResetColor() {
