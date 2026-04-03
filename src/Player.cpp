@@ -69,3 +69,7 @@ void Player::TakeDamage(int dmg) {
     }
 }
 
+void Player::AddScorePoints(int score_points) {
+    score_ += score_points;
+}
+

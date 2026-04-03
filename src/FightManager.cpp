@@ -14,13 +14,26 @@ void FightManager::RunFightDamage(int player_stats) {
         std::cout << "the enemy dealt its final attack!!!" << '\n';
         std::cout << "You took " << dmg << " damage!" << '\n';
         player_.TakeDamage(dmg);
+        utils_.SetColor(95);
         std::cout << "\nHP: " << player_.GetHp() << '\n';
+        utils_.ResetColor();
     }
 }
 
+void FightManager::RunScoreEarn(Enemy& enemy) {
+    utils_.OutputDashes();
+    int score_points = enemy.GetScorePoints();
+    std::cout << "\nYou earned " << score_points << " score points!" << '\n';
+    player_.AddScorePoints(score_points);
+    utils_.SetColor(95);
+    std::cout << "\nscore: " << player_.GetScore() << '\n';
+    utils_.ResetColor();
+    utils_.OutputDashes();
+}
 
 void FightManager::RunEnemyDropItem(Enemy& enemy) {
-    std::cout << "The enemy dropped an item!" << '\n';
+    utils_.OutputDashes();
+    std::cout << "\nThe enemy dropped an item!" << '\n';
     std::variant<Weapon, Clothing, Food> item = enemy.GetDropItem();
     utils_.OutputItem(item);
 }
@@ -36,13 +49,14 @@ void FightManager::RunFightWin(Enemy& enemy, int player_stats) {
     if (enemy.IsDropItemSuccessful()) {
         RunEnemyDropItem(enemy);
     }
-    else {
-        std::cout << "No luck. no item. " << '\n';
-    }
+
+    RunScoreEarn(enemy);
 }
 
 void FightManager::RunFight(Enemy& enemy) {
+    utils_.SetColor(91);
     std::cout << "\nYou can feel the enemy approaching you..." << '\n';
+    utils_.ResetColor();
     utils_.OutputDashes();
 
     int enemy_stats = enemy.GetHp() * hp_mult_ + enemy.GetAp() * ap_mult_;

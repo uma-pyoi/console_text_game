@@ -18,9 +18,13 @@ std::string Enemy::GetName() {
     return name_;
 }
 
+int Enemy::GetScorePoints() {
+    return (ap_ + hp_) * score_points_mult_;
+}
+
 void Enemy::GenerateHpAp() {
     hp_ = utils_.GenerateRandomIntInRange(1, 100);
-    ap_ = utils_.GenerateRandomIntInRange(1, ap_limit);
+    ap_ = utils_.GenerateRandomIntInRange(1, ap_limit_);
 }
 
 void Enemy::OutputEnemy() {

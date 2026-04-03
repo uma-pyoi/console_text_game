@@ -12,7 +12,6 @@ public:
     void OutputStoryModePrompt();
     void OutputPauseScreen(Player player);
     void OutputInventoryMenu(Inventory inventory);
-
     void OutputDashes();
 
     void OutputItem(std::variant<Weapon, Clothing, Food> item);
@@ -20,6 +19,12 @@ public:
     // calculations
     int GenerateRandomIntInRange(int min, int max);
     int CalculateDamage(int player_stats, int dmg_limit, Player& player);
+
+    // color
+    // REFERENCE: https://www.geeksforgeeks.org/cpp/how-to-change-console-color-in-cpp/
+    // Geeksforgeeks (2024)
+    void SetColor(int textColor);
+    void ResetColor();
 };
 
 

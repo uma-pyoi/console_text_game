@@ -5,7 +5,8 @@
 
 GameManager::GameManager(Player player) : player_(player), fight_manager_(player) {}
 
-void GameManager::RunScene(int& plot_iterator) {
+// reads next story mode character and allows to pause the game
+void GameManager::AskIfPause(int& plot_iterator) {
     char continue_choice = input_validator_.ReadStoryModeChar();
     if (continue_choice == 'p') {
         plot_iterator--;
@@ -13,36 +14,46 @@ void GameManager::RunScene(int& plot_iterator) {
     }
 }
 
+void GameManager::RunPlotWoChoice(std::vector<std::string>& plot) {
+    for (int i = 0; i < plot.size(); i++) {
+        std::cout << plot[i];
+        if (i != (plot.size() - 1)) {
+            this->AskIfPause(i);
+        }
+    }
+}
+
 // method to run story mode
-void GameManager::RunStory() {
-    for (int i = 0; i < std::size(plot_manager_.plot_0); i++) {
+void GameManager::RunPlotWChoice(std::vector<std::string>& plot, std::vector<std::string>& plot_choice1, std::vector<std::string>& plot_choice2) {
+    for (int i = 0; i < plot.size(); i++) {
         if (running_) {
-            std::cout << plot_manager_.plot_0[i];
+            std::cout << plot[i];
 
             // executes if scene is still going
-            if (i != (std::size(plot_manager_.plot_0) - 1)) {
-                this->RunScene(i);
+            if (i != (plot.size() - 1)) {
+                this->AskIfPause(i);
             }
             else { // executes if end of scene, starts a fight
                 int plot_choice = input_validator_.ReadPosIntInRange(1, 2);
-                std::cout << "user_choice: " << plot_choice << '\n';
+
                 if (plot_choice == 1) {
-                    for (int i = 0; i < std::size(plot_manager_.plot_01); i++) {
-                        std::cout << plot_manager_.plot_01[i];
-                    }
+                    RunPlotWoChoice(plot_choice1);
                     Food egg("Egg", "A very round egg.", 10);
                     Enemy nurse("The Nurse", egg, 100);
                     fight_manager_.RunFight(nurse);
                 }
                 else {
-                    for (int i = 0; i < std::size(plot_manager_.plot_02); i++) {
-                        std::cout << plot_manager_.plot_02[i];
-                    }
+                    RunPlotWoChoice(plot_choice2);
                 }
             }
         }
     }
-    std::cout << "end of game";
+    std::cout << "\nend of game";
+}
+
+void GameManager::RunStory() {
+    utils_.OutputGameTitle();
+    RunPlotWChoice(plot_manager_.plot_0, plot_manager_.plot_01, plot_manager_.plot_02);
 }
 
 void GameManager::RunPauseScreen() {

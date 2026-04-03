@@ -3,13 +3,17 @@
 #include <random>
 
 void Utils::OutputGameTitle() {
+    SetColor(93);
     std::cout << "**++++--    Sakana    --++++**" << "\n\n";
+    ResetColor();
 }
 
 void Utils::OutputGameEnd() {
     this->OutputGameTitle();
+    SetColor(93);
     std::cout << "       See you next time!       " << "\n\n";
     std::cout << "**++++------------------++++**" << '\n';
+    ResetColor();
 }
 
 void Utils::OutputStoryModePrompt() {
@@ -66,5 +70,13 @@ int Utils::CalculateDamage(int player_stats, int dmg_limit, Player& player) {
     int random_dmg_percent = GenerateRandomIntInRange(0, 100);
     int player_stats_w_limit = player_stats * dmg_limit / 100; // dmg_limit_% of player stats
     return random_dmg_percent * player_stats_w_limit / 100 - player.GetDp(); // calculated dmg
+}
+
+void Utils::SetColor(int text_colour) {
+    std::cout << "\033[" << text_colour << "m";
+}
+
+void Utils::ResetColor() {
+    std::cout << "\033[0m";
 }
 

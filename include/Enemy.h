@@ -8,12 +8,14 @@
 #include "Utils.h"
 
 class Enemy {
+private:
     std::string name_;
     int hp_;
     int ap_;
     int drop_rate_;
 
-    int ap_limit = 10;
+    int ap_limit_ = 10;
+    float score_points_mult_ = 1.5; // for calculating score points when defeated
 
     Utils utils_;
 
@@ -25,6 +27,7 @@ public:
     int GetHp();
     int GetAp();
     std::string GetName();
+    int GetScorePoints();
 
     void GenerateHpAp();
     void OutputEnemy();

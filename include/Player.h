@@ -38,6 +38,7 @@ public:
 
     void OutputPlayer();
     void TakeDamage(int dmg);
+    void AddScorePoints(int score_points);
 };
 
 #endif // CPP_COURSEWORK1_P479574_PLAYER_H

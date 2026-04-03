@@ -11,12 +11,13 @@ std::string InputValidator::ReadString() {
 // REFERENCE: https://www.tutorialspoint.com/article/how-to-check-if-input-is-numeric-in-cplusplus
 // Nishu Kumari (2025)
 bool InputValidator::IsNumeric(const std::string& str) {
+    bool is_numeric{true};
     for (char ch : str) {
         if (!isdigit(ch)) {
-            return false;
+            is_numeric = false;
         }
     }
-    return true;
+    return is_numeric;
 }
 
 int InputValidator::ReadPosIntInRange(int min, int max) {

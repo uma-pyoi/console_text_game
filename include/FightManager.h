@@ -23,6 +23,7 @@ public:
 
     void RunFight(Enemy& enemy);
     void RunFightWin(Enemy& enemy, int player_stats);
+    void RunScoreEarn(Enemy& enemy);
     void RunFightDamage(int player_stats);
     void RunEnemyDropItem(Enemy& enemy);
 };
