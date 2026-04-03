@@ -20,13 +20,13 @@ class GameManager {
     FightManager fight_manager_;
 
     // entities
-    Player player_;
+    Player& player_;
     Inventory inventory_;
 
     bool running_{true};
 
 public:
-    GameManager(Player player);
+    GameManager(Player& player);
 
     // starts the game
     void RunStory();

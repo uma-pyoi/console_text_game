@@ -5,7 +5,7 @@
 
 class FightManager {
     Utils utils_;
-    Player player_;
+    Player& player_;
 
     // stat multipliers to determine outcome of fights
     int hp_mult_ = 1;

@@ -3,7 +3,7 @@
 #include "../include/Enemy.h"
 #include <random>
 
-GameManager::GameManager(Player player) : player_(player), fight_manager_(player) {
+GameManager::GameManager(Player& player) : player_(player), fight_manager_(player) {
 }
 
 // reads next story mode character and allows to pause the game
