@@ -11,9 +11,11 @@ public:
     std::string ReadString();
     int ReadPosIntInRange(int min, int max);
     char ReadStoryModeChar();
+    bool ReadYesNo();
 
     bool IsNumeric(const std::string& str);
     void TrimTrailingSpacesString(std::string &s);
+    void StringToLower(std::string& str);
 };
 
 

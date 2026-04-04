@@ -18,6 +18,7 @@ public:
     // outputting prompts
     void OutputStoryModePrompt();
     void OutputNumInRangePrompt(int min, int max);
+    void OutputYesNoPrompt();
 
     // outputting pause screen
     void OutputPauseScreen(Player player);

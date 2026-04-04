@@ -1,5 +1,6 @@
 #include "../include/InputValidator.h"
 #include <iostream>
+#include <regex>
 #include <string>
 
 std::string InputValidator::ReadString() {
@@ -65,7 +66,6 @@ char InputValidator::ReadStoryModeChar() {
     std::string user_string;
     char user_char{'0'}; // 0 here is for initialisation, meaningless
     do {
-        // std::cout << "\n\nEnter 'n' to continue, 'p' to pause: ";
         utils_.OutputStoryModePrompt();
         user_string = this->ReadString();
         this->TrimTrailingSpacesString(user_string);
@@ -81,4 +81,36 @@ char InputValidator::ReadStoryModeChar() {
         }
     } while (!is_valid);
     return user_char;
+}
+
+bool InputValidator::ReadYesNo() {
+    bool user_choice{false}; // false here is for initialisation
+    bool is_valid{false};
+    std::string user_string;
+    do {
+        utils_.OutputYesNoPrompt();
+        user_string = this->ReadString();
+        this->TrimTrailingSpacesString(user_string);
+        StringToLower(user_string);
+        if (user_string == "y" || user_string == "yes") {
+            user_choice = true;
+            is_valid = true;
+        }
+        else if (user_string == "n" || user_string == "no") {
+            user_choice = false;
+            is_valid = true;
+        }
+        else {
+            std::cout << "Invalid! You must enter 'yes' or 'no' !" << '\n';
+        }
+    }
+    while (!is_valid);
+    return user_choice;
+}
+
+
+void InputValidator::StringToLower(std::string& str) {
+    for (char& i : str) {
+        i = std::tolower(i);
+    }
 }

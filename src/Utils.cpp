@@ -35,6 +35,13 @@ void Utils::OutputNumInRangePrompt(int min, int max) {
     ResetColor();
 }
 
+void Utils::OutputYesNoPrompt() {
+    SetColor(prompt_color_);
+    std::cout << "\n\nEnter Y/N: ";
+    ResetColor();
+}
+
+
 void Utils::OutputPauseScreen(Player player) {
     std::cout << "\n\n---------   Pause Menu   ---------" << '\n';
     player.OutputPlayer();
