@@ -33,11 +33,25 @@ void GameManager::BranchingActivator(int plot_index, int user_choice, std::vecto
     switch (plot_index) {
         case 0:
             BranchingPlot0(user_choice, plot_choice1, plot_choice2);
+            break;
+        // case 1:
+
     }
 }
 
 void GameManager::BranchingPlot0(int user_choice, std::vector<std::string> &plot_choice1,
                                  std::vector<std::string> &plot_choice2) {
+    if (user_choice == 1) {
+        RunPlotWoChoice(plot_choice1);
+        Food egg("Egg", "A very round egg.", 10);
+        Enemy nurse("The Nurse", egg, 100);
+        fight_manager_.RunFight(nurse, running_);
+    } else {
+        RunPlotWoChoice(plot_choice2);
+    }
+}
+
+void GameManager::BranchingPlot1(int user_choice, std::vector<std::string> &plot_choice1, std::vector<std::string> &plot_choice2) {
     if (user_choice == 1) {
         RunPlotWoChoice(plot_choice1);
         Food egg("Egg", "A very round egg.", 10);
@@ -104,7 +118,6 @@ void GameManager::RunPauseScreen() {
     } while (run_pause_screen && running_);
 }
 
-
 void GameManager::RunItem(int user_num, std::vector<Food> inventory) {
     int item_index = user_num - 1;
     Food item = inventory[item_index];
@@ -114,14 +127,18 @@ void GameManager::RunItem(int user_num, std::vector<Food> inventory) {
     if (item_choice == 1) {
         std::cout << item.GetDescription() << '\n';
     } else if (item_choice == 2) {
-        player_.Eat(item.GetHp());
-        std::cout << "You ate " << item.GetName() << "! Yummy!" << '\n';
-        std::string hp_stat = "\nHP: " + std::to_string(player_.GetHp());
-        inventory_.DeleteFoodItem(item_index);
+        ItemEat(item, item_index);
     } else if (item_choice == 3) {
         inventory_.DeleteFoodItem(item_index);
         std::cout << "You threw away " << item.GetName() << "." << '\n';
     }
+}
+
+void GameManager::ItemEat(Food item, int item_index) {
+    player_.Eat(item.GetHp());
+    std::cout << "You ate " << item.GetName() << "! Yummy!" << '\n';
+    utils_.OutputStat("HP", std::to_string(player_.GetHp()));
+    inventory_.DeleteFoodItem(item_index);
 }
 
 void GameManager::RunInventory() {

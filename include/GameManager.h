@@ -34,7 +34,9 @@ public:
     // branching functions
     void BranchingActivator(int plot_index, int user_choice, std::vector<std::string> &plot_choice1,
                             std::vector<std::string> &plot_choice2);
-    void BranchingPlot0(int plot_choice, std::vector<std::string> &plot_choice1,
+    void BranchingPlot0(int user_choice, std::vector<std::string> &plot_choice1,
+                        std::vector<std::string> &plot_choice2);
+    void BranchingPlot1(int user_choice, std::vector<std::string> &plot_choice1,
                         std::vector<std::string> &plot_choice2);
 
     // helper story mode functions
@@ -42,8 +44,11 @@ public:
                         std::vector<std::string> &plot_choice2);
     void RunPlotWoChoice(std::vector<std::string> &plot);
     void AskIfPause(int &plot_iterator);
+
+    // pause screen related
     void RunPauseScreen();
     void RunItem(int user_num, std::vector<Food> inventory);
+    void ItemEat(Food item, int item_index);
     void RunInventory();
 };
 
