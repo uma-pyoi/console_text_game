@@ -28,7 +28,7 @@ void Enemy::GenerateHpAp() {
 }
 
 void Enemy::OutputEnemy() {
-    std::cout << "name: " << name_ << "\nhp: " << hp_ << "\nap: " << ap_ << '\n';
+    std::cout << name_ << " | HP: " << hp_ << " | AP: " << ap_ << '\n';
 }
 
 bool Enemy::IsDropItemSuccessful() {

@@ -53,6 +53,7 @@ void FightManager::RunFight(Enemy& enemy) {
     utils_.SetColor(91);
     std::cout << "\nYou can feel the enemy approaching you..." << '\n';
     utils_.ResetColor();
+    enemy.OutputEnemy();
     utils_.OutputDashes();
 
     int enemy_stats = enemy.GetHp() * hp_mult_ + enemy.GetAp() * ap_mult_;
