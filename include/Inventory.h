@@ -9,7 +9,7 @@ class Inventory {
 
     // todo: add features to store items other than food
     std::vector<Food> food_inventory_ = {
-        Food("Egg", "Delicious egg", 5),
+        // Food("Egg", "Delicious egg", 5),
         Food("Apple Pie", "It is looking like it would make you dream.", 25),
         Food("Poop", "Do not eat this!!", -20)
     };
@@ -18,7 +18,8 @@ public:
     std::vector<Food> GetFoodInventory();
     void OutputInventory();
 
-    void DeleteItem(int index);
+    void DeleteFoodItem(int index);
+    void AddFoodItem(Food food);
 };
 
 

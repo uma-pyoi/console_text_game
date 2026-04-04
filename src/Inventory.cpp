@@ -13,6 +13,10 @@ void Inventory::OutputInventory() {
     std::cout << "*************************************" << '\n';
 }
 
-void Inventory::DeleteItem(int index) {
+void Inventory::DeleteFoodItem(int index) {
     food_inventory_.erase(food_inventory_.begin() + index);
+}
+
+void Inventory::AddFoodItem(Food food) {
+    food_inventory_.push_back(food);
 }

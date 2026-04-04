@@ -3,7 +3,8 @@
 #include "../include/Enemy.h"
 #include <random>
 
-GameManager::GameManager(Player& player) : player_(player), fight_manager_(player) {
+GameManager::GameManager(Player &player, Inventory &inventory) : player_(player), inventory_(inventory),
+                                                                 fight_manager_(player, inventory) {
 }
 
 // reads next story mode character and allows to pause the game
@@ -55,12 +56,14 @@ void GameManager::RunPlotWChoice(std::vector<std::string> &plot, std::vector<std
 void GameManager::RunStory() {
     utils_.OutputGameTitle();
 
+    std::string choice_1_name = "choice_1";
+    std::string choice_2_name = "choice_2";
     int last_plot_num = 1;
     for (int i = 0; i <= last_plot_num; i++) {
         std::string plot_num = std::to_string(i);
         std::vector<std::string> plot_text = json_handler_.ReadPlotText(plot_num);
-        std::vector<std::string> plot_choice_1 = json_handler_.ReadPlotChoice(plot_num, "choice_1");
-        std::vector<std::string> plot_choice_2 = json_handler_.ReadPlotChoice(plot_num, "choice_2");
+        std::vector<std::string> plot_choice_1 = json_handler_.ReadPlotChoice(plot_num, choice_1_name);
+        std::vector<std::string> plot_choice_2 = json_handler_.ReadPlotChoice(plot_num, choice_2_name);
         RunPlotWChoice(plot_text, plot_choice_1, plot_choice_2);
     }
 }
@@ -87,6 +90,26 @@ void GameManager::RunPauseScreen() {
     } while (run_pause_screen && running_);
 }
 
+
+void GameManager::RunItem(int user_num, std::vector<Food> inventory) {
+    int item_index = user_num - 1;
+    Food item = inventory[item_index];
+    utils_.OutputItemMenu(item);
+    int item_choice = input_validator_.ReadPosIntInRange(1, 3);
+
+    if (item_choice == 1) {
+        std::cout << item.GetDescription() << '\n';
+    } else if (item_choice == 2) {
+        player_.Eat(item.GetHp());
+        std::cout << "You ate " << item.GetName() << "! Yummy!" << '\n';
+        utils_.OutputStat("HP", player_.GetHp());
+        inventory_.DeleteFoodItem(item_index);
+    } else if (item_choice == 3) {
+        inventory_.DeleteFoodItem(item_index);
+        std::cout << "You threw away " << item.GetName() << "." << '\n';
+    }
+}
+
 void GameManager::RunInventory() {
     if (inventory_.GetFoodInventory().size() == 0) {
         std::cout << "Your inventory is empty!" << '\n';
@@ -94,31 +117,13 @@ void GameManager::RunInventory() {
         bool run_inventory{true};
         do {
             utils_.OutputInventoryMenu(inventory_);
+
             std::vector<Food> inventory = inventory_.GetFoodInventory();
             int user_num = input_validator_.ReadPosIntInRange(0, inventory.size());
             if (user_num == 0) {
                 run_inventory = false;
             } else {
-                int item_index = user_num - 1;
-                Food item = inventory[item_index];
-                std::cout << "> " << item.GetName() << " (" << utils_.GetSignedNumString(item.GetHp()) << " HP)" << '\n';
-                // std::cout << "0. Go back" << '\n';
-                std::cout << "1. View description" << '\n';
-                std::cout << "2. Eat" << '\n';
-                std::cout << "3. Throw away" << '\n';
-                int item_choice = input_validator_.ReadPosIntInRange(1, 3);
-                if (item_choice == 1) {
-                    std::cout << item.GetDescription() << '\n';
-                }
-                else if (item_choice == 2) {
-                    player_.Eat(item.GetHp());
-                    std::cout << "You ate " << item.GetName() << "! Yummy!" << '\n';
-                    utils_.OutputStat("HP", player_.GetHp());
-                }
-                else if (item_choice == 3) {
-                    inventory_.DeleteItem(item_index);
-                    std::cout << "You threw away " << item.GetName() << "." << '\n';
-                }
+                RunItem(user_num, inventory);
             }
         } while (run_inventory);
     }

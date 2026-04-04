@@ -1,7 +1,7 @@
 #include "../include/FightManager.h"
 #include <iostream>
 
-FightManager::FightManager(Player& player) : player_(player) {}
+FightManager::FightManager(Player& player, Inventory& inventory) : player_(player), inventory_(inventory) {}
 
 void FightManager::RunFightDamage(int player_stats) {
     int dmg = utils_.CalculateDamage(player_stats, dmg_limit_, player_);
@@ -31,7 +31,7 @@ void FightManager::RunEnemyDropItem(Enemy& enemy) {
     utils_.OutputDashes();
     std::cout << "\nThe enemy dropped an item!" << '\n';
     std::variant<Weapon, Clothing, Food> item = enemy.GetDropItem();
-    utils_.OutputItem(item);
+    utils_.OutputGetItem(item);
 }
 
 void FightManager::RunFightWin(Enemy& enemy, int player_stats) {

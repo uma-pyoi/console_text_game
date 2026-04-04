@@ -15,7 +15,8 @@ using json = nlohmann::json;
 int main()
 {
     Player player("Kai");
-    GameManager game_manager(player);
+    Inventory inventory;
+    GameManager game_manager(player, inventory);
     game_manager.RunStory();
 // ++++++++=++++++++=++++++++=++++++++=++++++++=++++++++=++++++++=++++++++=
 

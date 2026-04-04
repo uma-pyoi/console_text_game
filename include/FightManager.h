@@ -6,6 +6,7 @@
 class FightManager {
     Utils utils_;
     Player& player_;
+    Inventory& inventory_;
 
     // stat multipliers to determine outcome of fights
     int hp_mult_ = 1;
@@ -19,7 +20,7 @@ class FightManager {
     int dmg_limit_ = 30;
 
 public:
-    FightManager(Player& player);
+    FightManager(Player& player, Inventory& inventory);
 
     void RunFight(Enemy& enemy);
     void RunFightWin(Enemy& enemy, int player_stats);

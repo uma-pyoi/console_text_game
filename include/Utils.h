@@ -20,8 +20,10 @@ public:
 
     // outputting pause screen
     void OutputPauseScreen(Player player);
+    // outputting inventory
     void OutputInventoryMenu(Inventory inventory);
-    void OutputItem(std::variant<Weapon, Clothing, Food> item);
+    void OutputItemMenu(Food item);
+    void OutputGetItem(std::variant<Weapon, Clothing, Food> item);
 
     // pretty formatting
     void OutputDashes();

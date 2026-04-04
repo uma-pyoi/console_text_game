@@ -21,23 +21,24 @@ class GameManager {
 
     // entities
     Player& player_;
-    Inventory inventory_;
+    Inventory& inventory_;
 
     bool running_{true};
 
 public:
-    GameManager(Player& player);
+    GameManager(Player& player, Inventory& inventory_);
 
     // starts the game
     void RunStory();
+
     // helper story mode functions
-
-
     void RunPlotWChoice(std::vector<std::string>& plot, std::vector<std::string>& plot_choice1, std::vector<std::string>& plot_choice2);
     void RunPlotWoChoice(std::vector<std::string>& plot);
     void AskIfPause(int& plot_iterator);
 
     void RunPauseScreen();
+
+    void RunItem(int user_num, std::vector<Food> inventory);
     void RunInventory();
 };
 

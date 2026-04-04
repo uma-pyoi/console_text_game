@@ -68,17 +68,24 @@ std::string Utils::GetSignedNumString(int num) {
     return signed_num;
 }
 
-void Utils::OutputItem(std::variant<Weapon, Clothing, Food> item) {
+void Utils::OutputItemMenu(Food item) {
+    std::cout << "> " << item.GetName() << " (" << GetSignedNumString(item.GetHp()) << " HP)" << '\n';
+    std::cout << "1. View description" << '\n';
+    std::cout << "2. Eat" << '\n';
+    std::cout << "3. Throw away" << '\n';
+}
+
+void Utils::OutputGetItem(std::variant<Weapon, Clothing, Food> item) {
     // REFERENCE: https://www.geeksforgeeks.org/cpp/std-variant-in-cpp-17/
     // Geeksforgeeks (2023)
     if (std::holds_alternative<Weapon>(item)) {
-        std::cout << "You got a weapon! " << std::get<Weapon>(item).GetName() << '\n';
+        std::cout << "You got a weapon: " << std::get<Weapon>(item).GetName() << '\n';
     }
     else if (std::holds_alternative<Clothing>(item)) {
-        std::cout << "You got armour! " << std::get<Clothing>(item).GetName() << '\n';
+        std::cout << "You got armour: " << std::get<Clothing>(item).GetName() << '\n';
     }
     else if (std::holds_alternative<Food>(item)) {
-        std::cout << "You got food! " << std::get<Food>(item).GetName() << '\n';
+        std::cout << "You got food: " << std::get<Food>(item).GetName() << '\n';
     }
 }
 
