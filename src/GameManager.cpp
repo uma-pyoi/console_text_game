@@ -29,24 +29,21 @@ void GameManager::RunPlotWoChoice(std::vector<std::string> &plot) {
 void GameManager::RunPlotWChoice(std::vector<std::string> &plot, std::vector<std::string> &plot_choice1,
                                  std::vector<std::string> &plot_choice2) {
     for (int i = 0; i < plot.size(); i++) {
-        if (running_) {
-            std::cout << plot[i];
+        std::cout << plot[i];
+        // executes if scene is still going
+        if (i != (plot.size() - 1)) {
+            this->AskIfPause(i);
+        } else {
+            // executes if end of scene, starts a fight
+            int plot_choice = input_validator_.ReadPosIntInRange(1, 2);
 
-            // executes if scene is still going
-            if (i != (plot.size() - 1)) {
-                this->AskIfPause(i);
+            if (plot_choice == 1) {
+                RunPlotWoChoice(plot_choice1);
+                Food egg("Egg", "A very round egg.", 10);
+                Enemy nurse("The Nurse", egg, 100);
+                fight_manager_.RunFight(nurse, running_);
             } else {
-                // executes if end of scene, starts a fight
-                int plot_choice = input_validator_.ReadPosIntInRange(1, 2);
-
-                if (plot_choice == 1) {
-                    RunPlotWoChoice(plot_choice1);
-                    Food egg("Egg", "A very round egg.", 10);
-                    Enemy nurse("The Nurse", egg, 100);
-                    fight_manager_.RunFight(nurse, running_);
-                } else {
-                    RunPlotWoChoice(plot_choice2);
-                }
+                RunPlotWoChoice(plot_choice2);
             }
         }
     }
@@ -56,19 +53,15 @@ void GameManager::RunPlotWChoice(std::vector<std::string> &plot, std::vector<std
 void GameManager::RunStory() {
     utils_.OutputGameTitle();
 
-    std::string choice_1_name = "choice_1";
-    std::string choice_2_name = "choice_2";
-    int last_plot_num = 1;
     int i = 0;
     do {
         std::string plot_num = std::to_string(i);
         std::vector<std::string> plot_text = json_handler_.ReadPlotText(plot_num);
-        std::vector<std::string> plot_choice_1 = json_handler_.ReadPlotChoice(plot_num, choice_1_name);
-        std::vector<std::string> plot_choice_2 = json_handler_.ReadPlotChoice(plot_num, choice_2_name);
+        std::vector<std::string> plot_choice_1 = json_handler_.ReadPlotChoice(plot_num, json_handler_.GetChoice1Name());
+        std::vector<std::string> plot_choice_2 = json_handler_.ReadPlotChoice(plot_num, json_handler_.GetChoice2Name());
         RunPlotWChoice(plot_text, plot_choice_1, plot_choice_2);
         i++;
-    }
-    while (i <= last_plot_num && running_);
+    } while (i <= json_handler_.GetLastPlotNum() && running_);
 }
 
 void GameManager::RunPauseScreen() {

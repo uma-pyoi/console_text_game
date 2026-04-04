@@ -3,6 +3,18 @@
 #include "../libs/nlohmann/json.hpp"
 using json = nlohmann::json;
 
+int JsonHandler::GetLastPlotNum() {
+    return LAST_PLOT_NUM_;
+}
+
+std::string JsonHandler::GetChoice1Name() {
+    return CHOICE_1_NAME_;
+}
+
+std::string JsonHandler::GetChoice2Name() {
+    return CHOICE_2_NAME_;
+}
+
 json JsonHandler::ReadJson(std::string filename) {
     std::ifstream plot_json_2(filename);
     json data = json::parse(plot_json_2);
