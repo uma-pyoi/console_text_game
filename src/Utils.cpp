@@ -51,10 +51,9 @@ void Utils::OutputDashes() {
     std::cout << "----------------------------------" << '\n';
 }
 
-void Utils::OutputMagenta(std::string str) {
+void Utils::OutputStat(std::string stat_name, std::string stat_value) {
     SetColor(95);
-    std::cout << str;
-    // std::cout << "\n" << stat_name << ": " << stat_value << '\n';
+    std::cout << "\n" << stat_name << ": " << stat_value << '\n';
     ResetColor();
 }
 
@@ -80,14 +79,14 @@ void Utils::ObtainItem(std::variant<Weapon, Clothing, Food> item, Inventory& inv
     // REFERENCE: https://www.geeksforgeeks.org/cpp/std-variant-in-cpp-17/
     // Geeksforgeeks (2023)
     if (std::holds_alternative<Weapon>(item)) {
-        std::cout << "You got a weapon: " << std::get<Weapon>(item).GetName() << '\n';
+        OutputStat("You got a weapon", std::get<Weapon>(item).GetName());
     }
     else if (std::holds_alternative<Clothing>(item)) {
-        std::cout << "You got armour: " << std::get<Clothing>(item).GetName() << '\n';
+        OutputStat("You got armour", std::get<Clothing>(item).GetName());
     }
     else if (std::holds_alternative<Food>(item)) {
         Food food = std::get<Food>(item);
-        std::cout << "You got food: " << food.GetName() << '\n';
+        OutputStat("You got food", food.GetName());
         inventory.AddFoodItem(food);
     }
 }

@@ -14,8 +14,7 @@ void FightManager::RunFightDamage(int player_stats) {
         std::cout << "the enemy dealt its final attack!!!" << '\n';
         std::cout << "You took " << dmg << " damage!" << '\n';
         player_.TakeDamage(dmg);
-        std::string hp_stat = "\nHP: " + std::to_string(player_.GetHp());
-        utils_.OutputMagenta(hp_stat);
+        utils_.OutputStat("HP", std::to_string(player_.GetHp()));
     }
 }
 
@@ -24,8 +23,7 @@ void FightManager::RunScoreEarn(Enemy& enemy) {
     int score_points = enemy.GetScorePoints();
     std::cout << "\nYou earned " << score_points << " score points!" << '\n';
     player_.AddScorePoints(score_points);
-    std::string score_stat = "\nscore: " + std::to_string(player_.GetScore());
-    utils_.OutputMagenta(score_stat);
+    utils_.OutputStat("score", std::to_string(player_.GetScore()));
     utils_.OutputDashes();
 }
 

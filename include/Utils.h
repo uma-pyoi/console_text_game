@@ -28,7 +28,7 @@ public:
 
     // pretty formatting
     void OutputDashes();
-    void OutputMagenta(std::string str); // stats will be magenta
+    void OutputStat(std::string stat_name, std::string stat_value);
     std::string GetSignedNumString(int num);
 
     // calculations
