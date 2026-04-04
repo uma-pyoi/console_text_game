@@ -49,7 +49,7 @@ void FightManager::RunFightWin(Enemy& enemy, int player_stats) {
     RunScoreEarn(enemy);
 }
 
-void FightManager::RunFight(Enemy& enemy) {
+void FightManager::RunFight(Enemy& enemy, bool& running) {
     utils_.SetColor(91);
     std::cout << "\nYou can feel the enemy approaching you..." << '\n';
     utils_.ResetColor();
@@ -65,8 +65,8 @@ void FightManager::RunFight(Enemy& enemy) {
     else {
         // TODO: implement game-over?
         std::cout << "The enemy was too tough for you to handle." << '\n';
-        // std::cout << "\nGame over." << '\n';
         utils_.OutputGameover();
         utils_.OutputDashes();
+        running = false;
     }
 }

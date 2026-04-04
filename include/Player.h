@@ -14,7 +14,7 @@ class Player {
 
     std::string name_;
     int score_ = 0;
-    int hp_ = 100;
+    int hp_ = 1;
     int ap_ = 0;
     int dp_ = 0;
     std::string default_empty_equipment_string_{"None"};

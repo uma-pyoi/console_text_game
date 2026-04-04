@@ -22,7 +22,7 @@ class FightManager {
 public:
     FightManager(Player& player, Inventory& inventory);
 
-    void RunFight(Enemy& enemy);
+    void RunFight(Enemy& enemy, bool& running);
     void RunFightWin(Enemy& enemy, int player_stats);
     void RunScoreEarn(Enemy& enemy);
     void RunFightDamage(int player_stats);

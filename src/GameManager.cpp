@@ -43,7 +43,7 @@ void GameManager::RunPlotWChoice(std::vector<std::string> &plot, std::vector<std
                     RunPlotWoChoice(plot_choice1);
                     Food egg("Egg", "A very round egg.", 10);
                     Enemy nurse("The Nurse", egg, 100);
-                    fight_manager_.RunFight(nurse);
+                    fight_manager_.RunFight(nurse, running_);
                 } else {
                     RunPlotWoChoice(plot_choice2);
                 }
@@ -59,13 +59,16 @@ void GameManager::RunStory() {
     std::string choice_1_name = "choice_1";
     std::string choice_2_name = "choice_2";
     int last_plot_num = 1;
-    for (int i = 0; i <= last_plot_num; i++) {
+    int i = 0;
+    do {
         std::string plot_num = std::to_string(i);
         std::vector<std::string> plot_text = json_handler_.ReadPlotText(plot_num);
         std::vector<std::string> plot_choice_1 = json_handler_.ReadPlotChoice(plot_num, choice_1_name);
         std::vector<std::string> plot_choice_2 = json_handler_.ReadPlotChoice(plot_num, choice_2_name);
         RunPlotWChoice(plot_text, plot_choice_1, plot_choice_2);
+        i++;
     }
+    while (i <= last_plot_num && running_);
 }
 
 void GameManager::RunPauseScreen() {
