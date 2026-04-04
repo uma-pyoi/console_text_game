@@ -19,10 +19,8 @@ class Player {
     int dp_ = 0;
     std::string default_empty_equipment_string_{"None"};
 
-    // REFERENCE: https://en.cppreference.com/w/cpp/utility/optional.html
-    // Cppreference (n.d.)
-    std::optional<Clothing> clothing_;
-    std::optional<Weapon> weapon_;
+    Clothing clothing_ = Clothing("Naked body", "You aren't wearing anything. For some reason the hospital didn't provide you with clothes.", 0);
+    Weapon weapon_ = Weapon("Bare hands", "Your hands. Let's hope you are good at fighting", 5);
 
 public:
     Player(std::string name);
@@ -37,8 +35,8 @@ public:
     int GetDp();
     void SetDp(int dp);
 
-    std::optional<Clothing> GetClothing();
-    std::optional<Weapon> GetWeapon();
+    Clothing GetClothing();
+    Weapon GetWeapon();
 
     void OutputPlayer();
     void TakeDamage(int dmg);

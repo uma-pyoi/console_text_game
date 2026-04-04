@@ -59,7 +59,7 @@ void Utils::OutputDashes() {
 }
 
 void Utils::OutputStat(std::string stat_name, std::string stat_value) {
-    SetColor(95);
+    SetColor(stats_color_);
     std::cout << "\n" << stat_name << ": " << stat_value << '\n';
     ResetColor();
 }
@@ -90,12 +90,16 @@ void Utils::ObtainItem(std::variant<Weapon, Clothing, Food> item, Inventory& inv
     }
     else if (std::holds_alternative<Clothing>(item)) {
         Clothing new_clothing = std::get<Clothing>(item);
-        OutputStat("You got clothing", std::get<Clothing>(item).GetName());
+        std::string new_clothing_dp = GetSignedNumString(new_clothing.GetDp());
+
+        OutputStat("You got clothing", new_clothing.GetName());
+        new_clothing.OutputClothing();
+
         std::cout << "Do you wish to swap your current clothing to it?" << '\n';
 
-        std::optional<Clothing> current_clothing = player.GetClothing();
-        // GetSignedNumString(player.GetClothing()->GetName())
-        std::cout << "Current clothing: " << player.GetClothing()->GetName() << '\n';
+
+        std::string curr_clothing_dp = GetSignedNumString(player.GetClothing().GetDp());
+        std::cout << "Current clothing: " << player.GetClothing().GetName() << '\n';
 
     }
     else if (std::holds_alternative<Food>(item)) {

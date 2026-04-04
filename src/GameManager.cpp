@@ -50,7 +50,7 @@ void GameManager::BranchingPlot0(int user_choice, std::vector<std::string> &plot
     } else {
         RunPlotWoChoice(plot_choice2);
         Clothing hospital_gown("Hospital gown", "A blue hospital gown. Makes you weirdly nostalgic.", 3);
-        utils_.ObtainItem(hospital_gown, inventory_);
+        utils_.ObtainItem(hospital_gown, inventory_, player_);
     }
 }
 

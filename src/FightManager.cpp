@@ -31,7 +31,7 @@ void FightManager::RunEnemyDropItem(Enemy& enemy) {
     utils_.OutputDashes();
     std::cout << "\nThe enemy dropped an item!" << '\n';
     std::variant<Weapon, Clothing, Food> item = enemy.GetDropItem();
-    utils_.ObtainItem(item, inventory_);
+    utils_.ObtainItem(item, inventory_, player_);
 }
 
 void FightManager::RunFightWin(Enemy& enemy, int player_stats) {

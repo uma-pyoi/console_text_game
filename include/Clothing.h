@@ -7,6 +7,9 @@ class Clothing : public Item {
     int dp_{0};
 public:
     Clothing(std::string name, std::string description, int dp);
+
+    int GetDp();
+    void OutputClothing();
 };
 
 
