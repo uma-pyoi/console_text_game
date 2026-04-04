@@ -24,19 +24,11 @@ void Player::SetHp(int hp) {
 }
 
 int Player::GetAp() {
-    return ap_;
-}
-
-void Player::SetAp(int ap) {
-    this->ap_ = ap;
+    return weapon_.GetAp();
 }
 
 int Player::GetDp() {
-    return dp_;
-}
-
-void Player::SetDp(int dp) {
-    this->dp_ = dp;
+    return clothing_.GetDp();
 }
 
 Clothing Player::GetClothing() {
@@ -52,7 +44,7 @@ Weapon Player::GetWeapon() {
 }
 
 void Player::OutputPlayer() {
-    std::cout << name_ << " | " << "HP: " << hp_ << " | AP: " << ap_ << " | DP: " << dp_ << '\n';
+    std::cout << name_ << " | " << "HP: " << hp_ << " | AP: " << weapon_.GetAp() << " | DP: " << clothing_.GetDp() << '\n';
 
     std::cout << "Weapon: " << weapon_.GetName() << '\n';
     std::cout << "Clothing: " << clothing_ .GetName() << '\n';
