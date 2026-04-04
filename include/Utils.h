@@ -25,7 +25,7 @@ public:
     void OutputInventoryMenu(Inventory inventory);
     void OutputItemMenu(Food item);
 
-    void ObtainItem(std::variant<Weapon, Clothing, Food> item, Inventory& inventory);
+    void ObtainItem(std::variant<Weapon, Clothing, Food> item, Inventory& inventory, Player& player);
 
     // pretty formatting
     void OutputDashes();

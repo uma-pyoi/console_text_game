@@ -34,8 +34,9 @@ void GameManager::BranchingActivator(int plot_index, int user_choice, std::vecto
         case 0:
             BranchingPlot0(user_choice, plot_choice1, plot_choice2);
             break;
-        // case 1:
-
+        case 1:
+            BranchingPlot1(user_choice, plot_choice1, plot_choice2);
+            break;
     }
 }
 
@@ -48,17 +49,18 @@ void GameManager::BranchingPlot0(int user_choice, std::vector<std::string> &plot
         fight_manager_.RunFight(nurse, running_);
     } else {
         RunPlotWoChoice(plot_choice2);
+        Clothing hospital_gown("Hospital gown", "A blue hospital gown. Makes you weirdly nostalgic.", 3);
+        utils_.ObtainItem(hospital_gown, inventory_);
     }
 }
 
 void GameManager::BranchingPlot1(int user_choice, std::vector<std::string> &plot_choice1, std::vector<std::string> &plot_choice2) {
     if (user_choice == 1) {
         RunPlotWoChoice(plot_choice1);
-        Food egg("Egg", "A very round egg.", 10);
-        Enemy nurse("The Nurse", egg, 100);
-        fight_manager_.RunFight(nurse, running_);
     } else {
         RunPlotWoChoice(plot_choice2);
+        Food blood("Droplets of blood", "Rich in iron. Helpful in desperate times.", 5);
+        inventory_.AddFoodItem(blood);
     }
 }
 

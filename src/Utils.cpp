@@ -82,14 +82,21 @@ void Utils::OutputItemMenu(Food item) {
     std::cout << "3. Throw away" << '\n';
 }
 
-void Utils::ObtainItem(std::variant<Weapon, Clothing, Food> item, Inventory& inventory) {
+void Utils::ObtainItem(std::variant<Weapon, Clothing, Food> item, Inventory& inventory, Player& player) {
     // REFERENCE: https://www.geeksforgeeks.org/cpp/std-variant-in-cpp-17/
     // Geeksforgeeks (2023)
     if (std::holds_alternative<Weapon>(item)) {
         OutputStat("You got a weapon", std::get<Weapon>(item).GetName());
     }
     else if (std::holds_alternative<Clothing>(item)) {
-        OutputStat("You got armour", std::get<Clothing>(item).GetName());
+        Clothing new_clothing = std::get<Clothing>(item);
+        OutputStat("You got clothing", std::get<Clothing>(item).GetName());
+        std::cout << "Do you wish to swap your current clothing to it?" << '\n';
+
+        std::optional<Clothing> current_clothing = player.GetClothing();
+        // GetSignedNumString(player.GetClothing()->GetName())
+        std::cout << "Current clothing: " << player.GetClothing()->GetName() << '\n';
+
     }
     else if (std::holds_alternative<Food>(item)) {
         Food food = std::get<Food>(item);
