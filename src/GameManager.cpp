@@ -22,12 +22,36 @@ void GameManager::RunPlotWoChoice(std::vector<std::string> &plot) {
         if (i != (plot.size() - 1)) {
             this->AskIfPause(i);
         }
+        else {
+            std::cout << "\n\n";
+        }
+    }
+}
+
+void GameManager::BranchingActivator(int plot_index, int user_choice, std::vector<std::string> &plot_choice1,
+                                     std::vector<std::string> &plot_choice2) {
+    switch (plot_index) {
+        case 0:
+            BranchingPlot0(user_choice, plot_choice1, plot_choice2);
+    }
+}
+
+void GameManager::BranchingPlot0(int user_choice, std::vector<std::string> &plot_choice1,
+                                 std::vector<std::string> &plot_choice2) {
+    if (user_choice == 1) {
+        RunPlotWoChoice(plot_choice1);
+        Food egg("Egg", "A very round egg.", 10);
+        Enemy nurse("The Nurse", egg, 100);
+        fight_manager_.RunFight(nurse, running_);
+    } else {
+        RunPlotWoChoice(plot_choice2);
     }
 }
 
 // method to run story mode
-void GameManager::RunPlotWChoice(std::vector<std::string> &plot, std::vector<std::string> &plot_choice1,
+int GameManager::RunPlotWChoice(std::vector<std::string> &plot, std::vector<std::string> &plot_choice1,
                                  std::vector<std::string> &plot_choice2) {
+    int user_choice{-1};
     for (int i = 0; i < plot.size(); i++) {
         std::cout << plot[i];
         // executes if scene is still going
@@ -35,19 +59,12 @@ void GameManager::RunPlotWChoice(std::vector<std::string> &plot, std::vector<std
             this->AskIfPause(i);
         } else {
             // executes if end of scene, starts a fight
-            int plot_choice = input_validator_.ReadPosIntInRange(1, 2);
-
-            if (plot_choice == 1) {
-                RunPlotWoChoice(plot_choice1);
-                Food egg("Egg", "A very round egg.", 10);
-                Enemy nurse("The Nurse", egg, 100);
-                fight_manager_.RunFight(nurse, running_);
-            } else {
-                RunPlotWoChoice(plot_choice2);
-            }
+            user_choice = input_validator_.ReadPosIntInRange(1, 2);
+            // BranchingPlot0(user_choice, plot_choice1, plot_choice2);
         }
     }
     std::cout << "\n\n";
+    return user_choice;
 }
 
 void GameManager::RunStory() {
@@ -59,7 +76,8 @@ void GameManager::RunStory() {
         std::vector<std::string> plot_text = json_handler_.ReadPlotText(plot_num);
         std::vector<std::string> plot_choice_1 = json_handler_.ReadPlotChoice(plot_num, json_handler_.GetChoice1Name());
         std::vector<std::string> plot_choice_2 = json_handler_.ReadPlotChoice(plot_num, json_handler_.GetChoice2Name());
-        RunPlotWChoice(plot_text, plot_choice_1, plot_choice_2);
+        int user_choice = RunPlotWChoice(plot_text, plot_choice_1, plot_choice_2);
+        BranchingActivator(i, user_choice, plot_choice_1, plot_choice_2);
         i++;
     } while (i <= json_handler_.GetLastPlotNum() && running_);
 }

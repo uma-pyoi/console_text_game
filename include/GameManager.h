@@ -20,24 +20,29 @@ class GameManager {
     FightManager fight_manager_;
 
     // entities
-    Player& player_;
-    Inventory& inventory_;
+    Player &player_;
+    Inventory &inventory_;
 
     bool running_{true};
 
 public:
-    GameManager(Player& player, Inventory& inventory_);
+    GameManager(Player &player, Inventory &inventory_);
 
     // starts the game
     void RunStory();
 
+    // branching functions
+    void BranchingActivator(int plot_index, int user_choice, std::vector<std::string> &plot_choice1,
+                            std::vector<std::string> &plot_choice2);
+    void BranchingPlot0(int plot_choice, std::vector<std::string> &plot_choice1,
+                        std::vector<std::string> &plot_choice2);
+
     // helper story mode functions
-    void RunPlotWChoice(std::vector<std::string>& plot, std::vector<std::string>& plot_choice1, std::vector<std::string>& plot_choice2);
-    void RunPlotWoChoice(std::vector<std::string>& plot);
-    void AskIfPause(int& plot_iterator);
-
+    int RunPlotWChoice(std::vector<std::string> &plot, std::vector<std::string> &plot_choice1,
+                        std::vector<std::string> &plot_choice2);
+    void RunPlotWoChoice(std::vector<std::string> &plot);
+    void AskIfPause(int &plot_iterator);
     void RunPauseScreen();
-
     void RunItem(int user_num, std::vector<Food> inventory);
     void RunInventory();
 };
