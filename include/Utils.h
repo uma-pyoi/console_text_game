@@ -23,11 +23,12 @@ public:
     // outputting inventory
     void OutputInventoryMenu(Inventory inventory);
     void OutputItemMenu(Food item);
-    void OutputGetItem(std::variant<Weapon, Clothing, Food> item);
+
+    void ObtainItem(std::variant<Weapon, Clothing, Food> item, Inventory& inventory);
 
     // pretty formatting
     void OutputDashes();
-    void OutputStat(std::string stat_name, int stat_value);
+    void OutputMagenta(std::string str); // stats will be magenta
     std::string GetSignedNumString(int num);
 
     // calculations

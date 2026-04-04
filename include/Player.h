@@ -6,8 +6,11 @@
 #include "Weapon.h"
 #include <vector>
 #include <optional>
+#include "Utils.h"
 
 class Player {
+    Utils utils_;
+
     int hp_limit_ = 100;
     // limit of the smallest HP player can get to by eating bad food
     int hp_bad_food_limit = 1;

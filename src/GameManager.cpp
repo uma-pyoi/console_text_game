@@ -102,7 +102,7 @@ void GameManager::RunItem(int user_num, std::vector<Food> inventory) {
     } else if (item_choice == 2) {
         player_.Eat(item.GetHp());
         std::cout << "You ate " << item.GetName() << "! Yummy!" << '\n';
-        utils_.OutputStat("HP", player_.GetHp());
+        std::string hp_stat = "\nHP: " + std::to_string(player_.GetHp());
         inventory_.DeleteFoodItem(item_index);
     } else if (item_choice == 3) {
         inventory_.DeleteFoodItem(item_index);
