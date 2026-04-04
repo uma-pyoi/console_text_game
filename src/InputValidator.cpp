@@ -25,7 +25,8 @@ int InputValidator::ReadPosIntInRange(int min, int max) {
     bool is_valid{false};
     int user_num{-1};
     do {
-        OutputNumInRangePrompt(min, max);
+        std::cout << "\n\n" << "Enter a number (" << min << "-" << max << "): ";
+
         std::string user_num_string = this->ReadString();
         this->TrimTrailingSpacesString(user_num_string);
         if (this->IsNumeric(user_num_string)) {
@@ -66,7 +67,8 @@ char InputValidator::ReadStoryModeChar() {
     std::string user_string;
     char user_char{'0'}; // 0 here is for initialisation, meaningless
     do {
-        OutputStoryModePrompt();
+        std::cout << "\n\nEnter 'n' to continue, 'p' to pause: ";
+
         user_string = this->ReadString();
         this->TrimTrailingSpacesString(user_string);
         if (user_string.length() == 1) {
@@ -88,7 +90,8 @@ bool InputValidator::ReadYesNo() {
     bool is_valid{false};
     std::string user_string;
     do {
-        OutputYesNoPrompt();
+        std::cout << "\n\nEnter Y/N: ";
+
         user_string = this->ReadString();
         this->TrimTrailingSpacesString(user_string);
         StringToLower(user_string);
@@ -113,24 +116,5 @@ void InputValidator::StringToLower(std::string& str) {
     for (char& i : str) {
         i = std::tolower(i);
     }
-}
-
-
-void InputValidator::OutputStoryModePrompt() {
-    utils_.SetColor(prompt_color_);
-    std::cout << "\n\nEnter 'n' to continue, 'p' to pause: ";
-    utils_.ResetColor();
-}
-
-void InputValidator::OutputNumInRangePrompt(int min, int max) {
-    utils_.SetColor(prompt_color_);
-    std::cout << "\n\n" << "Enter a number (" << min << "-" << max << "): ";
-    utils_.ResetColor();
-}
-
-void InputValidator::OutputYesNoPrompt() {
-    utils_.SetColor(prompt_color_);
-    std::cout << "\n\nEnter Y/N: ";
-    utils_.ResetColor();
 }
 

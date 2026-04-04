@@ -21,8 +21,7 @@ void GameManager::RunPlotWoChoice(std::vector<std::string> &plot) {
         std::cout << plot[i];
         if (i != (plot.size() - 1)) {
             this->AskIfPause(i);
-        }
-        else {
+        } else {
             std::cout << "\n\n";
         }
     }
@@ -54,7 +53,8 @@ void GameManager::BranchingPlot0(int user_choice, std::vector<std::string> &plot
     }
 }
 
-void GameManager::BranchingPlot1(int user_choice, std::vector<std::string> &plot_choice1, std::vector<std::string> &plot_choice2) {
+void GameManager::BranchingPlot1(int user_choice, std::vector<std::string> &plot_choice1,
+                                 std::vector<std::string> &plot_choice2) {
     if (user_choice == 1) {
         RunPlotWoChoice(plot_choice1);
     } else {
@@ -66,7 +66,7 @@ void GameManager::BranchingPlot1(int user_choice, std::vector<std::string> &plot
 
 // method to run story mode
 int GameManager::RunPlotWChoice(std::vector<std::string> &plot, std::vector<std::string> &plot_choice1,
-                                 std::vector<std::string> &plot_choice2) {
+                                std::vector<std::string> &plot_choice2) {
     int user_choice{-1};
     for (int i = 0; i < plot.size(); i++) {
         std::cout << plot[i];
@@ -144,11 +144,13 @@ void GameManager::ItemEat(Food item, int item_index) {
 }
 
 void GameManager::RunInventory() {
-    if (inventory_.GetFoodInventory().size() == 0) {
-        std::cout << "Your inventory is empty!" << '\n';
-    } else {
-        bool run_inventory{true};
-        do {
+    bool run_inventory{true};
+    do {
+        if (inventory_.GetFoodInventory().empty()) {
+            std::cout << "Your inventory is empty!" << '\n';
+            run_inventory = false;
+        }
+        else {
             utils_.OutputInventoryMenu(inventory_);
 
             std::vector<Food> inventory = inventory_.GetFoodInventory();
@@ -158,6 +160,6 @@ void GameManager::RunInventory() {
             } else {
                 RunItem(user_num, inventory);
             }
-        } while (run_inventory);
-    }
+        }
+    } while (run_inventory);
 }

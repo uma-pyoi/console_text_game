@@ -1,11 +1,14 @@
 #ifndef CPP_COURSEWORK1_P479574_UTILS_H
 #define CPP_COURSEWORK1_P479574_UTILS_H
 
+#include "InputValidator.h"
 #include "Inventory.h"
 #include "Player.h"
 
 class Utils {
 private:
+    InputValidator input_validator_;
+
     int stats_color_ = 95;
 
 public:
