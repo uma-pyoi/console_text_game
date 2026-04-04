@@ -43,6 +43,10 @@ Clothing Player::GetClothing() {
     return clothing_;
 }
 
+void Player::SetClothing(Clothing clothing) {
+    clothing_ = clothing;
+}
+
 Weapon Player::GetWeapon() {
     return weapon_;
 }

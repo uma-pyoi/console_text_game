@@ -68,6 +68,25 @@ void Utils::OutputItemMenu(Food item) {
     std::cout << "3. Throw away" << '\n';
 }
 
+void Utils::ObtainClothes(std::variant<Weapon, Clothing, Food> item, Player& player) {
+    Clothing new_clothing = std::get<Clothing>(item);
+    OutputStat("You got clothing", new_clothing.GetName());
+    new_clothing.OutputClothing();
+
+    SetColor(accent_color_);
+    std::cout << "Do you wish to swap your current clothing to it?" << '\n';
+    ResetColor();
+
+    std::cout << "Current clothing: " << '\n';
+    player.GetClothing().OutputClothing();
+
+    bool user_clothes_choice = input_validator_.ReadYesNo();
+    if (user_clothes_choice) {
+        player.SetClothing(new_clothing);
+        OutputStat("new clothing", new_clothing.GetName());
+    }
+}
+
 void Utils::ObtainItem(std::variant<Weapon, Clothing, Food> item, Inventory& inventory, Player& player) {
     // REFERENCE: https://www.geeksforgeeks.org/cpp/std-variant-in-cpp-17/
     // Geeksforgeeks (2023)
@@ -75,18 +94,7 @@ void Utils::ObtainItem(std::variant<Weapon, Clothing, Food> item, Inventory& inv
         OutputStat("You got a weapon", std::get<Weapon>(item).GetName());
     }
     else if (std::holds_alternative<Clothing>(item)) {
-        Clothing new_clothing = std::get<Clothing>(item);
-        std::string new_clothing_dp = GetSignedNumString(new_clothing.GetDp());
-
-        OutputStat("You got clothing", new_clothing.GetName());
-        new_clothing.OutputClothing();
-
-        std::cout << "Do you wish to swap your current clothing to it?" << '\n';
-
-
-        std::string curr_clothing_dp = GetSignedNumString(player.GetClothing().GetDp());
-        std::cout << "Current clothing: " << player.GetClothing().GetName() << '\n';
-
+        ObtainClothes(item, player);
     }
     else if (std::holds_alternative<Food>(item)) {
         Food food = std::get<Food>(item);

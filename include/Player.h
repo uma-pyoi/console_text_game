@@ -36,6 +36,7 @@ public:
     void SetDp(int dp);
 
     Clothing GetClothing();
+    void SetClothing(Clothing clothing);
     Weapon GetWeapon();
 
     void OutputPlayer();

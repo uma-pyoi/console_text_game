@@ -10,6 +10,7 @@ private:
     InputValidator input_validator_;
 
     int stats_color_ = 95;
+    int accent_color_ = 94;
 
 public:
     // outputting game
@@ -23,6 +24,7 @@ public:
     void OutputInventoryMenu(Inventory inventory);
     void OutputItemMenu(Food item);
 
+    void ObtainClothes(std::variant<Weapon, Clothing, Food> item, Player& player);
     void ObtainItem(std::variant<Weapon, Clothing, Food> item, Inventory& inventory, Player& player);
 
     // pretty formatting
