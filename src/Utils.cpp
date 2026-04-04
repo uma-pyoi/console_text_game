@@ -23,25 +23,6 @@ void Utils::OutputGameover() {
     ResetColor();
 }
 
-void Utils::OutputStoryModePrompt() {
-    SetColor(prompt_color_);
-    std::cout << "\n\nEnter 'n' to continue, 'p' to pause: ";
-    ResetColor();
-}
-
-void Utils::OutputNumInRangePrompt(int min, int max) {
-    SetColor(prompt_color_);
-    std::cout << "\n\n" << "Enter a number (" << min << "-" << max << "): ";
-    ResetColor();
-}
-
-void Utils::OutputYesNoPrompt() {
-    SetColor(prompt_color_);
-    std::cout << "\n\nEnter Y/N: ";
-    ResetColor();
-}
-
-
 void Utils::OutputPauseScreen(Player player) {
     std::cout << "\n\n---------   Pause Menu   ---------" << '\n';
     player.OutputPlayer();
@@ -56,9 +37,7 @@ void Utils::OutputPauseScreen(Player player) {
 
 void Utils::OutputInventoryMenu(Inventory inventory) {
     inventory.OutputInventory();
-    SetColor(prompt_color_);
-    std::cout << "Choose item (0 to go back):" << '\n';
-    ResetColor();
+    std::cout << "> Choose item (0 to go back)" << '\n';
 }
 
 void Utils::OutputDashes() {
@@ -67,7 +46,7 @@ void Utils::OutputDashes() {
 
 void Utils::OutputStat(std::string stat_name, std::string stat_value) {
     SetColor(stats_color_);
-    std::cout << "\n" << stat_name << ": " << stat_value << '\n';
+    std::cout << stat_name << ": " << stat_value << '\n';
     ResetColor();
 }
 

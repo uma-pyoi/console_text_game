@@ -6,7 +6,6 @@
 
 class Utils {
 private:
-    int prompt_color_ = 90;
     int stats_color_ = 95;
 
 public:
@@ -14,11 +13,6 @@ public:
     void OutputGameTitle();
     void OutputGameEnd();
     void OutputGameover();
-
-    // outputting prompts
-    void OutputStoryModePrompt();
-    void OutputNumInRangePrompt(int min, int max);
-    void OutputYesNoPrompt();
 
     // outputting pause screen
     void OutputPauseScreen(Player player);

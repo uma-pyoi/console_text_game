@@ -21,7 +21,7 @@ void FightManager::RunFightDamage(int player_stats) {
 void FightManager::RunScoreEarn(Enemy& enemy) {
     utils_.OutputDashes();
     int score_points = enemy.GetScorePoints();
-    std::cout << "\nYou earned " << score_points << " score points!" << '\n';
+    std::cout << "You earned " << score_points << " score points!" << '\n';
     player_.AddScorePoints(score_points);
     utils_.OutputStat("score", std::to_string(player_.GetScore()));
     utils_.OutputDashes();
@@ -29,7 +29,7 @@ void FightManager::RunScoreEarn(Enemy& enemy) {
 
 void FightManager::RunEnemyDropItem(Enemy& enemy) {
     utils_.OutputDashes();
-    std::cout << "\nThe enemy dropped an item!" << '\n';
+    std::cout << "The enemy dropped an item!" << '\n';
     std::variant<Weapon, Clothing, Food> item = enemy.GetDropItem();
     utils_.ObtainItem(item, inventory_, player_);
 }
