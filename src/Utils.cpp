@@ -16,6 +16,13 @@ void Utils::OutputGameEnd() {
     ResetColor();
 }
 
+void Utils::OutputGameover() {
+    SetColor(91);
+    std::cout << "\n    ✿" << "\n    |" << "\n  R.I.P" ;
+    std::cout << "\nGame over." << '\n';
+    ResetColor();
+}
+
 void Utils::OutputStoryModePrompt() {
     SetColor(prompt_color_);
     std::cout << "\n\nEnter 'n' to continue, 'p' to pause: ";

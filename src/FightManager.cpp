@@ -64,7 +64,9 @@ void FightManager::RunFight(Enemy& enemy) {
     }
     else {
         // TODO: implement game-over?
-        std::cout << "\nGame over." << '\n';
+        std::cout << "The enemy was too tough for you to handle." << '\n';
+        // std::cout << "\nGame over." << '\n';
+        utils_.OutputGameover();
         utils_.OutputDashes();
     }
 }

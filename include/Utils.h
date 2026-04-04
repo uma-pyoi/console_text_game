@@ -13,6 +13,7 @@ public:
     // outputting game
     void OutputGameTitle();
     void OutputGameEnd();
+    void OutputGameover();
 
     // outputting prompts
     void OutputStoryModePrompt();
