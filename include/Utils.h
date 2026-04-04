@@ -10,17 +10,23 @@ private:
     int stats_color_ = 95;
 
 public:
-    // outputting
+    // outputting game
     void OutputGameTitle();
     void OutputGameEnd();
+
+    // outputting prompts
     void OutputStoryModePrompt();
     void OutputNumInRangePrompt(int min, int max);
+
+    // outputting pause screen
     void OutputPauseScreen(Player player);
     void OutputInventoryMenu(Inventory inventory);
+    void OutputItem(std::variant<Weapon, Clothing, Food> item);
+
+    // pretty formatting
     void OutputDashes();
     void OutputStat(std::string stat_name, int stat_value);
-
-    void OutputItem(std::variant<Weapon, Clothing, Food> item);
+    std::string GetSignedNumString(int num);
 
     // calculations
     int GenerateRandomIntInRange(int min, int max);

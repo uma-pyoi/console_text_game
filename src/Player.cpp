@@ -73,10 +73,13 @@ void Player::AddScorePoints(int score_points) {
     score_ += score_points;
 }
 
-void Player::IncreaseHp(int add_hp) {
-    int new_hp = hp_ + add_hp;
+void Player::Eat(int food_hp) {
+    int new_hp = hp_ + food_hp;
     if (new_hp > hp_limit_) {
         hp_ = hp_limit_;
+    }
+    else if (new_hp < 0) {
+        hp_ = 0;
     }
     else {
         hp_ = new_hp;

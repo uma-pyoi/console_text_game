@@ -101,7 +101,7 @@ void GameManager::RunInventory() {
             } else {
                 int item_index = user_num - 1;
                 Food item = inventory[item_index];
-                std::cout << "> " << item.GetName() << " (+" << item.GetHp() << " HP)" << '\n';
+                std::cout << "> " << item.GetName() << " (" << utils_.GetSignedNumString(item.GetHp()) << " HP)" << '\n';
                 // std::cout << "0. Go back" << '\n';
                 std::cout << "1. View description" << '\n';
                 std::cout << "2. Eat" << '\n';
@@ -111,7 +111,7 @@ void GameManager::RunInventory() {
                     std::cout << item.GetDescription() << '\n';
                 }
                 else if (item_choice == 2) {
-                    player_.IncreaseHp(item.GetHp());
+                    player_.Eat(item.GetHp());
                     std::cout << "You ate " << item.GetName() << "! Yummy!" << '\n';
                     utils_.OutputStat("HP", player_.GetHp());
                 }

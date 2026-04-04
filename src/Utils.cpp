@@ -57,6 +57,17 @@ void Utils::OutputStat(std::string stat_name, int stat_value) {
     ResetColor();
 }
 
+std::string Utils::GetSignedNumString(int num) {
+    std::string signed_num;
+    if (num > 0) {
+        signed_num = "+" + std::to_string(num);
+    }
+    else {
+        signed_num = std::to_string(num);
+    }
+    return signed_num;
+}
+
 void Utils::OutputItem(std::variant<Weapon, Clothing, Food> item) {
     // REFERENCE: https://www.geeksforgeeks.org/cpp/std-variant-in-cpp-17/
     // Geeksforgeeks (2023)
