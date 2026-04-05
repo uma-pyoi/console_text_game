@@ -5,7 +5,7 @@ bool WordGame::Play() {
     std::vector<int> guessed_indexes;
     bool is_guessed{false};
 
-    int word_index = utils_.GenerateRandomIntInRange(0, words_.size());
+    int word_index = utils_.GenerateRandomIntInRange(0, words_.size() - 1);
     std::string word = words_[word_index];
     std::cout << "word: " << word << '\n';
     int attempts = word.size() * 2;
@@ -18,8 +18,6 @@ bool WordGame::Play() {
         utils_.ResetColor();
         for (int i = 0; i < word.size(); i++) {
             char output_char = 0;
-
-            // bool char_is_guessed = std::count(guessed_indexes.begin(), guessed_indexes.end(), i) > 0;
 
             bool char_is_guessed{false};
             for (int guessed_index: guessed_indexes) {
@@ -38,25 +36,26 @@ bool WordGame::Play() {
         std::cout << "\nGuess a letter from the word!" << '\n';
         char user_char = std::toupper(input_validator_.ReadChar());
 
-        int guessed_index;
-        // bool is_guess_correct = std::count(word.begin(), word.end(), user_char) > 0;
-        //
+        std::vector<int> user_guessed_indexes;
         bool is_guess_correct{false};
         for (int i = 0; i < word.size(); i++) {
             if (user_char == word[i]) {
-                guessed_index = i;
+                user_guessed_indexes.push_back(i);
                 is_guess_correct = true;
             }
         }
 
         if (is_guess_correct) {
-            bool guessed_before = std::count(guessed_indexes.begin(), guessed_indexes.end(), guessed_index);
+            // passing only user_guessed_indexes[0] is enough to check if letter was guessed before
+            bool guessed_before = std::count(guessed_indexes.begin(), guessed_indexes.end(), user_guessed_indexes[0]);
             if (guessed_before) {
                 std::cout << "You already guessed this letter before!" << '\n';
             }
             else {
                 std::cout << "Correct!" << '\n';
-                guessed_indexes.push_back(guessed_index);
+                for (int guessed_index : user_guessed_indexes) {
+                    guessed_indexes.push_back(guessed_index);
+                }
                 if (guessed_indexes.size() == word.size()) {
                     std::cout << "Congratulations! You guessed the word! The word was:" << '\n';
                     std::cout << word << '\n';

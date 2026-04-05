@@ -12,7 +12,7 @@ private:
 
     // const int ATTEMPTS_ = 10;
     const int SCORE_POINTS_MULT_ = 10; // multiplier for each word letter
-    std::vector<std::string> words_{"FISH", "WINDOW", "HOSPITAL", "COMPUTER", "BRAIN", "NURSE", "ARCHITECTURE"};
+    std::vector<std::string> words_{"ANANAS", "FISH", "WINDOW", "HOSPITAL", "COMPUTER", "BRAIN", "NURSE", "ARCHITECTURE"};
 
 public:
     bool Play();
