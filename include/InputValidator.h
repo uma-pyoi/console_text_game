@@ -12,6 +12,7 @@ public:
     int ReadPosIntInRange(int min, int max);
     char ReadStoryModeChar();
     bool ReadYesNo();
+    char ReadChar();
 
     // modifying values
     bool IsNumeric(const std::string& str);

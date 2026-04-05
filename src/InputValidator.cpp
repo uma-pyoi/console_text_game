@@ -118,3 +118,26 @@ void InputValidator::StringToLower(std::string& str) {
     }
 }
 
+char InputValidator::ReadChar() {
+    bool is_valid{false};
+    std::string user_string;
+    char user_char{'0'};
+    do {
+        std::cout << "\n\nEnter a letter: ";
+
+        user_string = this->ReadString();
+        this->TrimTrailingSpacesString(user_string);
+        if (user_string.length() == 1) {
+            if (IsNumeric(user_string)) {
+                std::cout << "Invalid! You cannot enter numbers, only letters." << '\n';
+            }
+            else {
+                user_char = std::tolower(user_string[0]);
+                is_valid = true;
+            }
+        } else {
+            std::cout << "Invalid! You must enter one letter!" << '\n';
+        }
+    } while (!is_valid);
+    return user_char;
+}

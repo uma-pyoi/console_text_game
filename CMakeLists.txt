@@ -29,4 +29,6 @@ add_executable(cpp_coursework1_P479574 src/main.cpp
         include/FightManager.h
         src/JsonHandler.cpp
         include/JsonHandler.h
+        src/WordGame.cpp
+        include/WordGame.h
 )
