@@ -84,6 +84,7 @@ void Utils::ObtainClothes(std::variant<Weapon, Clothing, Food> item, Player& pla
     if (user_clothes_choice) {
         player.SetClothing(new_clothing);
         OutputStat("new clothing", new_clothing.GetName());
+        std::cout << '\n';
     }
 }
 

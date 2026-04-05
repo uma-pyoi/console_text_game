@@ -9,5 +9,5 @@ int Clothing::GetDp() {
 
 void Clothing::OutputClothing() {
     std::cout << "> " << GetName() << " | DP: " << dp_ << '\n';
-    std::cout << GetDescription() << "\n\n";
+    std::cout << GetDescription() << "\n";
 }

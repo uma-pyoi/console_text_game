@@ -60,7 +60,7 @@ void GameManager::BranchingPlot1(int user_choice, std::vector<std::string> &plot
     } else {
         RunPlotWoChoice(plot_choice2);
         Food blood("Droplets of blood", "Rich in iron. Helpful in desperate times.", 5);
-        inventory_.AddFoodItem(blood);
+        utils_.ObtainItem(blood, inventory_, player_);
     }
 }
 

@@ -71,7 +71,7 @@ void Player::Eat(int food_hp) {
         hp_ = hp_limit_;
     }
     else if (new_hp < 0) {
-        hp_ = 0;
+        hp_ = hp_bad_food_limit;
     }
     else {
         hp_ = new_hp;

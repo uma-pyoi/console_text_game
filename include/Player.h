@@ -5,7 +5,6 @@
 #include "Clothing.h"
 #include "Weapon.h"
 #include <vector>
-#include <optional>
 
 class Player {
     int hp_limit_ = 100;
@@ -14,7 +13,7 @@ class Player {
 
     std::string name_;
     int score_ = 0;
-    int hp_ = 100;
+    int hp_ = 10;
     std::string default_empty_equipment_string_{"None"};
 
     Clothing clothing_ = Clothing("Naked body", "You aren't wearing anything. For some reason the hospital didn't provide you with clothes.", 0);
@@ -29,9 +28,7 @@ public:
     int GetHp();
     void SetHp(int hp);
     int GetAp();
-    void SetAp(int ap);
     int GetDp();
-    void SetDp(int dp);
 
     Clothing GetClothing();
     void SetClothing(Clothing clothing);
