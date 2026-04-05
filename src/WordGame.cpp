@@ -2,21 +2,59 @@
 #include <iostream>
 
 bool WordGame::Play() {
+    std::vector<int> guessed_indexes;
+    bool is_guessed{false};
+    int attempts = ATTEMPTS_;
+
     int word_index = utils_.GenerateRandomIntInRange(0, words_.size());
-    std::string word = words_[word_index];
+    std::string word = words_[0];
 
     std::cout << "+++++++++++ Word Game! +++++++++++" << "\n\n";
 
-    for (char c : word) {
-        char output_char;
-        if (c == ' ') {
-            output_char = ' ';
+    do {
+        for (int i = 0; i < word.size(); i++) {
+            char output_char = 0;
+
+            bool char_is_guessed{false};
+            for (int guessed_index : guessed_indexes) {
+                if (i == guessed_index) {
+                    output_char == word[i];
+                    char_is_guessed = true;
+                }
+            }
+            if (!char_is_guessed) {
+                if (word[i] == ' ') {
+                    output_char = ' ';
+                }
+                else {
+                    output_char = '_';
+                }
+            }
+
+            std::cout << output_char;
+        }
+
+        std::cout << "\nGuess a letter from the word!" << '\n';
+        char user_char = input_validator_.ReadChar();
+
+        int guessed_index{-1};
+        bool is_guess_correct{false};
+        for (int i = 0; i < word.size(); i++) {
+            if (user_char == word[i]) {
+                guessed_index = i;
+                is_guess_correct = true;
+            }
+        }
+
+        if (is_guess_correct) {
+            std::cout << "Correct!" << '\n';
+            guessed_indexes.push_back(guessed_index);
         }
         else {
-            output_char = '_';
+            std::cout << "Incorrect!" << '\n';
         }
-        std::cout << output_char;
+        attempts--;
+        is_guessed = true;
     }
-
-    std::cout << "Now guess a letter";
+    while (!is_guessed && attempts != 0);
 }
