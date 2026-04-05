@@ -10,8 +10,9 @@ private:
     Utils utils_;
     InputValidator input_validator_;
 
-    const int ATTEMPTS_{10};
-    std::vector<std::string> words_{"KOI FISH", "WINDOW", "HOSPITAL", "COMPUTER", "BRAIN", "NURSE", "ARM ARCHITECTURE"};
+    // const int ATTEMPTS_ = 10;
+    const int SCORE_POINTS_MULT_ = 10; // multiplier for each word letter
+    std::vector<std::string> words_{"FISH", "WINDOW", "HOSPITAL", "COMPUTER", "BRAIN", "NURSE", "ARCHITECTURE"};
 
 public:
     bool Play();
