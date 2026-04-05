@@ -19,6 +19,8 @@ bool WordGame::Play() {
         for (int i = 0; i < word.size(); i++) {
             char output_char = 0;
 
+            // bool char_is_guessed = std::count(guessed_indexes.begin(), guessed_indexes.end(), i) > 0;
+
             bool char_is_guessed{false};
             for (int guessed_index: guessed_indexes) {
                 if (i == guessed_index) {
@@ -37,6 +39,8 @@ bool WordGame::Play() {
         char user_char = std::toupper(input_validator_.ReadChar());
 
         int guessed_index;
+        // bool is_guess_correct = std::count(word.begin(), word.end(), user_char) > 0;
+        //
         bool is_guess_correct{false};
         for (int i = 0; i < word.size(); i++) {
             if (user_char == word[i]) {
@@ -46,14 +50,20 @@ bool WordGame::Play() {
         }
 
         if (is_guess_correct) {
-            std::cout << "Correct!" << '\n';
-            guessed_indexes.push_back(guessed_index);
-            if (guessed_indexes.size() == word.size()) {
-                std::cout << "Congratulations! You guessed the word! The word was:" << '\n';
-                std::cout << word << '\n';
-                int score_rewards = word.size() * SCORE_POINTS_MULT_;
-                utils_.OutputStat("score points", std::to_string(score_rewards));
-                is_guessed = true;
+            bool guessed_before = std::count(guessed_indexes.begin(), guessed_indexes.end(), guessed_index);
+            if (guessed_before) {
+                std::cout << "You already guessed this letter before!" << '\n';
+            }
+            else {
+                std::cout << "Correct!" << '\n';
+                guessed_indexes.push_back(guessed_index);
+                if (guessed_indexes.size() == word.size()) {
+                    std::cout << "Congratulations! You guessed the word! The word was:" << '\n';
+                    std::cout << word << '\n';
+                    int score_rewards = word.size() * SCORE_POINTS_MULT_;
+                    utils_.OutputStat("score points", std::to_string(score_rewards));
+                    is_guessed = true;
+                }
             }
         } else {
             std::cout << "Incorrect!" << '\n';
