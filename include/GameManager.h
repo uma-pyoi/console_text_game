@@ -38,6 +38,8 @@ public:
                         std::vector<std::string> &plot_choice2);
     void BranchingPlot1(int user_choice, std::vector<std::string> &plot_choice1,
                         std::vector<std::string> &plot_choice2);
+    void BranchingPlot2(int user_choice, std::vector<std::string> &plot_choice1,
+                    std::vector<std::string> &plot_choice2);
 
     // helper story mode functions
     int RunPlotWChoice(std::vector<std::string> &plot, std::vector<std::string> &plot_choice1,

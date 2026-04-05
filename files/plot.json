@@ -2,17 +2,16 @@
   "0": {
     "text_array": [
       "You wake up in a dark room. \nA glowing screen shows today's date - May 1st, 3137.\nIt has been 1111 years.",
-      "\n\nA woman in a white uniform enters the room. \n\"What is the number?\" she asks.\n1. 1111\n2. 15"
+      "\n\nMemories flow in. You used to be a billionaire in the year of 2026. \nOne night, being drunk with friends you decided to sign up for one of those programs. \nThe ones where they would freeze your brain in hopes of resurrecting it in the future.",
+      "\n\nSuddenly, a woman in a white uniform enters the room. \n\"What is the number?\" she asks.\n1. 1111\n2. 15"
     ],
     "branches": {
       "choice_1": [
-        "You have angered her! Face the consequences!",
-        "\nThe woman slowly and carefully pulls out a knife.\n"
+        "You have angered her! \nThe woman slowly and carefully pulls out a knife."
       ],
       "choice_2": [
         "\"What a sweetie! You sure know the binary system!\"\nThe woman smiles kindly.",
-        "\n\nThe nurse hands you a blue hospital gown.",
-        "\n\n\"Wait, I was naked this entire time?\" you think."
+        "\n\nThe nurse hands you a blue hospital gown.\n\"Wait, I was naked this entire time?\" you think."
       ]
     }
   },
@@ -30,7 +29,23 @@
       ],
       "choice_2": [
         "You lick the puddle. Tastes metallic, as expected. \nYou like the taste.",
-        "\"Can't let this go to waste!\" you think as your hands put droplets of blood into your pocket."
+        "\n\n\"Can't let this go to waste!\" you think as your hands put droplets of blood into your pocket."
+      ]
+    }
+  },
+  "2": {
+    "text_array": [
+      "Finally, you make it outside. Everything is green. \nLooks like you made it into the hospital's garden.",
+      "\n\nA mysterious girl approaches you. \nHer hair is snow white with bright red spots. \nReminds you of the pattern you would see on a goldfish.",
+      "\n\nThe girl speaks. \n\"Hey, how do you make a NOT gate only using NAND gates? \nShow me an example with the variable 'a'. \nThis is a test :)\" \n1. A single gate: NAND(a=a, b=a, out=out) \n2. Two gates: NAND(a=a, b=b, out=ab_nand), NAND(a=ab_nand, b=ab_nand, out=out)"
+    ],
+    "branches": {
+      "choice_1": [
+        "\"Phewww!!! You totally scared me just now! \nGood to know you're a fellow human, but, seriously, \ndo something about the blood stains on you.\"",
+        "\n\nAh, yes, you forgot you were soaked in blood now after slipping into the blood puddle."
+      ],
+      "choice_2": [
+        "\"Hm? Interesting. Could you solve this for me please?\" \nThe girl offers you a puzzle. \nSeems like you need to guess letters in this game..."
       ]
     }
   }

@@ -36,6 +36,8 @@ void GameManager::BranchingActivator(int plot_index, int user_choice, std::vecto
         case 1:
             BranchingPlot1(user_choice, plot_choice1, plot_choice2);
             break;
+        case 2:
+            BranchingPlot2(user_choice, plot_choice1, plot_choice2);
     }
 }
 
@@ -61,6 +63,16 @@ void GameManager::BranchingPlot1(int user_choice, std::vector<std::string> &plot
         RunPlotWoChoice(plot_choice2);
         Food blood("Droplets of blood", "Rich in iron. Helpful in desperate times.", 5);
         utils_.ObtainItem(blood, inventory_, player_);
+    }
+}
+
+void GameManager::BranchingPlot2(int user_choice, std::vector<std::string> &plot_choice1,
+                                 std::vector<std::string> &plot_choice2) {
+    if (user_choice == 1) {
+        RunPlotWoChoice(plot_choice1);
+    } else {
+        RunPlotWoChoice(plot_choice2);
+        std::cout << "SHOULD ACTIVATE WORD MINIGAME HERE";
     }
 }
 
@@ -149,8 +161,7 @@ void GameManager::RunInventory() {
         if (inventory_.GetFoodInventory().empty()) {
             std::cout << "Your inventory is empty!" << '\n';
             run_inventory = false;
-        }
-        else {
+        } else {
             utils_.OutputInventoryMenu(inventory_);
 
             std::vector<Food> inventory = inventory_.GetFoodInventory();
