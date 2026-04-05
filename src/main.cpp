@@ -16,13 +16,13 @@ using json = nlohmann::json;
 
 int main()
 {
-     // Player player("Kai");
-     // Inventory inventory;
-     // GameManager game_manager(player, inventory);
-     // game_manager.RunStory();
+     Player player("Kai");
+     Inventory inventory;
+     GameManager game_manager(player, inventory);
+     game_manager.RunStory();
 
-    WordGame word_game;
-    word_game.Play();
+    // WordGame word_game;
+    // word_game.Play();
 
 // ++++++++=++++++++=++++++++=++++++++=++++++++=++++++++=++++++++=++++++++=
 

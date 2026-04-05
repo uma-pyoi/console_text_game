@@ -3,24 +3,18 @@
 #include <random>
 
 void Utils::OutputGameTitle() {
-    SetColor(93);
     std::cout << "**++++--    Sakana    --++++**" << "\n\n";
-    ResetColor();
 }
 
 void Utils::OutputGameEnd() {
     this->OutputGameTitle();
-    SetColor(93);
     std::cout << "       See you next time!       " << "\n\n";
     std::cout << "**++++------------------++++**" << '\n';
-    ResetColor();
 }
 
 void Utils::OutputGameover() {
-    SetColor(91);
     std::cout << "\n    ✿" << "\n    |" << "\n  R.I.P" ;
     std::cout << "\nGame over." << '\n';
-    ResetColor();
 }
 
 void Utils::OutputPauseScreen(Player player) {
@@ -45,9 +39,7 @@ void Utils::OutputDashes() {
 }
 
 void Utils::OutputStat(std::string stat_name, std::string stat_value) {
-    SetColor(stats_color_);
     std::cout << stat_name << ": " << stat_value << '\n';
-    ResetColor();
 }
 
 std::string Utils::GetSignedNumString(int num) {
@@ -73,12 +65,10 @@ void Utils::ObtainClothes(std::variant<Weapon, Clothing, Food> item, Player& pla
     OutputStat("You got clothing", new_clothing.GetName());
     new_clothing.OutputClothing();
 
-    SetColor(accent_color_);
-    std::cout << "Do you wish to swap your current clothing to it?" << '\n';
-    ResetColor();
-
     std::cout << "Current clothing: " << '\n';
     player.GetClothing().OutputClothing();
+
+    std::cout << "\nDo you wish to swap your current clothing to the new one?" << '\n';
 
     bool user_clothes_choice = input_validator_.ReadYesNo();
     if (user_clothes_choice) {
@@ -102,6 +92,7 @@ void Utils::ObtainItem(std::variant<Weapon, Clothing, Food> item, Inventory& inv
         OutputStat("You got food", food.GetName());
         inventory.AddFoodItem(food);
     }
+    std::cout << '\n';
 }
 
 int Utils::GenerateRandomIntInRange(int min, int max) {
@@ -117,13 +108,5 @@ int Utils::CalculateDamage(int player_stats, int dmg_limit, Player& player) {
     int random_dmg_percent = GenerateRandomIntInRange(0, 100);
     int player_stats_w_limit = player_stats * dmg_limit / 100; // dmg_limit_% of player stats
     return random_dmg_percent * player_stats_w_limit / 100 - player.GetDp(); // calculated dmg
-}
-
-void Utils::SetColor(int text_color) {
-    std::cout << "\033[" << text_color << "m";
-}
-
-void Utils::ResetColor() {
-    std::cout << "\033[0m";
 }
 

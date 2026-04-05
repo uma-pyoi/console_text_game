@@ -2,9 +2,7 @@
 #include <iostream>
 
 void WordGame::OutputAttempts(int attempts) {
-    utils_.SetColor(91);
     std::cout << "You have " << attempts << " attempt(s) left." << '\n';
-    utils_.ResetColor();
 }
 
 bool WordGame::CheckIsGuessCorrect(std::string word, char user_char, std::vector<int> &user_guessed_indexes) {

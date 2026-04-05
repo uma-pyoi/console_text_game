@@ -50,9 +50,7 @@ void FightManager::RunFightWin(Enemy& enemy, int player_stats) {
 }
 
 void FightManager::RunFight(Enemy& enemy, bool& running) {
-    utils_.SetColor(91);
     std::cout << "\nYou can feel the enemy approaching you..." << '\n';
-    utils_.ResetColor();
     enemy.OutputEnemy();
     utils_.OutputDashes();
 

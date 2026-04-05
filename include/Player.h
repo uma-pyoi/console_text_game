@@ -13,7 +13,7 @@ class Player {
 
     std::string name_;
     int score_ = 0;
-    int hp_ = 10;
+    int hp_ = 100;
     std::string default_empty_equipment_string_{"None"};
 
     Clothing clothing_ = Clothing("Naked body", "You aren't wearing anything. For some reason the hospital didn't provide you with clothes.", 0);
