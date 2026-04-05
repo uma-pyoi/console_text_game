@@ -7,7 +7,7 @@ void WordGame::OutputAttempts(int attempts) {
     utils_.ResetColor();
 }
 
-bool WordGame::CheckIsGuessCorrect(std::string word, char user_char, std::vector<int>& user_guessed_indexes) {
+bool WordGame::CheckIsGuessCorrect(std::string word, char user_char, std::vector<int> &user_guessed_indexes) {
     bool is_guess_correct{false};
     for (int i = 0; i < word.size(); i++) {
         if (user_char == word[i]) {
@@ -16,6 +16,21 @@ bool WordGame::CheckIsGuessCorrect(std::string word, char user_char, std::vector
         }
     }
     return is_guess_correct;
+}
+
+void WordGame::GuessIsCorrect(std::vector<int> user_guessed_indexes, std::vector<int>& guessed_indexes,
+                              std::string word, bool& word_is_guessed) {
+    std::cout << "Correct!" << '\n';
+    for (int guessed_index: user_guessed_indexes) {
+        guessed_indexes.push_back(guessed_index);
+    }
+    if (guessed_indexes.size() == word.size()) {
+        std::cout << "Congratulations! You guessed the word! The word was:" << '\n';
+        std::cout << word << '\n';
+        int score_rewards = word.size() * SCORE_POINTS_MULT_;
+        utils_.OutputStat("score points", std::to_string(score_rewards));
+        word_is_guessed = true;
+    }
 }
 
 void WordGame::OutputWord(std::string word, std::vector<int> guessed_indexes) {
@@ -59,22 +74,13 @@ bool WordGame::Play() {
 
         if (is_guess_correct) {
             // passing only user_guessed_indexes[0] is enough to check if letter was guessed before
+            // REFERENCE: https://en.cppreference.com/w/cpp/algorithm/count.html
+            // Cppreference.com (n.d.)
             bool guessed_before = std::count(guessed_indexes.begin(), guessed_indexes.end(), user_guessed_indexes[0]);
             if (guessed_before) {
                 std::cout << "You already guessed this letter before!" << '\n';
-            }
-            else {
-                std::cout << "Correct!" << '\n';
-                for (int guessed_index : user_guessed_indexes) {
-                    guessed_indexes.push_back(guessed_index);
-                }
-                if (guessed_indexes.size() == word.size()) {
-                    std::cout << "Congratulations! You guessed the word! The word was:" << '\n';
-                    std::cout << word << '\n';
-                    int score_rewards = word.size() * SCORE_POINTS_MULT_;
-                    utils_.OutputStat("score points", std::to_string(score_rewards));
-                    word_is_guessed = true;
-                }
+            } else {
+                GuessIsCorrect(user_guessed_indexes, guessed_indexes, word, word_is_guessed);
             }
         } else {
             std::cout << "Incorrect!" << '\n';
