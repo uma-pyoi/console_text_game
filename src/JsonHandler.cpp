@@ -17,11 +17,16 @@ std::string JsonHandler::GetChoice2Name() {
 }
 
 json JsonHandler::ReadJson(std::string filename) {
-    // REFERENCE: https://github.com/nlohmann/json?tab=readme-ov-file#cmake
-    // Niels Lohmann (2025)
-    std::ifstream file(filename);
-    json data = json::parse(file);
-    return data;
+    try {
+        // REFERENCE: https://github.com/nlohmann/json?tab=readme-ov-file#cmake
+        // Niels Lohmann (2025)
+        std::ifstream file(filename);
+        json data = json::parse(file);
+        return data;
+    }
+    catch (const std::exception &e) {
+        std::cerr << "An error happened when reading from file." << '\n';
+    }
 }
 
 std::vector<std::string> JsonHandler::ReadPlotText(std::string plot_name) {
@@ -54,6 +59,11 @@ void JsonHandler::SaveGame(Player &player, Inventory &inventory, int plot_i, int
 
     save["indexes"] = {{"plot_i", plot_i}, {"text_array_i", text_array_i}, {"branch_i", branch_i}};
 
-    write_file << save.dump(4);
+    try {
+        write_file << save.dump(4);
+    }
+    catch (const std::exception &e) {
+        std::cerr << "An error happened when writing to file." << '\n';
+    }
     write_file.close();
 }
