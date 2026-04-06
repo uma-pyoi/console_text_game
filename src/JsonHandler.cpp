@@ -52,6 +52,8 @@ void JsonHandler::SaveGame(Player &player, Inventory &inventory, int plot_i, int
         save["food_inventory"][i] = {{"name", foods[i].GetName()}, {"description", foods[i].GetDescription()}, {"hp", foods[i].GetHp()}};
     }
 
+    save["indexes"] = {{"plot_i", plot_i}, {"text_array_i", text_array_i}, {"branch_i", branch_i}};
+
     write_file << save.dump(4);
     write_file.close();
 
