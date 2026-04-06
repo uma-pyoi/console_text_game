@@ -64,7 +64,8 @@ void GameManager::BranchingPlot4(int user_choice, std::vector<std::string> &plot
     }
 }
 
-void GameManager::BranchingPlot5(int user_choice, std::vector<std::string> &plot_choice1, std::vector<std::string> &plot_choice2) {
+void GameManager::BranchingPlot5(int user_choice, std::vector<std::string> &plot_choice1,
+                                 std::vector<std::string> &plot_choice2) {
     if (user_choice == 1) {
         RunPlotWoChoice(plot_choice1);
         player_.TakeDamage(5);
@@ -74,14 +75,16 @@ void GameManager::BranchingPlot5(int user_choice, std::vector<std::string> &plot
     }
 }
 
-void GameManager::BranchingPlot6(int user_choice, std::vector<std::string> &plot_choice1, std::vector<std::string> &plot_choice2) {
+void GameManager::BranchingPlot6(int user_choice, std::vector<std::string> &plot_choice1,
+                                 std::vector<std::string> &plot_choice2) {
     if (user_choice == 1) {
         RunPlotWoChoice(plot_choice1);
         Food onigiri("Onigiri", "A japanese treat. Hold onto it and good things may happen.", 10);
         utils_.ObtainItem(onigiri, inventory_, player_);
     } else {
         RunPlotWoChoice(plot_choice2);
-        Food smart_burrito("Smart burrito", "A burrito that supposedly makes you smarter. According to an elementary schooler.", 15);
+        Food smart_burrito("Smart burrito",
+                           "A burrito that supposedly makes you smarter. According to an elementary schooler.", 15);
         utils_.ObtainItem(smart_burrito, inventory_, player_);
     }
 }
@@ -122,33 +125,33 @@ void GameManager::AskIfPause(int &plot_iterator) {
     }
 }
 
+// runs branch text of plot
 void GameManager::RunPlotWoChoice(std::vector<std::string> &plot) {
-    for (int i = 0; i < plot.size(); i++) {
-        if (running_) {
-            std::cout << plot[i];
-            if (i != (plot.size() - 1)) {
-                this->AskIfPause(i);
-            } else {
-                std::cout << "\n\n";
-            }
+    int branch_i = 0;
+    while (branch_i < plot.size() && running_) {
+        std::cout << plot[branch_i];
+        if (branch_i != (plot.size() - 1)) {
+            this->AskIfPause(branch_i);
+        } else {
+            std::cout << "\n\n";
         }
     }
 }
 
-// method to run story mode
+// runs text array of plot
 int GameManager::RunPlotWChoice(std::vector<std::string> &plot) {
     int user_choice{-1}; // -1 means program is exited
-    for (int i = 0; i < plot.size(); i++) {
-        if (running_) {
-            std::cout << plot[i];
-            // executes if scene is still going
-            if (i != (plot.size() - 1)) {
-                this->AskIfPause(i);
-            } else {
-                // executes if end of scene, starts a fight
-                user_choice = input_validator_.ReadPosIntInRange(1, 2);
-            }
+    int text_arr_i = 0;
+    while (text_arr_i < plot.size() && running_) {
+        std::cout << plot[text_arr_i];
+        // executes if scene is still going
+        if (text_arr_i != (plot.size() - 1)) {
+            this->AskIfPause(text_arr_i);
+        } else {
+            // executes if end of scene, starts a fight
+            user_choice = input_validator_.ReadPosIntInRange(1, 2);
         }
+        text_arr_i++;
     }
     std::cout << "\n\n";
     return user_choice;
@@ -157,19 +160,19 @@ int GameManager::RunPlotWChoice(std::vector<std::string> &plot) {
 void GameManager::RunStory() {
     utils_.OutputGameTitle();
 
-    // int i = 0;
-    int i = 6;
+    // int plot_index = 0;
+    int plot_i = 6;
     do {
-        std::string plot_num = std::to_string(i);
+        std::string plot_num = std::to_string(plot_i);
         std::vector<std::string> plot_text = json_handler_.ReadPlotText(plot_num);
         std::vector<std::string> plot_choice_1 = json_handler_.ReadPlotChoice(plot_num, json_handler_.GetChoice1Name());
         std::vector<std::string> plot_choice_2 = json_handler_.ReadPlotChoice(plot_num, json_handler_.GetChoice2Name());
         int user_choice = RunPlotWChoice(plot_text);
         if (user_choice != -1) {
-            BranchingActivator(i, user_choice, plot_choice_1, plot_choice_2);
+            BranchingActivator(plot_i, user_choice, plot_choice_1, plot_choice_2);
         }
-        i++;
-    } while (i <= json_handler_.GetLastPlotNum() && running_);
+        plot_i++;
+    } while (plot_i <= json_handler_.GetPlotNum() && running_);
 }
 
 void GameManager::RunPauseScreen() {
