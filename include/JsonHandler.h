@@ -34,7 +34,12 @@ public:
 
     // saving
     void SaveGame(Player& player, Inventory& inventory, int plot_i, int text_array_i, int branch_i);
+    // loading
     void LoadGame(Player& player, Inventory& inventory);
+    Weapon LoadWeapon(json data);
+    Clothing LoadClothing(json data);
+    void LoadPlayer(json data, Player& player);
+    void LoadInventory(json data, Inventory& inventory);
 };
 
 
