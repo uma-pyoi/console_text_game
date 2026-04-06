@@ -41,9 +41,7 @@ std::vector<std::string> JsonHandler::ReadPlotChoice(std::string plot_name, std:
     return plot_choice;
 }
 
-void JsonHandler::SaveGame(Player &player, Inventory &inventory, int plot_i, int text_array_i, int branch_i) {
-    std::ofstream write_file(SAVE_FILENAME_);
-    json save;
+void JsonHandler::SavePlayer(json save, Player& player) {
     save["player"] = {{"name", player.GetName()}, {"score", player.GetScore()}, {"hp", player.GetHp()}};
 
     Weapon weapon = player.GetWeapon();
@@ -51,12 +49,20 @@ void JsonHandler::SaveGame(Player &player, Inventory &inventory, int plot_i, int
 
     Clothing clothing = player.GetClothing();
     save["player"]["clothing"] = {{"name", clothing.GetName()}, {"description", clothing.GetDescription()}, {"dp", clothing.GetDp()}};
+}
 
+void JsonHandler::SaveInventory(json save, Inventory &inventory) {
     std::vector<Food> foods = inventory.GetFoodInventory();
     for (int i = 0; i < foods.size(); i++) {
         save["food_inventory"][i] = {{"name", foods[i].GetName()}, {"description", foods[i].GetDescription()}, {"hp", foods[i].GetHp()}};
     }
+}
 
+void JsonHandler::SaveGame(Player &player, Inventory &inventory, int plot_i, int text_array_i, int branch_i) {
+    std::ofstream write_file(SAVE_FILENAME_);
+    json save;
+    SavePlayer(save, player);
+    SaveInventory(save, inventory);
     save["indexes"] = {{"plot_i", plot_i}, {"text_array_i", text_array_i}, {"branch_i", branch_i}};
 
     try {
