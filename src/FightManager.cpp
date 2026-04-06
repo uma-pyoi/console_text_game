@@ -12,7 +12,6 @@ void FightManager::RunFightDamage(int player_stats) {
     }
     else {
         std::cout << "the enemy dealt its final attack!!!" << '\n';
-        std::cout << "You took " << dmg << " damage!" << '\n';
         player_.TakeDamage(dmg);
         utils_.OutputStat("HP", std::to_string(player_.GetHp()));
     }

@@ -56,6 +56,7 @@ void Player::OutputPlayer() {
 }
 
 void Player::TakeDamage(int dmg) {
+    std::cout << "You took " << dmg << " damage!" << '\n';
     int new_hp = hp_ - dmg;
     if (new_hp < 0) {
         hp_ = 0;

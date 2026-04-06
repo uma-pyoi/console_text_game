@@ -57,6 +57,21 @@ void GameManager::BranchingPlot3(int user_choice, std::vector<std::string> &plot
 
 void GameManager::BranchingPlot4(int user_choice, std::vector<std::string> &plot_choice1,
                                  std::vector<std::string> &plot_choice2) {
+    if (user_choice == 1) {
+        RunPlotWoChoice(plot_choice1);
+    } else {
+        RunPlotWoChoice(plot_choice2);
+    }
+}
+
+void GameManager::BranchingPlot5(int user_choice, std::vector<std::string> &plot_choice1, std::vector<std::string> &plot_choice2) {
+    if (user_choice == 1) {
+        RunPlotWoChoice(plot_choice1);
+        player_.TakeDamage(5);
+    } else {
+        RunPlotWoChoice(plot_choice2);
+        player_.TakeDamage(15);
+    }
 }
 
 void GameManager::BranchingActivator(int plot_index, int user_choice, std::vector<std::string> &plot_choice1,
@@ -76,6 +91,9 @@ void GameManager::BranchingActivator(int plot_index, int user_choice, std::vecto
             break;
         case 4:
             BranchingPlot4(user_choice, plot_choice1, plot_choice2);
+            break;
+        case 5:
+            BranchingPlot5(user_choice, plot_choice1, plot_choice2);
             break;
     }
 }
@@ -125,7 +143,7 @@ void GameManager::RunStory() {
     utils_.OutputGameTitle();
 
     // int i = 0;
-    int i = 3;
+    int i = 5;
     do {
         std::string plot_num = std::to_string(i);
         std::vector<std::string> plot_text = json_handler_.ReadPlotText(plot_num);

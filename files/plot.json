@@ -90,18 +90,32 @@
   },
   "5": {
     "text_array": [
-      "\"Again, sorry for the test. You see, aliens have infiltrated our planet \nand that's what the chips in everyone's brains are for.\"",
-      "\n\n\"If someone has a chip, you can immediately tell they are a human. \nBut since your brain was frozen, you don't have one and I had to test you. \nOthers might also test you\"",
-      "\n\n\"I even made a word game to test aliens! They fail each and every time! Ho-ho!\" \n1. So, what do you do if you find out someone is an alien? \n2. How do you know if someone has a chip inside of their brain?"
+      "\"Oh, my boss is calling me, I need to go, bye!\" \nAnd the girl ran away.",
+      "\n\nBut you didn't hear anyone ring her. \n1. Enjoy the hospital garden \n2. Try to find a way to leave"
     ],
     "branches": {
       "choice_1": [
-        "\"Well, we have no choice but to kill them. \nThey live as parasites and their goal is to \nobtain as much information about our human technologies.\"",
-        "\n\nYou remember your encounter with the nurse. \nMaybe she was just a poor underpaid medical worker."
+        "A pigeon pooped on your head. \nEven people of the future have to deal with these little guys."
       ],
       "choice_2": [
-        "\"Everyone who has a chip can sense another person's chip. \nChips are mandatorily implanted into all babies when they're born.\"",
-        "\n\n\"Chipless individuals like you are a rarity, so expect everyone to be suspicious of you\""
+        "You wandered around the garden looking for the exit. \nA fellow patient saw you. You were still covered in blood.",
+        "\n\nYour appearance scared the patient and they threw a stone at you."
+      ]
+    }
+  },
+  "6": {
+    "text_array": [
+      "A young child approaches you. \n\"What is 2+2 ?\" they ask while holding a phone-resembling device in their hands.",
+      "\n\nNow you know how this world works! Without much hesitation, you reply ... \n1. Four! \n2. 100"
+    ],
+    "branches": {
+      "choice_1": [
+        "\"Hmm.. The child taps their phone. \nThank you, mister! You helped me with my homework!\"",
+        "\n\"Have this!\" \nThe child hands you something."
+      ],
+      "choice_2": [
+        "\"Hmm.. The child taps their phone. \nThat's incorrect. My teacher says the correct answer is 4.\"",
+        "\nI didn't know adults could be this bad at basic maths... \nHere, have this... maybe it will make you smarter.\" \nThe child hands you something."
       ]
     }
   }
