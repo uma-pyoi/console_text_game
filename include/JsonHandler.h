@@ -34,6 +34,7 @@ public:
 
     // saving
     void SaveGame(Player& player, Inventory& inventory, int plot_i, int text_array_i, int branch_i);
+    void LoadGame(Player& player, Inventory& inventory);
 };
 
 

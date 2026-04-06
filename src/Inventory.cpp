@@ -17,6 +17,10 @@ void Inventory::DeleteFoodItem(int index) {
     food_inventory_.erase(food_inventory_.begin() + index);
 }
 
-void Inventory::AddFoodItem(Food food) {
+void Inventory::AddFoodItem(const Food& food) {
     food_inventory_.push_back(food);
+}
+
+void Inventory::Clear() {
+    food_inventory_.clear();
 }

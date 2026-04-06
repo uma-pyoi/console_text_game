@@ -44,7 +44,7 @@ std::vector<std::string> JsonHandler::ReadPlotChoice(std::string plot_name, std:
 void JsonHandler::SaveGame(Player &player, Inventory &inventory, int plot_i, int text_array_i, int branch_i) {
     std::ofstream write_file(SAVE_FILENAME_);
     json save;
-    save["player"] = {{"name", player.GetName()}, {"score", player.GetScore()}, {"hp", player.GetHp()}, {"ap", player.GetAp()}, {"dp", player.GetDp()}};
+    save["player"] = {{"name", player.GetName()}, {"score", player.GetScore()}, {"hp", player.GetHp()}};
 
     Weapon weapon = player.GetWeapon();
     save["player"]["weapon"] = {{"name", weapon.GetName()}, {"description", weapon.GetDescription()}, {"ap", weapon.GetAp()}};
@@ -66,4 +66,20 @@ void JsonHandler::SaveGame(Player &player, Inventory &inventory, int plot_i, int
         std::cerr << "An error happened when writing to file." << '\n';
     }
     write_file.close();
+}
+
+void JsonHandler::LoadGame(Player &player, Inventory &inventory) {
+    json data = ReadJson(SAVE_FILENAME_);
+    player.SetHp(data["player"]["hp"]);
+
+    int inventory_size = data["food_inventory"].size();
+    inventory.Clear();
+    for (int i = 0; i < inventory_size; i++) {
+        std::string name = data["food_inventory"][i]["name"];
+        std::string description = data["food_inventory"][i]["description"];
+        int hp = data["food_inventory"][i]["hp"];
+
+        Food food(name, description, hp);
+        inventory.AddFoodItem(food);
+    }
 }

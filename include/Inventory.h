@@ -19,7 +19,8 @@ public:
     void OutputInventory();
 
     void DeleteFoodItem(int index);
-    void AddFoodItem(Food food);
+    void AddFoodItem(const Food& food);
+    void Clear();
 };
 
 

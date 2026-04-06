@@ -197,6 +197,7 @@ void GameManager::RunPauseScreen() {
         } else if (choice == 4) {
             // TODO: implement load game
             std::cout << "Loading game...";
+            json_handler_.LoadGame(player_, inventory_);
         } else if (choice == 5) {
             Exit();
         }
