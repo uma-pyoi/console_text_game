@@ -18,12 +18,12 @@ int main()
 {
      Player player("Kai");
      Inventory inventory;
-    JsonHandler json_handler;
-    json_handler.SaveGame(player, inventory, 1, 1, 1);
-    json_handler.ReadJson("save.json");
+    // JsonHandler json_handler;
+    // json_handler.SaveGame(player, inventory, 1, 1, 1);
+    // json_handler.ReadJson("save.json");
 
-     // GameManager game_manager(player, inventory);
-     // game_manager.RunStory();
+     GameManager game_manager(player, inventory);
+     game_manager.RunStory();
 
     // WordGame word_game;
     // word_game.Play();

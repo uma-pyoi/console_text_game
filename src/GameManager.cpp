@@ -127,11 +127,10 @@ void GameManager::AskIfPause(int &plot_iterator) {
 
 // runs branch text of plot
 void GameManager::RunPlotWoChoice(std::vector<std::string> &plot) {
-    int branch_i = 0;
-    while (branch_i < plot.size() && running_) {
-        std::cout << plot[branch_i];
-        if (branch_i != (plot.size() - 1)) {
-            this->AskIfPause(branch_i);
+    while (branch_i_ < plot.size() && running_) {
+        std::cout << plot[branch_i_];
+        if (branch_i_ != (plot.size() - 1)) {
+            this->AskIfPause(branch_i_);
         } else {
             std::cout << "\n\n";
         }
@@ -141,17 +140,16 @@ void GameManager::RunPlotWoChoice(std::vector<std::string> &plot) {
 // runs text array of plot
 int GameManager::RunPlotWChoice(std::vector<std::string> &plot) {
     int user_choice{-1}; // -1 means program is exited
-    int text_arr_i = 0;
-    while (text_arr_i < plot.size() && running_) {
-        std::cout << plot[text_arr_i];
+    while (text_arr_i_ < plot.size() && running_) {
+        std::cout << plot[text_arr_i_];
         // executes if scene is still going
-        if (text_arr_i != (plot.size() - 1)) {
-            this->AskIfPause(text_arr_i);
+        if (text_arr_i_ != (plot.size() - 1)) {
+            this->AskIfPause(text_arr_i_);
         } else {
             // executes if end of scene, starts a fight
             user_choice = input_validator_.ReadPosIntInRange(1, 2);
         }
-        text_arr_i++;
+        text_arr_i_++;
     }
     std::cout << "\n\n";
     return user_choice;
@@ -160,19 +158,27 @@ int GameManager::RunPlotWChoice(std::vector<std::string> &plot) {
 void GameManager::RunStory() {
     utils_.OutputGameTitle();
 
-    // int plot_index = 0;
-    int plot_i = 6;
     do {
-        std::string plot_num = std::to_string(plot_i);
+        std::string plot_num = std::to_string(plot_i_);
         std::vector<std::string> plot_text = json_handler_.ReadPlotText(plot_num);
         std::vector<std::string> plot_choice_1 = json_handler_.ReadPlotChoice(plot_num, json_handler_.GetChoice1Name());
         std::vector<std::string> plot_choice_2 = json_handler_.ReadPlotChoice(plot_num, json_handler_.GetChoice2Name());
         int user_choice = RunPlotWChoice(plot_text);
         if (user_choice != -1) {
-            BranchingActivator(plot_i, user_choice, plot_choice_1, plot_choice_2);
+            BranchingActivator(plot_i_, user_choice, plot_choice_1, plot_choice_2);
         }
-        plot_i++;
-    } while (plot_i <= json_handler_.GetPlotNum() && running_);
+        plot_i_++;
+    } while (plot_i_ <= json_handler_.GetPlotNum() && running_);
+}
+
+void GameManager::Exit() {
+    std::cout << "Are you sure you want to exit the game?" << '\n';
+    std::cout << "Any unsaved progress will be lost." << '\n';
+    bool confirmed = input_validator_.ReadYesNo();
+    if (confirmed) {
+        utils_.OutputGameEnd();
+        running_ = false;
+    }
 }
 
 void GameManager::RunPauseScreen() {
@@ -187,17 +193,12 @@ void GameManager::RunPauseScreen() {
         } else if (choice == 3) {
             // TODO: implement save game
             std::cout << "Saving game...";
+            json_handler_.SaveGame(player_, inventory_, plot_i_, text_arr_i_, branch_i_);
         } else if (choice == 4) {
             // TODO: implement load game
             std::cout << "Loading game...";
         } else if (choice == 5) {
-            std::cout << "Are you sure you want to exit the game?" << '\n';
-            std::cout << "Any unsaved progress will be lost." << '\n';
-            bool confirmed = input_validator_.ReadYesNo();
-            if (confirmed) {
-                utils_.OutputGameEnd();
-                running_ = false;
-            }
+            Exit();
         }
     } while (run_pause_screen && running_);
 }

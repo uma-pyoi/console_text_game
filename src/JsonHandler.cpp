@@ -56,7 +56,4 @@ void JsonHandler::SaveGame(Player &player, Inventory &inventory, int plot_i, int
 
     write_file << save.dump(4);
     write_file.close();
-
-    json data = ReadJson(SAVE_FILENAME_);
-    std::cout << data;
 }

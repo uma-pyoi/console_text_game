@@ -26,6 +26,9 @@ class GameManager {
     Inventory &inventory_;
 
     bool running_{true};
+    int plot_i_ = 6;
+    int text_arr_i_ = 0;
+    int branch_i_ = 0;
 
 public:
     GameManager(Player &player, Inventory &inventory_);
@@ -58,6 +61,7 @@ public:
 
     // pause screen related
     void RunPauseScreen();
+    void Exit();
     void RunItem(int user_num, std::vector<Food> inventory);
     void ItemEat(Food item, int item_index);
     void RunInventory();
