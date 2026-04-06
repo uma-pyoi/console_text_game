@@ -71,6 +71,20 @@ void JsonHandler::SaveGame(Player &player, Inventory &inventory, int plot_i, int
 void JsonHandler::LoadGame(Player &player, Inventory &inventory) {
     json data = ReadJson(SAVE_FILENAME_);
     player.SetHp(data["player"]["hp"]);
+    player.SetScore(data["player"]["score"]);
+
+    std::string weapon_name = data["player"]["weapon"]["name"];
+    std::string weapon_description = data["player"]["weapon"]["description"];
+    int weapon_ap = data["player"]["weapon"]["ap"].get<int>();
+    Weapon loaded_weapon(weapon_name, weapon_description, weapon_ap);
+
+    std::string clothing_name = data["player"]["clothing"]["name"];
+    std::string clothing_description = data["player"]["clothing"]["description"];
+    int clothing_dp = data["player"]["clothing"]["dp"].get<int>();
+    Clothing loaded_clothing(clothing_name, clothing_description, clothing_dp);
+
+    player.SetWeapon(loaded_weapon);
+    player.SetClothing(loaded_clothing);
 
     int inventory_size = data["food_inventory"].size();
     inventory.Clear();
