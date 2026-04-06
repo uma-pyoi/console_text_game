@@ -10,7 +10,7 @@ class JsonHandler {
 private:
     // constants
     const std::string PLOT_FILENAME_ = "plot.json";
-    const int LAST_PLOT_NUM_ = 2;
+    const int LAST_PLOT_NUM_ = 29;
     const std::string CHOICE_1_NAME_ = "choice_1";
     const std::string CHOICE_2_NAME_ = "choice_2";
 

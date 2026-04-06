@@ -22,6 +22,7 @@ public:
     void OutputItemMenu(Food item);
 
     void ObtainClothes(std::variant<Weapon, Clothing, Food> item, Player& player);
+    void ObtainWeapon(std::variant<Weapon, Clothing, Food> item, Player& player);
     void ObtainItem(std::variant<Weapon, Clothing, Food> item, Inventory& inventory, Player& player);
 
     // pretty formatting

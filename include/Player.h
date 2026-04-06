@@ -33,6 +33,7 @@ public:
     Clothing GetClothing();
     void SetClothing(Clothing clothing);
     Weapon GetWeapon();
+    void SetWeapon(Weapon weapon);
 
     void OutputPlayer();
     void TakeDamage(int dmg);

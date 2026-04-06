@@ -9,6 +9,7 @@ public:
     Weapon(std::string name, std::string description, int ap);
 
     int GetAp();
+    void OutputWeapon();
 };
 
 #endif // CPP_COURSEWORK1_P479574_WEAPON_H

@@ -78,11 +78,29 @@ void Utils::ObtainClothes(std::variant<Weapon, Clothing, Food> item, Player& pla
     }
 }
 
+void Utils::ObtainWeapon(std::variant<Weapon, Clothing, Food> item, Player& player) {
+    Weapon new_weapon = std::get<Weapon>(item);
+    OutputStat("You got a weapon", new_weapon.GetName());
+    new_weapon.OutputWeapon();
+
+    std::cout << "Current weapon: " << '\n';
+    player.GetWeapon().OutputWeapon();
+
+    std::cout << "\nDo you wish to swap your current weapon to the new one?" << '\n';
+
+    bool user_weapon_choice = input_validator_.ReadYesNo();
+    if (user_weapon_choice) {
+        player.SetWeapon(new_weapon);
+        OutputStat("new weapon", new_weapon.GetName());
+        std::cout << '\n';
+    }
+}
+
 void Utils::ObtainItem(std::variant<Weapon, Clothing, Food> item, Inventory& inventory, Player& player) {
     // REFERENCE: https://www.geeksforgeeks.org/cpp/std-variant-in-cpp-17/
     // Geeksforgeeks (2023)
     if (std::holds_alternative<Weapon>(item)) {
-        OutputStat("You got a weapon", std::get<Weapon>(item).GetName());
+        ObtainWeapon(item, player);
     }
     else if (std::holds_alternative<Clothing>(item)) {
         ObtainClothes(item, player);

@@ -43,6 +43,10 @@ Weapon Player::GetWeapon() {
     return weapon_;
 }
 
+void Player::SetWeapon(Weapon weapon) {
+    weapon_ = weapon;
+}
+
 void Player::OutputPlayer() {
     std::cout << name_ << " | " << "HP: " << hp_ << " | AP: " << weapon_.GetAp() << " | DP: " << clothing_.GetDp() << '\n';
 

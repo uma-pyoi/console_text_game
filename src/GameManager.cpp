@@ -27,20 +27,6 @@ void GameManager::RunPlotWoChoice(std::vector<std::string> &plot) {
     }
 }
 
-void GameManager::BranchingActivator(int plot_index, int user_choice, std::vector<std::string> &plot_choice1,
-                                     std::vector<std::string> &plot_choice2) {
-    switch (plot_index) {
-        case 0:
-            BranchingPlot0(user_choice, plot_choice1, plot_choice2);
-            break;
-        case 1:
-            BranchingPlot1(user_choice, plot_choice1, plot_choice2);
-            break;
-        case 2:
-            BranchingPlot2(user_choice, plot_choice1, plot_choice2);
-    }
-}
-
 void GameManager::BranchingPlot0(int user_choice, std::vector<std::string> &plot_choice1,
                                  std::vector<std::string> &plot_choice2) {
     if (user_choice == 1) {
@@ -76,6 +62,44 @@ void GameManager::BranchingPlot2(int user_choice, std::vector<std::string> &plot
     }
 }
 
+void GameManager::BranchingPlot3(int user_choice, std::vector<std::string> &plot_choice1,
+                                 std::vector<std::string> &plot_choice2) {
+    if (user_choice == 1) {
+        RunPlotWoChoice(plot_choice1);
+        Food amazing_cake("Amazing cake", "A cake that's so amazing it feels out of this world.", 99);
+        utils_.ObtainItem(amazing_cake, inventory_, player_);
+    } else {
+        RunPlotWoChoice(plot_choice2);
+        Weapon white_sword("White sword", "A massive sword made out of white metal \nand decorated with red laces", 15);
+        utils_.ObtainItem(white_sword, inventory_, player_);
+    }
+}
+
+void GameManager::BranchingPlot4(int user_choice, std::vector<std::string> &plot_choice1,
+                                 std::vector<std::string> &plot_choice2) {
+}
+
+void GameManager::BranchingActivator(int plot_index, int user_choice, std::vector<std::string> &plot_choice1,
+                                     std::vector<std::string> &plot_choice2) {
+    switch (plot_index) {
+        case 0:
+            BranchingPlot0(user_choice, plot_choice1, plot_choice2);
+            break;
+        case 1:
+            BranchingPlot1(user_choice, plot_choice1, plot_choice2);
+            break;
+        case 2:
+            BranchingPlot2(user_choice, plot_choice1, plot_choice2);
+            break;
+        case 3:
+            BranchingPlot3(user_choice, plot_choice1, plot_choice2);
+            break;
+        case 4:
+            BranchingPlot4(user_choice, plot_choice1, plot_choice2);
+            break;
+    }
+}
+
 // method to run story mode
 int GameManager::RunPlotWChoice(std::vector<std::string> &plot, std::vector<std::string> &plot_choice1,
                                 std::vector<std::string> &plot_choice2) {
@@ -98,7 +122,8 @@ int GameManager::RunPlotWChoice(std::vector<std::string> &plot, std::vector<std:
 void GameManager::RunStory() {
     utils_.OutputGameTitle();
 
-    int i = 0;
+    // int i = 0;
+    int i = 3;
     do {
         std::string plot_num = std::to_string(i);
         std::vector<std::string> plot_text = json_handler_.ReadPlotText(plot_num);
