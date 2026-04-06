@@ -41,7 +41,7 @@ std::vector<std::string> JsonHandler::ReadPlotChoice(std::string plot_name, std:
     return plot_choice;
 }
 
-void JsonHandler::SavePlayer(json save, Player& player) {
+void JsonHandler::SavePlayer(json& save, Player& player) {
     save["player"] = {{"name", player.GetName()}, {"score", player.GetScore()}, {"hp", player.GetHp()}};
 
     Weapon weapon = player.GetWeapon();
@@ -51,7 +51,7 @@ void JsonHandler::SavePlayer(json save, Player& player) {
     save["player"]["clothing"] = {{"name", clothing.GetName()}, {"description", clothing.GetDescription()}, {"dp", clothing.GetDp()}};
 }
 
-void JsonHandler::SaveInventory(json save, Inventory &inventory) {
+void JsonHandler::SaveInventory(json& save, Inventory &inventory) {
     std::vector<Food> foods = inventory.GetFoodInventory();
     for (int i = 0; i < foods.size(); i++) {
         save["food_inventory"][i] = {{"name", foods[i].GetName()}, {"description", foods[i].GetDescription()}, {"hp", foods[i].GetHp()}};
@@ -63,6 +63,7 @@ void JsonHandler::SaveGame(Player &player, Inventory &inventory, int plot_i, int
     json save;
     SavePlayer(save, player);
     SaveInventory(save, inventory);
+    // unfortunately, if index is 0 saves it as -1
     save["indexes"] = {{"plot_i", plot_i}, {"text_array_i", text_array_i}, {"branch_i", branch_i}};
 
     try {
@@ -79,6 +80,7 @@ Clothing JsonHandler::LoadClothing(json data) {
     std::string clothing_description = data["player"]["clothing"]["description"];
     int clothing_dp = data["player"]["clothing"]["dp"].get<int>();
     Clothing loaded_clothing(clothing_name, clothing_description, clothing_dp);
+    return loaded_clothing;
 }
 
 Weapon JsonHandler::LoadWeapon(json data) {

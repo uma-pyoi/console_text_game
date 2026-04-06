@@ -127,20 +127,23 @@ void GameManager::AskIfPause(int &plot_iterator) {
 
 // runs branch text of plot
 void GameManager::RunPlotWoChoice(std::vector<std::string> &plot) {
-    while (branch_i_ < plot.size() && running_) {
+    while (branch_i_ < static_cast<int>(plot.size()) && running_) {
+        std::cout << "branch_i_: " << branch_i_ << '\n';
+        std::cout << "static_cast<int>(plot.size()): " << static_cast<int>(plot.size()) << '\n';
         std::cout << plot[branch_i_];
         if (branch_i_ != (plot.size() - 1)) {
             this->AskIfPause(branch_i_);
         } else {
             std::cout << "\n\n";
         }
+        branch_i_++;
     }
 }
 
 // runs text array of plot
 int GameManager::RunPlotWChoice(std::vector<std::string> &plot) {
     int user_choice{-1}; // -1 means program is exited
-    while (text_arr_i_ < plot.size() && running_) {
+    while (text_arr_i_ < static_cast<int>(plot.size()) && running_) {
         std::cout << plot[text_arr_i_];
         // executes if scene is still going
         if (text_arr_i_ != (plot.size() - 1)) {
@@ -191,13 +194,13 @@ void GameManager::RunPauseScreen() {
         } else if (choice == 2) {
             this->RunInventory();
         } else if (choice == 3) {
-            // TODO: implement save game
             std::cout << "Saving game...";
             json_handler_.SaveGame(player_, inventory_, plot_i_, text_arr_i_, branch_i_);
         } else if (choice == 4) {
             // TODO: implement load game
-            std::cout << "Loading game...";
-            json_handler_.LoadGame(player_, inventory_);
+            std::cout << "Loading game..." << '\n';
+            std::cout << "Ooops, loading has not been implemented yet" << '\n';
+            // json_handler_.LoadGame(player_, inventory_); // this function is not ready yet
         } else if (choice == 5) {
             Exit();
         }

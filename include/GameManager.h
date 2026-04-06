@@ -26,7 +26,7 @@ class GameManager {
     Inventory &inventory_;
 
     bool running_{true};
-    int plot_i_ = 6;
+    int plot_i_ = 0;
     int text_arr_i_ = 0;
     int branch_i_ = 0;
 

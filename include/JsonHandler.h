@@ -13,7 +13,7 @@ class JsonHandler {
 private:
     // plot constants
     const std::string PLOT_FILENAME_ = "plot.json";
-    const int PLOT_NUM_ = 29;
+    const int PLOT_NUM_ = 6;
     const std::string CHOICE_1_NAME_ = "choice_1";
     const std::string CHOICE_2_NAME_ = "choice_2";
 
@@ -34,8 +34,8 @@ public:
 
     // saving
     void SaveGame(Player& player, Inventory& inventory, int plot_i, int text_array_i, int branch_i);
-    void SavePlayer(json save, Player& player);
-    void SaveInventory(json save, Inventory& inventory);
+    void SavePlayer(json& save, Player& player);
+    void SaveInventory(json& save, Inventory& inventory);
     // loading
     void LoadGame(Player& player, Inventory& inventory);
     Weapon LoadWeapon(json data);
