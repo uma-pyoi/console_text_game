@@ -7,26 +7,6 @@ GameManager::GameManager(Player &player, Inventory &inventory) : player_(player)
                                                                  fight_manager_(player, inventory) {
 }
 
-// reads next story mode character and allows to pause the game
-void GameManager::AskIfPause(int &plot_iterator) {
-    char continue_choice = input_validator_.ReadStoryModeChar();
-    if (continue_choice == 'p') {
-        plot_iterator--;
-        this->RunPauseScreen();
-    }
-}
-
-void GameManager::RunPlotWoChoice(std::vector<std::string> &plot) {
-    for (int i = 0; i < plot.size(); i++) {
-        std::cout << plot[i];
-        if (i != (plot.size() - 1)) {
-            this->AskIfPause(i);
-        } else {
-            std::cout << "\n\n";
-        }
-    }
-}
-
 void GameManager::BranchingPlot0(int user_choice, std::vector<std::string> &plot_choice1,
                                  std::vector<std::string> &plot_choice2) {
     if (user_choice == 1) {
@@ -100,19 +80,41 @@ void GameManager::BranchingActivator(int plot_index, int user_choice, std::vecto
     }
 }
 
-// method to run story mode
-int GameManager::RunPlotWChoice(std::vector<std::string> &plot, std::vector<std::string> &plot_choice1,
-                                std::vector<std::string> &plot_choice2) {
-    int user_choice{-1};
+// reads next story mode character and allows to pause the game
+void GameManager::AskIfPause(int &plot_iterator) {
+    char continue_choice = input_validator_.ReadStoryModeChar();
+    if (continue_choice == 'p') {
+        plot_iterator--;
+        this->RunPauseScreen();
+    }
+}
+
+void GameManager::RunPlotWoChoice(std::vector<std::string> &plot) {
     for (int i = 0; i < plot.size(); i++) {
-        std::cout << plot[i];
-        // executes if scene is still going
-        if (i != (plot.size() - 1)) {
-            this->AskIfPause(i);
-        } else {
-            // executes if end of scene, starts a fight
-            user_choice = input_validator_.ReadPosIntInRange(1, 2);
-            // BranchingPlot0(user_choice, plot_choice1, plot_choice2);
+        if (running_) {
+            std::cout << plot[i];
+            if (i != (plot.size() - 1)) {
+                this->AskIfPause(i);
+            } else {
+                std::cout << "\n\n";
+            }
+        }
+    }
+}
+
+// method to run story mode
+int GameManager::RunPlotWChoice(std::vector<std::string> &plot) {
+    int user_choice{-1}; // -1 means program is exited
+    for (int i = 0; i < plot.size(); i++) {
+        if (running_) {
+            std::cout << plot[i];
+            // executes if scene is still going
+            if (i != (plot.size() - 1)) {
+                this->AskIfPause(i);
+            } else {
+                // executes if end of scene, starts a fight
+                user_choice = input_validator_.ReadPosIntInRange(1, 2);
+            }
         }
     }
     std::cout << "\n\n";
@@ -129,8 +131,10 @@ void GameManager::RunStory() {
         std::vector<std::string> plot_text = json_handler_.ReadPlotText(plot_num);
         std::vector<std::string> plot_choice_1 = json_handler_.ReadPlotChoice(plot_num, json_handler_.GetChoice1Name());
         std::vector<std::string> plot_choice_2 = json_handler_.ReadPlotChoice(plot_num, json_handler_.GetChoice2Name());
-        int user_choice = RunPlotWChoice(plot_text, plot_choice_1, plot_choice_2);
-        BranchingActivator(i, user_choice, plot_choice_1, plot_choice_2);
+        int user_choice = RunPlotWChoice(plot_text);
+        if (user_choice != -1) {
+            BranchingActivator(i, user_choice, plot_choice_1, plot_choice_2);
+        }
         i++;
     } while (i <= json_handler_.GetLastPlotNum() && running_);
 }
@@ -151,8 +155,13 @@ void GameManager::RunPauseScreen() {
             // TODO: implement load game
             std::cout << "Loading game...";
         } else if (choice == 5) {
-            utils_.OutputGameEnd();
-            running_ = false;
+            std::cout << "Are you sure you want to exit the game?" << '\n';
+            std::cout << "Any unsaved progress will be lost." << '\n';
+            bool confirmed = input_validator_.ReadYesNo();
+            if (confirmed) {
+                utils_.OutputGameEnd();
+                running_ = false;
+            }
         }
     } while (run_pause_screen && running_);
 }

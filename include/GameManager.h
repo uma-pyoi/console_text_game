@@ -48,8 +48,7 @@ public:
                         std::vector<std::string> &plot_choice2);
 
     // helper story mode functions
-    int RunPlotWChoice(std::vector<std::string> &plot, std::vector<std::string> &plot_choice1,
-                        std::vector<std::string> &plot_choice2);
+    int RunPlotWChoice(std::vector<std::string> &plot);
     void RunPlotWoChoice(std::vector<std::string> &plot);
     void AskIfPause(int &plot_iterator);
 
