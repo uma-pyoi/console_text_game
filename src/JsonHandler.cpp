@@ -47,6 +47,11 @@ void JsonHandler::SaveGame(Player &player, Inventory &inventory, int plot_i, int
     Clothing clothing = player.GetClothing();
     save["player"]["clothing"] = {{"name", clothing.GetName()}, {"description", clothing.GetDescription()}, {"dp", clothing.GetDp()}};
 
+    std::vector<Food> foods = inventory.GetFoodInventory();
+    for (int i = 0; i < foods.size(); i++) {
+        save["food_inventory"][i] = {{"name", foods[i].GetName()}, {"description", foods[i].GetDescription()}, {"hp", foods[i].GetHp()}};
+    }
+
     write_file << save.dump(4);
     write_file.close();
 
