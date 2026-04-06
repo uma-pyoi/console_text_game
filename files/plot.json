@@ -70,5 +70,39 @@
         "\n\n\"Oh? S-sorry, maybe this was too sudden for you. Here, I'll lend you my sword so that you feel less scared.\""
       ]
     }
+  },
+  "4": {
+    "text_array": [
+      "\"Again, sorry for the test. You see, aliens have infiltrated our planet \nand that's what the chips in everyone's brains are for.\"",
+      "\n\n\"If someone has a chip, you can immediately tell they are a human. \nBut since your brain was frozen, you don't have one and I had to test you. \nOthers might also test you\"",
+      "\n\n\"I even made a word game to test aliens! They fail each and every time! Ho-ho!\" \n1. So, what do you do if you find out someone is an alien? \n2. How do you know if someone has a chip inside of their brain?"
+    ],
+    "branches": {
+      "choice_1": [
+        "\"Well, we have no choice but to kill them. \nThey live as parasites and their goal is to \nobtain as much information about our human technologies.\"",
+        "\n\nYou remember your encounter with the nurse. \nMaybe she was just a poor underpaid medical worker."
+      ],
+      "choice_2": [
+        "\"Everyone who has a chip can sense another person's chip. \nChips are mandatorily implanted into all babies when they're born.\"",
+        "\n\n\"Chipless individuals like you are a rarity, so expect everyone to be suspicious of you\""
+      ]
+    }
+  },
+  "5": {
+    "text_array": [
+      "\"Again, sorry for the test. You see, aliens have infiltrated our planet \nand that's what the chips in everyone's brains are for.\"",
+      "\n\n\"If someone has a chip, you can immediately tell they are a human. \nBut since your brain was frozen, you don't have one and I had to test you. \nOthers might also test you\"",
+      "\n\n\"I even made a word game to test aliens! They fail each and every time! Ho-ho!\" \n1. So, what do you do if you find out someone is an alien? \n2. How do you know if someone has a chip inside of their brain?"
+    ],
+    "branches": {
+      "choice_1": [
+        "\"Well, we have no choice but to kill them. \nThey live as parasites and their goal is to \nobtain as much information about our human technologies.\"",
+        "\n\nYou remember your encounter with the nurse. \nMaybe she was just a poor underpaid medical worker."
+      ],
+      "choice_2": [
+        "\"Everyone who has a chip can sense another person's chip. \nChips are mandatorily implanted into all babies when they're born.\"",
+        "\n\n\"Chipless individuals like you are a rarity, so expect everyone to be suspicious of you\""
+      ]
+    }
   }
 }
