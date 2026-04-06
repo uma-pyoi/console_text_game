@@ -63,7 +63,7 @@ void JsonHandler::SaveGame(Player &player, Inventory &inventory, int plot_i, int
     json save;
     SavePlayer(save, player);
     SaveInventory(save, inventory);
-    // unfortunately, if index is 0 saves it as -1
+    // unfortunately, branch and array indexes as saved as -1 of the intended index
     save["indexes"] = {{"plot_i", plot_i}, {"text_array_i", text_array_i}, {"branch_i", branch_i}};
 
     try {
