@@ -72,7 +72,7 @@ void GameManager::BranchingPlot2(int user_choice, std::vector<std::string> &plot
         RunPlotWoChoice(plot_choice1);
     } else {
         RunPlotWoChoice(plot_choice2);
-        std::cout << "SHOULD ACTIVATE WORD MINIGAME HERE";
+        word_game_.Play(running_);
     }
 }
 

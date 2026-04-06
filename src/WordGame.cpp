@@ -50,7 +50,7 @@ void WordGame::OutputWord(std::string word, std::vector<int> guessed_indexes) {
     }
 }
 
-bool WordGame::Play() {
+void WordGame::Play(bool& running) {
     std::vector<int> guessed_indexes;
     bool word_is_guessed{false};
     int word_index = utils_.GenerateRandomIntInRange(0, words_.size() - 1);
@@ -87,7 +87,7 @@ bool WordGame::Play() {
         if (attempts == 0) {
             std::cout << "Too bad! No attempts left!" << '\n';
             utils_.OutputGameover();
+            running = false;
         }
     } while (!word_is_guessed && attempts != 0);
-    return word_is_guessed;
 }

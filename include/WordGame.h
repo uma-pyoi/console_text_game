@@ -15,7 +15,7 @@ private:
     std::vector<std::string> words_{"ANANAS", "FISH", "WINDOW", "HOSPITAL", "COMPUTER", "BRAIN", "NURSE", "ARCHITECTURE"};
 
 public:
-    bool Play();
+    void Play(bool& running);
 
     void OutputAttempts(int attempts);
     void OutputWord(std::string word, std::vector<int> guessed_indexes);

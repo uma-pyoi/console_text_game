@@ -8,6 +8,7 @@
 #include "JsonHandler.h"
 #include "Utils.h"
 #include "PlotManager.h"
+#include "WordGame.h"
 
 class GameManager {
     // utils
@@ -18,6 +19,7 @@ class GameManager {
     // managers
     PlotManager plot_manager_;
     FightManager fight_manager_;
+    WordGame word_game_;
 
     // entities
     Player &player_;
