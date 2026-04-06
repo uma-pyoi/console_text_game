@@ -74,6 +74,18 @@ void GameManager::BranchingPlot5(int user_choice, std::vector<std::string> &plot
     }
 }
 
+void GameManager::BranchingPlot6(int user_choice, std::vector<std::string> &plot_choice1, std::vector<std::string> &plot_choice2) {
+    if (user_choice == 1) {
+        RunPlotWoChoice(plot_choice1);
+        Food onigiri("Onigiri", "A japanese treat. Hold onto it and good things may happen.", 10);
+        utils_.ObtainItem(onigiri, inventory_, player_);
+    } else {
+        RunPlotWoChoice(plot_choice2);
+        Food smart_burrito("Smart burrito", "A burrito that supposedly makes you smarter. According to an elementary schooler.", 15);
+        utils_.ObtainItem(smart_burrito, inventory_, player_);
+    }
+}
+
 void GameManager::BranchingActivator(int plot_index, int user_choice, std::vector<std::string> &plot_choice1,
                                      std::vector<std::string> &plot_choice2) {
     switch (plot_index) {
@@ -94,6 +106,9 @@ void GameManager::BranchingActivator(int plot_index, int user_choice, std::vecto
             break;
         case 5:
             BranchingPlot5(user_choice, plot_choice1, plot_choice2);
+            break;
+        case 6:
+            BranchingPlot6(user_choice, plot_choice1, plot_choice2);
             break;
     }
 }
@@ -143,7 +158,7 @@ void GameManager::RunStory() {
     utils_.OutputGameTitle();
 
     // int i = 0;
-    int i = 5;
+    int i = 6;
     do {
         std::string plot_num = std::to_string(i);
         std::vector<std::string> plot_text = json_handler_.ReadPlotText(plot_num);
