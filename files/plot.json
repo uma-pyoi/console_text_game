@@ -41,11 +41,33 @@
     ],
     "branches": {
       "choice_1": [
-        "\"Phewww!!! You totally scared me just now! \nGood to know you're a fellow human, but, seriously, \ndo something about the blood stains on you.\"",
-        "\n\nAh, yes, you forgot you were soaked in blood now after slipping into the blood puddle."
+        "\"What-\"",
+        "\n\n\"Oh.\"",
+        "\n\n\"I didn't expect you to actually answer that. \nBut, anyways...\""
       ],
       "choice_2": [
         "\"Hm? Interesting. Could you solve this for me please?\" \nThe girl offers you a puzzle. \nSeems like you need to guess letters in this game..."
+      ]
+    }
+  },
+  "3": {
+    "text_array": [
+      "\"Phewww!!! You totally scared me just now! \nGood to know you're a fellow human, but, seriously, \ndo something about the blood stains on you.\"",
+      "\n\nAh, yes, you forgot you were soaked in blood now after slipping into the blood puddle.",
+      "\n\n\"I apologise for the test earlier. \nYou must be one of those ex-billionaires, right?\"",
+      "\n\n\"How did you know?! \nAnd, what do you mean, 'ex-billionaires'?! \nI made sure my savings are secured in dozens of banks all over the-\" \nBefore you can finish, the girl interrupts you.",
+      "\n\n\"You see, in this future they implant everyone with a chip to track them. \nThey put it in your brains\" the girl points at her head",
+      "\n\n\"But you, your brain was frozen for such a long time that it changed its chemical structure and now \neven if they were to implant you with a chip, the chip would start to rot in your brain.\"",
+      "\n\nThis conversation made your stomach twist. You feel as though you cannot hold it in anymore. \n1. Throw up \n2. Cry"
+    ],
+    "branches": {
+      "choice_1": [
+        "You feel something acidic move up your throat. \nYou throw up with blood all over the grass.",
+        "\n\n\"AAAAHHHH???!!!! ARE YOU OKAY? You might be internally bleeding... Here...\" \nThe girl hands you something."
+      ],
+      "choice_2": [
+        "Tears start rolling down your cheeks.",
+        "\n\n\"Oh? S-sorry, maybe this was too sudden for you. Here, I'll lend you my sword so that you feel less scared.\""
       ]
     }
   }
