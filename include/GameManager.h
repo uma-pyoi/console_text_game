@@ -1,13 +1,11 @@
 #ifndef CPP_COURSEWORK1_P479574_GAMEMANAGER_H
 #define CPP_COURSEWORK1_P479574_GAMEMANAGER_H
 
-#include "Enemy.h"
 #include "FightManager.h"
 #include "Player.h"
 #include "InputValidator.h"
 #include "JsonHandler.h"
 #include "Utils.h"
-#include "PlotManager.h"
 #include "WordGame.h"
 
 class GameManager {
@@ -17,7 +15,6 @@ class GameManager {
     JsonHandler json_handler_;
 
     // managers
-    PlotManager plot_manager_;
     FightManager fight_manager_;
     WordGame word_game_;
 
@@ -26,9 +23,6 @@ class GameManager {
     Inventory &inventory_;
 
     bool running_{true};
-    int plot_i_ = 0;
-    int text_arr_i_ = 0;
-    int branch_i_ = 0;
 
 public:
     GameManager(Player &player, Inventory &inventory_);

@@ -97,8 +97,6 @@ void Utils::ObtainWeapon(std::variant<Weapon, Clothing, Food> item, Player& play
 }
 
 void Utils::ObtainItem(std::variant<Weapon, Clothing, Food> item, Inventory& inventory, Player& player) {
-    // REFERENCE: https://www.geeksforgeeks.org/cpp/std-variant-in-cpp-17/
-    // Geeksforgeeks (2023)
     if (std::holds_alternative<Weapon>(item)) {
         ObtainWeapon(item, player);
     }

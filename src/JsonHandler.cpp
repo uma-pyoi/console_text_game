@@ -18,8 +18,6 @@ std::string JsonHandler::GetChoice2Name() {
 
 json JsonHandler::ReadJson(std::string filename) {
     try {
-        // REFERENCE: https://github.com/nlohmann/json?tab=readme-ov-file#cmake
-        // Niels Lohmann (2025)
         std::ifstream file(filename);
         json data = json::parse(file);
         return data;

@@ -4,8 +4,6 @@
 #include <string>
 
 class InputValidator {
-    int prompt_color_ = 90;
-
 public:
     // reading input
     std::string ReadString();

@@ -22,7 +22,6 @@ add_executable(cpp_coursework1_P479574 src/main.cpp
         include/Inventory.h
         src/Enemy.cpp
         include/Enemy.h
-        include/PlotManager.h
         src/Utils.cpp
         include/Utils.h
         src/FightManager.cpp

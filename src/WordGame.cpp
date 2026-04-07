@@ -72,8 +72,6 @@ void WordGame::Play(bool& running) {
 
         if (is_guess_correct) {
             // passing only user_guessed_indexes[0] is enough to check if letter was guessed before
-            // REFERENCE: https://en.cppreference.com/w/cpp/algorithm/count.html
-            // Cppreference.com (n.d.)
             bool guessed_before = std::count(guessed_indexes.begin(), guessed_indexes.end(), user_guessed_indexes[0]);
             if (guessed_before) {
                 std::cout << "You already guessed this letter before!" << '\n';
