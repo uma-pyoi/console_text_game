@@ -129,8 +129,6 @@ void GameManager::AskIfPause(int &plot_iterator) {
 void GameManager::RunPlotWoChoice(std::vector<std::string> &plot) {
     int branch_i = 0;
     while (branch_i < static_cast<int>(plot.size()) && running_) {
-        std::cout << "branch_i_: " << branch_i << '\n';
-        std::cout << "static_cast<int>(plot.size()): " << static_cast<int>(plot.size()) << '\n';
         std::cout << plot[branch_i];
         if (branch_i != (plot.size() - 1)) {
             this->AskIfPause(branch_i);
