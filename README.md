@@ -1,5 +1,6 @@
-#### IY453 Coursework 1
+#### Console based game maker
 
-###### author: Kai P479574
+###### author: Kai
 
+### installation
 set up: plot.json in files/plot.json should be included in cmake-build-debug for the game to work.
