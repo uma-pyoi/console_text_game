@@ -39,20 +39,26 @@ std::vector<std::string> JsonHandler::ReadPlotChoice(std::string plot_name, std:
     return plot_choice;
 }
 
-void JsonHandler::SavePlayer(json& save, Player& player) {
+void JsonHandler::SavePlayer(json &save, Player &player) {
     save["player"] = {{"name", player.GetName()}, {"score", player.GetScore()}, {"hp", player.GetHp()}};
 
     Weapon weapon = player.GetWeapon();
-    save["player"]["weapon"] = {{"name", weapon.GetName()}, {"description", weapon.GetDescription()}, {"ap", weapon.GetAp()}};
+    save["player"]["weapon"] = {
+        {"name", weapon.GetName()}, {"description", weapon.GetDescription()}, {"ap", weapon.GetAp()}
+    };
 
     Clothing clothing = player.GetClothing();
-    save["player"]["clothing"] = {{"name", clothing.GetName()}, {"description", clothing.GetDescription()}, {"dp", clothing.GetDp()}};
+    save["player"]["clothing"] = {
+        {"name", clothing.GetName()}, {"description", clothing.GetDescription()}, {"dp", clothing.GetDp()}
+    };
 }
 
-void JsonHandler::SaveInventory(json& save, Inventory &inventory) {
+void JsonHandler::SaveInventory(json &save, Inventory &inventory) {
     std::vector<Food> foods = inventory.GetFoodInventory();
     for (int i = 0; i < foods.size(); i++) {
-        save["food_inventory"][i] = {{"name", foods[i].GetName()}, {"description", foods[i].GetDescription()}, {"hp", foods[i].GetHp()}};
+        save["food_inventory"][i] = {
+            {"name", foods[i].GetName()}, {"description", foods[i].GetDescription()}, {"hp", foods[i].GetHp()}
+        };
     }
 }
 
@@ -61,13 +67,12 @@ void JsonHandler::SaveGame(Player &player, Inventory &inventory, int plot_i, int
     json save;
     SavePlayer(save, player);
     SaveInventory(save, inventory);
-    // unfortunately, branch and array indexes as saved as -1 of the intended index
+    // branch and array indexes as saved as -1 of the intended index
     save["indexes"] = {{"plot_i", plot_i}, {"text_array_i", text_array_i}, {"branch_i", branch_i}};
 
     try {
         write_file << save.dump(4);
-    }
-    catch (const std::exception &e) {
+    } catch (const std::exception &e) {
         std::cerr << "An error happened when writing to file." << '\n';
     }
     write_file.close();
@@ -89,7 +94,7 @@ Weapon JsonHandler::LoadWeapon(json data) {
     return loaded_weapon;
 }
 
-void JsonHandler::LoadPlayer(json data, Player& player) {
+void JsonHandler::LoadPlayer(json data, Player &player) {
     player.SetHp(data["player"]["hp"]);
     player.SetScore(data["player"]["score"]);
 
